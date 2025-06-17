@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import { useGame } from "@core/context/GameContext";
 
-import SceneLayout from "@layout/SceneLayout/SceneLayout";
-
 import { PlayerCreateHandler } from "@player/handlers/player-create.handler";
 import { PlayerUpgradeHandler } from "@player/handlers/player-upgrade.handler";
 
@@ -33,7 +31,7 @@ export default function PlayerSignIn() {
   };
 
   return (
-    <SceneLayout title="Welcome back" subtitle="Choose your character's name">
+    <>
       <input
         type="text"
         value={name}
@@ -47,6 +45,6 @@ export default function PlayerSignIn() {
         Press <span className="font-semibold text-white">Enter</span> to
         continue
       </p>
-    </SceneLayout>
+    </>
   );
 }

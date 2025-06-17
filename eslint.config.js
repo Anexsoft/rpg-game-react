@@ -42,6 +42,7 @@ export default tseslint.config(
             { pattern: "@core/**", group: "internal", position: "before" },
             { pattern: "@shared/**", group: "internal", position: "after" },
             { pattern: "@layout/**", group: "internal", position: "after" },
+            { pattern: "@ui/**", group: "internal", position: "after" },
             { pattern: "@resources/**", group: "internal", position: "after" },
             { pattern: "@scenes/**", group: "internal", position: "after" },
             { pattern: "@player/**", group: "internal", position: "after" },

@@ -28,9 +28,11 @@
     "paths": {
       "@layout/*": ["src/layout/*"],
       "@core/*": ["src/core/*"],
-      "@player/*": ["src/modules/player/*"],
-      "@shared/*": ["src/modules/shared/*"],
       "@resources/*": ["src/resources/*"],
+      "@ui/*": ["src/ui/*"],
+      "@shared/*": ["src/modules/shared/*"],
+      "@player/*": ["src/modules/player/*"],
+      "@npc/*": ["src/modules/npc/*"],
       "@scenes/*": ["src/scenes/*"]
     }
   },

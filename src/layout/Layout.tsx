@@ -13,9 +13,7 @@ export default function Layout() {
         </aside>
       )}
 
-      <main
-        className={`flex-1 p-6 bg-gray-900 ${!isSidebarOpen ? "w-full" : ""}`}
-      >
+      <main className={`flex-1  bg-gray-900 ${!isSidebarOpen ? "w-full" : ""}`}>
         {scene}
       </main>
     </div>

@@ -29,7 +29,7 @@ export default function ActionGroupItems({
     <ul className="text-sm text-gray-300 space-y-2">
       <li
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 text-white cursor-pointer select-none"
+        className="flex items-center gap-2 px-4 py-2 rounded bg-black/40 text-white cursor-pointer select-none hover:bg-black/60"
       >
         <Icon className="w-4 h-4" />
         <span className="flex-1">{text}</span>
@@ -42,11 +42,11 @@ export default function ActionGroupItems({
 
       {open && (
         <li>
-          <ul className="ml-4 border-l border-gray-600 space-y-1">
+          <ul className="ml-4 border-l border-dashed border-gray-500 space-y-1">
             {items.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-900 text-white border-b border-gray-600 last:border-b-0 text-sm cursor-pointer"
+                className="flex items-center gap-2 px-3 py-2 rounded bg-black/40 text-sm border-b border-dashed border-gray-500 cursor-pointer hover:bg-black/60 hover:text-gray-50 last:border-b-0"
                 onClick={() => setScene(item.scene)}
               >
                 {item.text}

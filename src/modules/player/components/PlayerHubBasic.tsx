@@ -16,7 +16,7 @@ export default function PlayerHubBasic() {
         <img
           src={avatar}
           alt="Avatar"
-          className="h-12 w-12 rounded-full border-2 border-yellow-400 object-cover"
+          className="w-12 border-2 border-gray-400 object-cover"
         />
         <div>
           <div className="text-base font-bold text-yellow-400">
