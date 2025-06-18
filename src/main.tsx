@@ -6,14 +6,14 @@ import { createRoot } from "react-dom/client";
 import "@core/_boostrap";
 import { GameContextProvider } from "@core/context/GameContextProvider";
 
-import Layout from "@layout/Layout";
-
 import "./index.css";
+
+import AppRouter from "./router";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <GameContextProvider>
-      <Layout />
+      <AppRouter />
     </GameContextProvider>
   </StrictMode>
 );

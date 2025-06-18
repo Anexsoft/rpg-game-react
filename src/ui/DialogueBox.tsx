@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { UiVariant } from "./types/ui-variant.type";
+import type { UiVariant } from "./defs/ui-variant.type";
 
 interface DialogueBoxProps {
   avatar: string;

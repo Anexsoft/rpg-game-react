@@ -1,5 +1,3 @@
-import type { SceneComponent } from "@scenes/types";
-
 import type { Player } from "@player/types/player";
 
 export type SetPlayerInput =
@@ -17,10 +15,7 @@ export type GameContextType = {
   player: Player | null;
   setPlayer: (input: SetPlayerInput) => void;
   playerExists: (name: string) => boolean;
-
-  // Scene
-  scene: SceneComponent;
-  setScene: (scene: SceneComponent) => void;
+  logoutPlayer: () => void;
 
   // Sidebar
   isSidebarOpen: boolean;

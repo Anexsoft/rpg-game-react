@@ -1,13 +1,12 @@
-import { useState, type JSX } from "react";
+import { ShoppingCart, DollarSign, MessageCircle } from "lucide-react";
 
 import { STORE_KEEPER_NAME } from "@npc/defs/names";
-import { ShoppingCart, DollarSign, MessageCircle } from "lucide-react";
 
 import { useGame } from "@core/context/GameContext";
 
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
-import ActionButton from "@ui/ActionButton";
+import ActionLink from "@ui/ActionLink";
 import DialogueBox from "@ui/DialogueBox";
 
 import avatar from "@resources/images/npc/avatars/store-keeper.png";
@@ -15,7 +14,7 @@ import backgroundImage from "@resources/images/scenes/store.jpg";
 
 import type { SceneComponent } from "@scenes/types";
 
-import { TalkToStoreKeeper } from "./components/TalkToStoreKeeper";
+import { STORE_KEEPER_CHAT_PATH } from "@src/router.defs";
 
 const ACTION_BUTTON_TEXTS = {
   PURCHASE: "Buy Items",
@@ -24,27 +23,12 @@ const ACTION_BUTTON_TEXTS = {
 };
 
 export default function StoreScene(): SceneComponent {
-  const [modal, setModal] = useState<JSX.Element | null>(null);
   const { player } = useGame();
 
   if (!player) return;
-
-  const onClose = () => {
-    setModal(null);
-  };
-
-  const talkToStoreKeeper = () => {
-    setModal(
-      TalkToStoreKeeper({
-        title: ACTION_BUTTON_TEXTS.HEAR_A_TALE,
-        onClose,
-      })
-    );
-  };
-
   return (
     <SceneLayout
-      title="Welcome to the Store"
+      title="The Store"
       subtitle="Here you can purchase a new item or sell your current items."
       backgroundImage={backgroundImage}
     >
@@ -56,18 +40,16 @@ export default function StoreScene(): SceneComponent {
       />
 
       <nav className="space-y-2" aria-label="Store options">
-        <ActionButton icon={ShoppingCart}>
+        <ActionLink icon={ShoppingCart} to={""}>
           {ACTION_BUTTON_TEXTS.PURCHASE}
-        </ActionButton>
-        <ActionButton icon={DollarSign}>
+        </ActionLink>
+        <ActionLink icon={DollarSign} to={""}>
           {ACTION_BUTTON_TEXTS.SELL}
-        </ActionButton>
-        <ActionButton onClick={() => talkToStoreKeeper()} icon={MessageCircle}>
+        </ActionLink>
+        <ActionLink icon={MessageCircle} to={STORE_KEEPER_CHAT_PATH}>
           {ACTION_BUTTON_TEXTS.HEAR_A_TALE}
-        </ActionButton>
+        </ActionLink>
       </nav>
-
-      {modal}
     </SceneLayout>
   );
 }

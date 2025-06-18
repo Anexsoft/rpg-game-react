@@ -33,7 +33,8 @@
       "@shared/*": ["src/modules/shared/*"],
       "@player/*": ["src/modules/player/*"],
       "@npc/*": ["src/modules/npc/*"],
-      "@scenes/*": ["src/scenes/*"]
+      "@scenes/*": ["src/scenes/*"],
+      "@src/*": ["src/*"]
     }
   },
   "include": ["src"]

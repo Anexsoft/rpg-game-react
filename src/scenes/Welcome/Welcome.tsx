@@ -1,17 +1,10 @@
-import { useGame } from "@core/context/GameContext";
-
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
 import backgroundImage from "@resources/images/scenes/welcome.jpg";
 
 import type { SceneComponent } from "@scenes/types";
 
-import ExistingPlayerSignedIn from "./components/ExistingPlayerSignedIn";
-import PlayerSignIn from "./components/PlayerSignIn";
-
 export default function WelcomeScene(): SceneComponent {
-  const { player } = useGame();
-
   return (
     <SceneLayout
       title="Welcome to Arcane Times"
@@ -19,7 +12,10 @@ export default function WelcomeScene(): SceneComponent {
       isCentered={true}
       backgroundImage={backgroundImage}
     >
-      {player ? <ExistingPlayerSignedIn /> : <PlayerSignIn />}
+      <p className="text-gray-200 text-sm">
+        Begin your journey... from the tavern or by hunting enemies in the
+        forest.
+      </p>
     </SceneLayout>
   );
 }

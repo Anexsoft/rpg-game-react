@@ -17,58 +17,37 @@ const TARVERN_KEEPER_DIALOGUES = [
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "Welcome, traveler. The ale is fresh and the stories are free.",
-      "Looking for warmth or whispers tonight?",
-    ],
+    message: "Welcome, traveler. Ale's fresh, stories are free.",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "Careful who you trust around here... even shadows carry secrets.",
-      "Fancy a pint while you wait?",
-    ],
+    message: "Careful who you trust here. Fancy a pint?",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "If the walls could talk, they'd ask for a drink too.",
-      "What brings you to my humble tavern tonight?",
-    ],
+    message: "If the walls could talk, they'd ask for a drink.",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "Adventurers come and go, but the ale never runs dry.",
-      "Need a room or just a listening ear?",
-    ],
+    message: "Adventurers come and go, but the ale never runs dry.",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "Keep your coin close and your secrets closer.",
-      "Trouble has a way of finding those who seek it.",
-    ],
+    message: "Keep your coin close and your secrets closer.",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "The fireplace is warm, but the gossip is hotter.",
-      "Care for a tale or two with your drink?",
-    ],
+    message: "The fireplace is warm, but the gossip is hotter.",
   },
   {
     name: TAVERN_KEEPER_NAME,
     avatar: tavernKeeperAvatar,
-    message: [
-      "I've seen heroes rise and fall from this very stool.",
-      "What story will you leave behind?",
-    ],
+    message: "I've seen heroes rise and fall from this stool.",
   },
 ];
 
@@ -76,18 +55,13 @@ const DAWRF_DIALOGUES = [
   {
     name: DWARF_NAME,
     avatar: dwarfAvatar1,
-    message: [
-      "Back in my day, goblins didn't run—they screamed!",
-      "Now pour me another before I start sobering up.",
-    ],
+    message: "Back in my day, goblins screamed! Pour me another.",
   },
   {
     name: DWARF_NAME,
     avatar: dwarfAvatar1,
-    message: [
-      "I mined deeper than any dwarf alive, saw things I'll never unsee.",
-      "Let's toast to bad decisions and good ale!",
-    ],
+    message:
+      "I mined deep, saw things I'll never unsee. Toast to bad decisions!",
   },
 ];
 
@@ -95,18 +69,13 @@ const DRUNK_DIALOGUES = [
   {
     name: DRUNK_NAME,
     avatar: drunkAvatar1,
-    message: [
-      "You ever talk to the floor? It listens real well...",
-      "Heh... better than my ex-wife.",
-    ],
+    message: "You ever talk to the floor? Listens better than my ex-wife.",
   },
   {
     name: DRUNK_NAME,
     avatar: drunkAvatar1,
-    message: [
-      "I once drank so much I woke up speaking Elvish...",
-      "Still can't remember how to say 'hangover' in their tongue.",
-    ],
+    message:
+      "Drank so much I woke up speaking Elvish. Still can't say 'hangover.'",
   },
 ];
 
@@ -114,15 +83,12 @@ const PROSTITUTE_OLD_DIALOGUES = [
   {
     name: PROSTITUTE_OLD_NAME,
     avatar: prostituteAvatarOld1,
-    message: [
-      "You learn a lot listening at tavern corners.",
-      "Want to know who's really in charge of this town?",
-    ],
+    message: "You learn a lot listening at tavern corners.",
   },
   {
     name: PROSTITUTE_OLD_NAME,
     avatar: prostituteAvatarOld1,
-    message: ["Men come and go, but secrets? Secrets stay."],
+    message: "Men come and go, but secrets stay.",
   },
 ];
 
@@ -130,50 +96,32 @@ const PROSTITUTE_YOUNG_1_DIALOGUES = [
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "You've got that look... like someone who's seen too much.",
-      "Want to forget it all for a night?",
-    ],
+    message: "You've got that look... Want to forget for a night?",
   },
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "Care for a drink, or are you here for something stronger?",
-      "I know how to make troubles disappear—at least until morning.",
-    ],
+    message: "Care for a drink, or something stronger?",
   },
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "Some say the night is dangerous, but I find it thrilling.",
-      "What brings you to the tavern at this hour?",
-    ],
+    message: "Some say the night is dangerous. What brings you here?",
   },
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "If you listen closely, you can hear secrets in the laughter.",
-      "Want to share one of yours?",
-    ],
+    message: "If you listen, you can hear secrets in laughter.",
   },
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "Not all smiles here are honest, but mine can be—if you want.",
-      "Sit with me, and let's chase away the shadows.",
-    ],
+    message: "Not all smiles are honest, but mine can be.",
   },
   {
     name: PROSTITUTE_YOUNG1_NAME,
     avatar: prostituteAvatarYoung1,
-    message: [
-      "I've seen heroes, villains, and fools pass through these doors.",
-      "Which one are you tonight?",
-    ],
+    message: "I've seen heroes, villains, and fools. Which are you?",
   },
 ];
 
@@ -181,50 +129,32 @@ const PROSTITUTE_YOUNG_2_DIALOGUES = [
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "The fire's warm... but I can warm you better.",
-      "Stay for a dance or two.",
-    ],
+    message: "The fire's warm... but I can warm you better.",
   },
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "You look tense. Let me help you unwind.",
-      "A little laughter and a little company can do wonders.",
-    ],
+    message: "You look tense. Let me help you unwind.",
   },
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "Not everyone here is looking for trouble.",
-      "Some just want to forget the world for a while.",
-    ],
+    message: "Not everyone here seeks trouble. Some just want to forget.",
   },
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "I've heard every secret this tavern holds.",
-      "Care to share one of yours?",
-    ],
+    message: "I've heard every secret this tavern holds.",
   },
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "The night is young, and so am I.",
-      "Let's make it a night to remember.",
-    ],
+    message: "The night is young, and so am I.",
   },
   {
     name: PROSTITUTE_YOUNG2_NAME,
     avatar: prostituteAvatarYoung2,
-    message: [
-      "Sometimes a smile is all it takes to change your luck.",
-      "Let me be your lucky charm tonight.",
-    ],
+    message: "Sometimes a smile changes your luck. Let me be your charm.",
   },
 ];
 

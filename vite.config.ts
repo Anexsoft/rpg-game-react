@@ -1,8 +1,9 @@
 import path from "path";
 
+import { defineConfig } from "vite";
+
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,6 +18,7 @@ export default defineConfig({
       "@player": path.resolve(__dirname, "src/modules/player"),
       "@npc": path.resolve(__dirname, "src/modules/npc"),
       "@scenes": path.resolve(__dirname, "src/scenes"),
+      "@src": path.resolve(__dirname, "src"),
     },
   },
 });

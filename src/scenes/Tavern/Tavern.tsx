@@ -2,7 +2,7 @@ import { useGame } from "@core/context/GameContext";
 
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
-import DialogueBox from "@ui/DialogueBox";
+import QuoteBox from "@ui/QuoteBox";
 
 import backgroundImage from "@resources/images/scenes/tavern.jpg";
 
@@ -20,16 +20,11 @@ export default function TavernScene(): SceneComponent {
 
   return (
     <SceneLayout
-      title="Welcome to the Tavern"
+      title="The Tavern"
       subtitle="A place full of whispers, warmth, and wild tales."
       backgroundImage={backgroundImage}
     >
-      <DialogueBox
-        avatar={avatar}
-        name={name}
-        messages={message}
-        type="primary"
-      />
+      <QuoteBox avatar={avatar} message={message} name={name}></QuoteBox>
     </SceneLayout>
   );
 }

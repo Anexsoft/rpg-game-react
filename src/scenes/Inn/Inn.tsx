@@ -11,7 +11,7 @@ import backgroundImage from "@resources/images/scenes/inn.jpg";
 
 import type { SceneComponent } from "@scenes/types";
 
-export default function Inn(): SceneComponent {
+export default function InnScene(): SceneComponent {
   const { player } = useGame();
 
   if (!player) return;

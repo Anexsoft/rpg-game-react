@@ -2,10 +2,14 @@ import { useState } from "react";
 
 import { useGame } from "@core/context/GameContext";
 
+import SceneLayout from "@layout/SceneLayout/SceneLayout";
+
+import backgroundImage from "@resources/images/scenes/welcome.jpg";
+
 import { PlayerCreateHandler } from "@player/handlers/player-create.handler";
 import { PlayerUpgradeHandler } from "@player/handlers/player-upgrade.handler";
 
-export default function PlayerSignIn() {
+export default function SignInScene() {
   const { setPlayer, openSidebar, playerExists } = useGame();
   const [name, setName] = useState("");
 
@@ -31,7 +35,12 @@ export default function PlayerSignIn() {
   };
 
   return (
-    <>
+    <SceneLayout
+      title="Welcome to Arcane Times"
+      subtitle="A world of ancient magic, forgotten secrets, and battles yet to come."
+      isCentered={true}
+      backgroundImage={backgroundImage}
+    >
       <input
         type="text"
         value={name}
@@ -45,6 +54,6 @@ export default function PlayerSignIn() {
         Press <span className="font-semibold text-white">Enter</span> to
         continue
       </p>
-    </>
+    </SceneLayout>
   );
 }

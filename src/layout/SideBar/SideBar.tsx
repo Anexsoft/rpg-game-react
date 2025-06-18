@@ -43,7 +43,7 @@ export default function SideBar() {
                   key={index}
                   icon={item.icon}
                   text={item.text}
-                  scene={item.scene}
+                  path={item.path as string}
                 />
               ) : (
                 <ActionGroupItems

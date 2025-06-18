@@ -37,8 +37,17 @@ export default tseslint.config(
             "index",
           ],
           pathGroups: [
+            // 🔹 Built-in Node.js modules (fs, path, etc.)
+            { pattern: "node:*", group: "builtin", position: "before" },
+            { pattern: "fs", group: "builtin", position: "before" },
+            { pattern: "path", group: "builtin", position: "before" },
+
+            // 🔹 Third-party packages
             { pattern: "react", group: "external", position: "before" },
             { pattern: "react-dom", group: "external", position: "before" },
+            { pattern: "*", group: "external", position: "before" },
+
+            // 🔸 Internal aliases (custom modules)
             { pattern: "@core/**", group: "internal", position: "before" },
             { pattern: "@shared/**", group: "internal", position: "after" },
             { pattern: "@layout/**", group: "internal", position: "after" },
@@ -46,6 +55,7 @@ export default tseslint.config(
             { pattern: "@resources/**", group: "internal", position: "after" },
             { pattern: "@scenes/**", group: "internal", position: "after" },
             { pattern: "@player/**", group: "internal", position: "after" },
+            { pattern: "@src/**", group: "internal", position: "after" },
           ],
           pathGroupsExcludedImportTypes: ["builtin"],
           "newlines-between": "always",
