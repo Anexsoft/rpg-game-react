@@ -54,7 +54,11 @@ export default tseslint.config(
             { pattern: "@ui/**", group: "internal", position: "after" },
             { pattern: "@resources/**", group: "internal", position: "after" },
             { pattern: "@scenes/**", group: "internal", position: "after" },
+            { pattern: "@npc/**", group: "internal", position: "after" },
             { pattern: "@player/**", group: "internal", position: "after" },
+            { pattern: "@weapons/**", group: "internal", position: "after" },
+            { pattern: "@armor/**", group: "internal", position: "after" },
+            { pattern: "@aid/**", group: "internal", position: "after" },
             { pattern: "@src/**", group: "internal", position: "after" },
           ],
           pathGroupsExcludedImportTypes: ["builtin"],
@@ -66,5 +70,5 @@ export default tseslint.config(
         },
       ],
     },
-  }
+  },
 );

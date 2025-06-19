@@ -6,7 +6,7 @@ import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
 import backgroundImage from "@resources/images/scenes/welcome.jpg";
 
-import type { SceneComponent } from "@scenes/types";
+import type { SceneComponent } from "@scenes/types/index.types";
 
 export default function LogoutScene(): SceneComponent {
   const { closeSidebar, logoutPlayer } = useGame();
@@ -34,7 +34,7 @@ export default function LogoutScene(): SceneComponent {
   return (
     <SceneLayout
       title="You have been logged out"
-      subtitle="Thank you for playing Arcane Times."
+      subtitle="Thank you for playing Silent Evil."
       isCentered={true}
       backgroundImage={backgroundImage}
     >

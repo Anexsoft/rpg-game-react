@@ -20,7 +20,7 @@ const QuoteBox: React.FC<QuoteBoxProps> = ({ avatar, name, message }) => {
         <img
           src={avatar}
           alt={name}
-          className="w-36 h-36 object-cover border-2 border-gray-400 rounded-md shadow-lg"
+          className="w-36 h-36 object-cover border-1 border-gray-400 rounded-md shadow-lg"
         />
       </figure>
     </div>

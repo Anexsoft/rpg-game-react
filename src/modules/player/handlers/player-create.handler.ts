@@ -1,4 +1,4 @@
-import { Player } from "@player/types/player";
+import { Player } from "@player/types/index.types";
 
 export class PlayerCreateHandler {
   static handle(name: string): Player {

@@ -2,7 +2,7 @@ import { APP_NAME, APP_VERSION } from "@core/config/index";
 
 import backgroundImage from "@resources/images/sidebar/background.png";
 
-import PlayerHubBasic from "@player/components/PlayerHubBasic";
+import PlayerHubBasic from "@player/components/PlayerHubBasic/PlayerHubBasic";
 
 import ActionGroupItems from "./components/ActionGroupItems";
 import ActionItem from "./components/ActionItem";
@@ -52,7 +52,7 @@ export default function SideBar() {
                   text={item.text}
                   items={item.items as []}
                 />
-              )
+              ),
             )}
           </ul>
         </div>

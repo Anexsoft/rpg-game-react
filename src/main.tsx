@@ -15,5 +15,5 @@ createRoot(document.getElementById("root")!).render(
     <GameContextProvider>
       <AppRouter />
     </GameContextProvider>
-  </StrictMode>
+  </StrictMode>,
 );

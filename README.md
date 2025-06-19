@@ -1,6 +1,6 @@
-# Arcane Times 🧙‍♂️
+# Silent Evil 💀
 
-Arcane Times is a 2D browser RPG set in a world of ancient magic, forgotten secrets, and ever-growing danger.
+Silent Evil is a 2D browser RPG set in a world of post-apocaliptic zombies, forgotten secrets, and ever-growing danger.
 
 ---
 
@@ -28,7 +28,3 @@ src/
 - Modular scene-based architecture
 
 ---
-
-## 🧙 Begin your journey...
-
-Explore shops, survive the forest, and uncover ancient magic in the world of Arcane Times.

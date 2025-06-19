@@ -26,9 +26,8 @@ export default function ActionGroupItems({
       <li>
         <ul className="ml-4 border-l border-dashed border-gray-500 space-y-1">
           {items.map(({ path, text }, index) => (
-            <li>
+            <li key={index}>
               <NavLink
-                key={index}
                 className="flex items-center gap-2 px-3 py-2 rounded bg-black/40 text-sm border-b border-dashed border-gray-500 cursor-pointer hover:bg-black/60 hover:text-gray-50 last:border-b-0"
                 to={path}
               >

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { logger } from "@shared/logger";
 
-import type { Player } from "@player/types/player";
+import type { Player } from "@player/types/index.types";
 
 import { SIGNED_IN_KEY, STORED_PLAYER_PREFIX } from "../defs";
-import type { SetPlayerInput } from "../GameContext.type";
+import type { SetPlayerInput } from "../types/index.types";
 
 export default (
-  setPlayer: React.Dispatch<React.SetStateAction<Player | null>>
+  setPlayer: React.Dispatch<React.SetStateAction<Player | null>>,
 ) => {
   return (input: SetPlayerInput) => {
     let key: string | null = null;
@@ -16,7 +16,7 @@ export default (
     if (input.action === "reuse") {
       key = STORED_PLAYER_PREFIX.replace(
         "player",
-        input.existingPlayerName.toUpperCase()
+        input.existingPlayerName.toUpperCase(),
       );
       const stored = localStorage.getItem(key);
 
@@ -31,17 +31,17 @@ export default (
         }
       } else {
         throw new Error(
-          `No existing player found with name: ${input.existingPlayerName}`
+          `No existing player found with name: ${input.existingPlayerName}`,
         );
       }
     } else if (input.action === "add") {
       key = STORED_PLAYER_PREFIX.replace(
         "player",
-        input.newPlayer.name.toUpperCase()
+        input.newPlayer.name.toUpperCase(),
       );
 
       logger.debug(
-        `No existing player data found. Storing new player for key: ${key}`
+        `No existing player data found. Storing new player for key: ${key}`,
       );
 
       localStorage.setItem(key, JSON.stringify(input.newPlayer));

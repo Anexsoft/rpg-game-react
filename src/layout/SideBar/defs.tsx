@@ -1,11 +1,12 @@
-import { Castle, Home, LogOut } from "lucide-react";
+import { Castle, Home, LogOut, Shield } from "lucide-react";
 
 import {
-  INN_PATH,
+  REST_PATH,
   LOGOUT_PATH,
+  PLAYER_PATH,
   ROOT_PATH,
   STORE_PATH,
-  TAVERN_PATH,
+  BAR_PATH,
 } from "@src/router.defs";
 
 export const menu = [
@@ -16,13 +17,19 @@ export const menu = [
     path: ROOT_PATH,
   },
   {
+    type: "item",
+    icon: Shield,
+    text: "Hero Hub",
+    path: PLAYER_PATH,
+  },
+  {
     type: "group",
     icon: Castle,
     text: "Visit the town",
     items: [
       { text: "Go to the Store", path: STORE_PATH },
-      { text: "Go to the Tavern", path: TAVERN_PATH },
-      { text: "Go to the Inn", path: INN_PATH },
+      { text: "Go to the Bar", path: BAR_PATH },
+      { text: "Go to Rest", path: REST_PATH },
     ],
   },
   {

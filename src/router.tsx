@@ -8,22 +8,24 @@ import { useGame } from "@core/context/GameContext";
 
 import Layout from "@layout/Layout";
 
-import InnScene from "@scenes/Inn/Inn";
+import BarScene from "@scenes/Bar/Bar";
 import LogoutScene from "@scenes/Logout/Logout";
+import Player from "@scenes/Player/Player";
+import RestScene from "@scenes/Rest/Rest";
 import SignInScene from "@scenes/SignIn/SignIn";
 import StoreKeeperChatScene from "@scenes/Store/scenes/StoreKeeperChat";
 import StoreScene from "@scenes/Store/Store";
-import TavernScene from "@scenes/Tavern/Tavern";
-import type { SceneComponent } from "@scenes/types";
+import type { SceneComponent } from "@scenes/types/index.types";
 import WelcomeScene from "@scenes/Welcome/Welcome";
 
 import {
   ROOT_PATH,
   LOGOUT_PATH,
   STORE_PATH,
-  TAVERN_PATH,
-  INN_PATH,
+  BAR_PATH,
+  REST_PATH,
   STORE_KEEPER_CHAT_PATH,
+  PLAYER_PATH,
 } from "./router.defs";
 
 function RootRoute(): SceneComponent {
@@ -42,12 +44,15 @@ const PATHS = [
   /* Home */
   defineRoute(ROOT_PATH, <RootRoute />),
 
+  /* Player */
+  defineRoute(PLAYER_PATH, <Player />),
+
   /* Town */
   defineRoute(STORE_PATH, <StoreScene />),
   defineRoute(STORE_KEEPER_CHAT_PATH, <StoreKeeperChatScene />),
 
-  defineRoute(TAVERN_PATH, <TavernScene />),
-  defineRoute(INN_PATH, <InnScene />),
+  defineRoute(BAR_PATH, <BarScene />),
+  defineRoute(REST_PATH, <RestScene />),
 
   /* Logout */
   defineRoute(LOGOUT_PATH, <LogoutScene />),

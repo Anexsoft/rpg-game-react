@@ -31,8 +31,11 @@
       "@resources/*": ["src/resources/*"],
       "@ui/*": ["src/ui/*"],
       "@shared/*": ["src/modules/shared/*"],
-      "@player/*": ["src/modules/player/*"],
       "@npc/*": ["src/modules/npc/*"],
+      "@player/*": ["src/modules/player/*"],
+      "@weapons/*": ["src/modules/items/weapons/*"],
+      "@armor/*": ["src/modules/items/armor/*"],
+      "@aid/*": ["src/modules/items/aid/*"],
       "@scenes/*": ["src/scenes/*"],
       "@src/*": ["src/*"]
     }

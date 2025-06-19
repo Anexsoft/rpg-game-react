@@ -2,7 +2,7 @@ export const BASE_HP = 50;
 export const HP_PER_VIT = 5;
 
 export const BASE_MP = 20;
-export const MP_PER_INT = 3;
+export const ST_PER_NRG = 3;
 
 export const BASE_DMG = 20;
 export const DMG_PER_STR = 3;

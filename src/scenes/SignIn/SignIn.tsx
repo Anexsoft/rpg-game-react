@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { APP_NAME } from "@core/config";
 import { useGame } from "@core/context/GameContext";
 
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
@@ -36,8 +37,8 @@ export default function SignInScene() {
 
   return (
     <SceneLayout
-      title="Welcome to Arcane Times"
-      subtitle="A world of ancient magic, forgotten secrets, and battles yet to come."
+      title={`Welcome to ${APP_NAME}`}
+      subtitle="The town lies quiet. But something watches in the dark."
       isCentered={true}
       backgroundImage={backgroundImage}
     >
@@ -46,13 +47,13 @@ export default function SignInScene() {
         value={name}
         onChange={(e) => setName(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Enter name..."
+        placeholder="Enter your name..."
         className="bg-gray-800 text-white border border-white/20 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-white/50"
       />
 
-      <p className="text-sm text-gray-400">
-        Press <span className="font-semibold text-white">Enter</span> to
-        continue
+      <p className="text-sm text-gray-400 mt-2">
+        Press <span className="font-semibold text-white">Enter</span> to begin
+        your descent.
       </p>
     </SceneLayout>
   );

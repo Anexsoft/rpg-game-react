@@ -1,4 +1,4 @@
-import type { Player } from "@player/types/player";
+import type { Player } from "@player/types/index.types";
 
 import { SIGNED_IN_KEY } from "../defs";
 

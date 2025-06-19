@@ -1,17 +1,17 @@
 import React from "react";
 
-import type { LucideIcon } from "lucide-react";
-
-import { ActionDisabledCssClass, ActionVariantsCssClass } from "./defs/actions";
-import { type UiVariant } from "./defs/ui-variants";
+import {
+  ActionDisabledCssClass,
+  ActionVariantsCssClass,
+  ActionSizeCssClass,
+  ActionAlignCssClass,
+  ActionIconSizeClass,
+} from "./theme/actions";
+import type { ActionBase } from "./types/action.types";
 
 type ActionButtonProps = {
   onClick: () => void;
-  icon?: LucideIcon;
-  children?: React.ReactNode;
-  type?: UiVariant;
-  disabled?: boolean;
-};
+} & ActionBase;
 
 const ActionButton: React.FC<ActionButtonProps> = ({
   onClick,
@@ -19,14 +19,20 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   children,
   type = "default",
   disabled = false,
+  size = "medium",
+  align = "left",
 }) => {
-  const classes = ` ${ActionVariantsCssClass[type as UiVariant]}  ${
-    disabled ? ActionDisabledCssClass : ""
-  }`;
+  const variantClass = ActionVariantsCssClass[type];
+  const iconSizeClass = ActionIconSizeClass[size];
+  const sizeClass = ActionSizeCssClass[size];
+  const alignClass = ActionAlignCssClass[align];
+  const disabledClass = disabled ? ActionDisabledCssClass : "";
+
+  const classes = `${variantClass} ${sizeClass} ${alignClass} ${disabledClass}`;
 
   return (
     <button className={classes} onClick={onClick} disabled={disabled}>
-      {Icon && <Icon />}
+      {Icon && <Icon className={iconSizeClass} />}
       <span>{children}</span>
     </button>
   );

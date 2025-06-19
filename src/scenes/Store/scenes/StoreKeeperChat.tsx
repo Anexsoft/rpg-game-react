@@ -1,28 +1,39 @@
-import { STORE_KEEPER_NAME } from "@npc/defs/names";
+import { BackpackIcon } from "lucide-react";
 
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
+import ActionLink from "@ui/ActionLink";
 import QuoteBox from "@ui/QuoteBox";
 
-import avatar from "@resources/images/npc/avatars/store-keeper.png";
 import backgroundImage from "@resources/images/scenes/store.jpg";
+
+import { NPC } from "@npc/defs";
+
+import { STORE_PATH } from "@src/router.defs";
 
 import { DIALOGUES } from "./defs";
 
 export const StoreKeeperChatScene = () => {
+  const { STORE_KEEPER } = NPC;
   const message = DIALOGUES[Math.floor(Math.random() * DIALOGUES.length)];
 
   return (
     <SceneLayout
-      title="Got any tales worth the telling?"
+      title=" Got any rumor worth the telling?"
       subtitle="The store keeper leans in, ready to share a secret..."
       backgroundImage={backgroundImage}
     >
       <QuoteBox
-        avatar={avatar}
+        avatar={STORE_KEEPER.avatar}
         message={message}
-        name={STORE_KEEPER_NAME}
+        name={STORE_KEEPER.name}
       ></QuoteBox>
+
+      <div>
+        <ActionLink icon={BackpackIcon} to={STORE_PATH} align="center">
+          Go Back
+        </ActionLink>
+      </div>
     </SceneLayout>
   );
 };
