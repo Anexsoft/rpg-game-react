@@ -3,6 +3,7 @@ import type { ItemRarity } from "../../types/index.type";
 export type WeaponType = "handgun" | "shotgun" | "rifle" | "machinegun";
 
 export type Weapon = {
+  id: string;
   type: WeaponType;
   rarity: ItemRarity;
   name: string;

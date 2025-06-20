@@ -5,18 +5,18 @@ import type { Weapon } from "./types/index.type";
 
 export const WEAPONS: Weapon[] = [
   {
+    id: "9mm-semi-automatic-handgun",
     type: "handgun",
     name: "9mm Semi-Automatic Handgun",
-    description:
-      "A reliable sidearm with moderate accuracy and quick reload. Ideal for close to mid-range encounters.",
+    description: "Reliable sidearm for close to mid-range.",
     picture: handgun9mmPic,
     rarity: "standard",
   },
   {
+    id: "remington-870-pump-action-shotgun",
     type: "shotgun",
     name: "Remington 870 Pump-Action Shotgun",
-    description:
-      "A powerful pump-action shotgun, effective at close range with high stopping power and wide spread.",
+    description: "Powerful shotgun, best at close range.",
     picture: shotgunRemington,
     rarity: "standard",
   },

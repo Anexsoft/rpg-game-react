@@ -14,12 +14,12 @@ import CurrentGold from "./components/CurrentGold";
 import Inventory from "./components/Inventory/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
 
-export default function PlayerScene(): SceneComponent {
+export default function PlayerHubScene(): SceneComponent {
   const { player } = useGame();
 
   return (
     <SceneLayout
-      title="Hero Profile"
+      title="Hero Hub"
       subtitle="This is your personal hub. Review your status, attributes, and future potential."
       backgroundImage={backgroundImage}
       size="large"
@@ -47,7 +47,7 @@ export default function PlayerScene(): SceneComponent {
 
         <div className="flex flex-col gap-6 col-span-2">
           <Block>
-            <Inventory />
+            <Inventory player={player} />
           </Block>
         </div>
       </div>

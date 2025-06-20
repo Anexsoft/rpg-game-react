@@ -37,7 +37,11 @@ export default function BattleItem({
       onMouseLeave={() => setHover(false)}
       className={`relative w-12 h-12 ${style.background} border ${style.border} ${style.hoverBorder} rounded cursor-pointer transition`}
     >
-      <img alt={name} src={picture} className="w-full h-full object-contain" />
+      <img
+        alt={name}
+        src={picture}
+        className="relative w-12 h-12 bg-gray-800 border border-gray-500 hover:border-gray-400 rounded cursor-pointer transition"
+      />
 
       {/* Checkmark */}
       {selected && (

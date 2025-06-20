@@ -12,11 +12,11 @@ export default function StatInfo({ type, value, isPercent = false }: Props) {
 
   return (
     <div className="flex justify-between items-start py-2">
-      <div>
+      <div className="flex-1 pr-4">
         <div className={`font-semibold ${style.text}`}>{style.label}</div>
         <div className="text-sm text-gray-400">{style.longDescription}</div>
       </div>
-      <div className={`text-lg font-bold ${style.text}`}>
+      <div className={`w-[80px] text-lg font-bold ${style.text} text-right`}>
         {isPercent ? `${value}%` : value}
       </div>
     </div>

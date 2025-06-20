@@ -3,7 +3,7 @@ import { Castle, Home, LogOut, Shield } from "lucide-react";
 import {
   REST_PATH,
   LOGOUT_PATH,
-  PLAYER_PATH,
+  PLAYER_HUB_PATH,
   ROOT_PATH,
   STORE_PATH,
   BAR_PATH,
@@ -19,8 +19,8 @@ export const menu = [
   {
     type: "item",
     icon: Shield,
-    text: "Hero Hub",
-    path: PLAYER_PATH,
+    text: "Hub",
+    path: PLAYER_HUB_PATH,
   },
   {
     type: "group",

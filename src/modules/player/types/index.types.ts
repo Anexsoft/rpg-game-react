@@ -1,6 +1,31 @@
+import {
+  DEFAULT_SELECTED_AID,
+  DEFAULT_SELECTED_ARMOR,
+  DEFAULT_SELECTED_WEAPON,
+} from "@player/defs/inventory";
 import { LEVELS } from "@player/defs/levels";
 import { LEVEL_RANKS } from "@player/defs/ranks";
 import { DEX, INT, LUK, STR, VIT } from "@player/defs/stats";
+
+import type { WeaponId } from "@weapons/types/ids.types";
+
+import type { ArmorId } from "@armor/types/ids.types";
+
+import type { AidId } from "@aid/types/ids.types";
+
+type TypeMap = {
+  weapon: WeaponId;
+  armor: ArmorId;
+  aid: AidId;
+};
+
+type PlayerInventoryItem = {
+  [K in keyof TypeMap]: {
+    type: K;
+    id: TypeMap[K];
+    quantity: number;
+  };
+}[keyof TypeMap];
 
 export class Player {
   /** characterId ObjectId */
@@ -63,8 +88,41 @@ export class Player {
   /** Physical damage – calculated from strength (STR). */
   dmg: number = 0;
 
+  inventory: PlayerInventoryItem[] = [];
+
+  selectedWeapon: WeaponId = DEFAULT_SELECTED_WEAPON;
+  selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
+
   constructor(name: string) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
     this.name = name;
+
+    this.inventory.push(
+      {
+        type: "weapon",
+        id: this.selectedWeapon,
+        quantity: 1,
+      },
+      {
+        type: "weapon",
+        id: "remington-870-pump-action-shotgun",
+        quantity: 1,
+      },
+      {
+        type: "armor",
+        id: this.selectedArmor,
+        quantity: 1,
+      },
+      {
+        type: "armor",
+        id: "leather-jacket",
+        quantity: 1,
+      },
+      {
+        type: "aid",
+        id: DEFAULT_SELECTED_AID,
+        quantity: 3,
+      },
+    );
   }
 }

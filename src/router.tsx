@@ -10,7 +10,7 @@ import Layout from "@layout/Layout";
 
 import BarScene from "@scenes/Bar/Bar";
 import LogoutScene from "@scenes/Logout/Logout";
-import Player from "@scenes/Player/Player";
+import PlayerHubScene from "@scenes/PlayerHub/PlayerHub";
 import RestScene from "@scenes/Rest/Rest";
 import SignInScene from "@scenes/SignIn/SignIn";
 import StoreKeeperChatScene from "@scenes/Store/scenes/StoreKeeperChat";
@@ -25,7 +25,7 @@ import {
   BAR_PATH,
   REST_PATH,
   STORE_KEEPER_CHAT_PATH,
-  PLAYER_PATH,
+  PLAYER_HUB_PATH,
 } from "./router.defs";
 
 function RootRoute(): SceneComponent {
@@ -45,7 +45,7 @@ const PATHS = [
   defineRoute(ROOT_PATH, <RootRoute />),
 
   /* Player */
-  defineRoute(PLAYER_PATH, <Player />),
+  defineRoute(PLAYER_HUB_PATH, <PlayerHubScene />),
 
   /* Town */
   defineRoute(STORE_PATH, <StoreScene />),

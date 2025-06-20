@@ -6,26 +6,26 @@ import type { Aid } from "./types/index.type";
 
 export const AIDS: Aid[] = [
   {
+    id: "health-shot",
     type: "hp-restore",
     name: "Health Shot",
-    description:
-      "A quick-use injection that restores a small amount of HP instantly. Useful in emergencies.",
+    description: "Quick injection restoring a small amount of HP.",
     picture: minorHpRecoveryPic,
     potency: "low",
   },
   {
+    id: "blood-transfusion-pack",
     type: "hp-restore",
     name: "Blood Transfusion Pack",
-    description:
-      "A portable blood bag that restores a moderate amount of HP. Takes a moment to apply.",
+    description: "Portable blood bag restoring moderate HP.",
     picture: mediumHpRecoveryPic,
     potency: "mid",
   },
   {
+    id: "medical-field-kit",
     type: "hp-restore",
     name: "Medical Field Kit",
-    description:
-      "A full medical kit capable of restoring a large portion of HP. Best used when safe.",
+    description: "Full kit restoring a large portion of HP.",
     picture: highHpRecoveryPic,
     potency: "high",
   },

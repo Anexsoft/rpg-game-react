@@ -5,16 +5,18 @@ import type { Armor } from "./types/index.type";
 
 export const ARMORS: Armor[] = [
   {
-    name: "9mm Semi-Automatic Handgun",
+    id: "leather-jacket",
+    name: "Leather Jacket",
     description:
-      "A reliable sidearm with moderate accuracy and quick reload. Ideal for close to mid-range encounters.",
+      "A rugged jacket offering minimal protection and good mobility.",
     picture: leatherJacket,
     rarity: "standard",
   },
   {
-    name: "Remington 870 Pump-Action Shotgun",
+    id: "body-guard-vest",
+    name: "Body Guard Vest",
     description:
-      "A powerful pump-action shotgun, effective at close range with high stopping power and wide spread.",
+      "A reinforced vest with decent protection against basic attacks.",
     picture: bodyGuard,
     rarity: "standard",
   },

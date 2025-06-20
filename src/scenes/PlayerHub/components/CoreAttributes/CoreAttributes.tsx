@@ -13,7 +13,7 @@ export default function CoreAttributes({ player }: CoreAttributesProps) {
       <h3 className="text-lg font-bold text-white mb-2">Core Attributes</h3>
       <div className="grid grid-cols-2 gap-4">
         <ProgressBar type="hp" value={player.hp} max={player.maxHp} />
-        <ProgressBar type="sta" value={player.dmg} max={player.maxHp} />
+        <ProgressBar type="sta" value={player.sta} max={player.maxSta} />
         <ProgressBar
           type="exp"
           value={player.exp}

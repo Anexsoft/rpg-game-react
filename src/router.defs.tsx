@@ -1,6 +1,6 @@
 export const ROOT_PATH = "/";
 
-export const PLAYER_PATH = "/me";
+export const PLAYER_HUB_PATH = "/me";
 
 export const STORE_PATH = "/store";
 export const STORE_KEEPER_CHAT_PATH = `${STORE_PATH}/chat`;
