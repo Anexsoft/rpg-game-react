@@ -2,12 +2,13 @@ import { useGame } from "@core/context/GameContext";
 
 import { GOLD_STYLES } from "@ui/theme/gold";
 
-import avatar from "@resources/images/player/avatar.png";
+import { getPlayerAvatar } from "@player/index";
 
 import Stat from "./components/Stat";
 
 export default function PlayerHubBasic() {
   const { player } = useGame();
+  const avatar = getPlayerAvatar(player.gender);
 
   return (
     <div className="text-sm text-gray-200">

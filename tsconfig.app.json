@@ -35,7 +35,7 @@
       "@player/*": ["src/modules/player/*"],
       "@weapons/*": ["src/modules/items/weapons/*"],
       "@armor/*": ["src/modules/items/armor/*"],
-      "@aid/*": ["src/modules/items/aid/*"],
+      "@consumables/*": ["src/modules/items/consumables/*"],
       "@scenes/*": ["src/scenes/*"],
       "@src/*": ["src/*"]
     }

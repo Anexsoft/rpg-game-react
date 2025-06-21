@@ -9,6 +9,7 @@ import { useGame } from "@core/context/GameContext";
 import Layout from "@layout/Layout";
 
 import BarScene from "@scenes/Bar/Bar";
+import HuntingZoneScene from "@scenes/HuntingZone/HuntingZone";
 import LogoutScene from "@scenes/Logout/Logout";
 import PlayerHubScene from "@scenes/PlayerHub/PlayerHub";
 import RestScene from "@scenes/Rest/Rest";
@@ -26,36 +27,54 @@ import {
   REST_PATH,
   STORE_KEEPER_CHAT_PATH,
   PLAYER_HUB_PATH,
+  ZONE_1_PATH,
+  ZONE_2_PATH,
+  ZONE_3_PATH,
+  ZONE_4_PATH,
+  ZONE_5_PATH,
+  ZONE_6_PATH,
 } from "./router.defs";
 
-function RootRoute(): SceneComponent {
+function ProtectedScene({ children }: { children: SceneComponent }) {
   const { player } = useGame();
-  return player ? <WelcomeScene /> : <SignInScene />;
+  return player ? children : <SignInScene />;
 }
 
-function defineRoute(path: string, scene: SceneComponent): RouteObject {
+function DefineRoute(path: string, scene: SceneComponent): RouteObject {
   return {
     path,
-    element: <Layout>{scene}</Layout>,
+    element: (
+      <Layout>
+        <ProtectedScene>{scene}</ProtectedScene>
+      </Layout>
+    ),
   };
 }
 
 const PATHS = [
   /* Home */
-  defineRoute(ROOT_PATH, <RootRoute />),
+  DefineRoute(ROOT_PATH, <WelcomeScene />),
 
   /* Player */
-  defineRoute(PLAYER_HUB_PATH, <PlayerHubScene />),
+  DefineRoute(PLAYER_HUB_PATH, <PlayerHubScene />),
 
   /* Town */
-  defineRoute(STORE_PATH, <StoreScene />),
-  defineRoute(STORE_KEEPER_CHAT_PATH, <StoreKeeperChatScene />),
+  DefineRoute(STORE_PATH, <StoreScene />),
+  DefineRoute(STORE_KEEPER_CHAT_PATH, <StoreKeeperChatScene />),
 
-  defineRoute(BAR_PATH, <BarScene />),
-  defineRoute(REST_PATH, <RestScene />),
+  DefineRoute(BAR_PATH, <BarScene />),
+  DefineRoute(REST_PATH, <RestScene />),
+
+  /* Hunting Zones */
+  DefineRoute(ZONE_1_PATH, <HuntingZoneScene zoneId="outskirts" />),
+  DefineRoute(ZONE_2_PATH, <HuntingZoneScene zoneId="residential" />),
+  DefineRoute(ZONE_3_PATH, <HuntingZoneScene zoneId="hospital" />),
+  DefineRoute(ZONE_4_PATH, <HuntingZoneScene zoneId="university" />),
+  DefineRoute(ZONE_5_PATH, <HuntingZoneScene zoneId="factory" />),
+  DefineRoute(ZONE_6_PATH, <HuntingZoneScene zoneId="labs" />),
 
   /* Logout */
-  defineRoute(LOGOUT_PATH, <LogoutScene />),
+  DefineRoute(LOGOUT_PATH, <LogoutScene />),
 ];
 
 const router = createBrowserRouter(PATHS);

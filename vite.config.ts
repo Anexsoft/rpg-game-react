@@ -19,7 +19,7 @@ export default defineConfig({
       "@player": path.resolve(__dirname, "src/modules/player"),
       "@weapons": path.resolve(__dirname, "src/modules/items/weapons"),
       "@armor": path.resolve(__dirname, "src/modules/items/armor"),
-      "@aid": path.resolve(__dirname, "src/modules/items/aid"),
+      "@consumables": path.resolve(__dirname, "src/modules/items/consumables"),
       "@scenes": path.resolve(__dirname, "src/scenes"),
       "@src": path.resolve(__dirname, "src"),
     },

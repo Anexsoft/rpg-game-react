@@ -2,19 +2,19 @@ import { useState } from "react";
 
 import Tooltip from "./Componentes/ToolTip";
 
-type AidItemProps = {
+type ConsumableItemProps = {
   name: string;
   description: string;
   picture: string;
   quantity: number;
 };
 
-export default function AidItem({
+export default function ConsumableItem({
   name,
   description,
   picture,
   quantity,
-}: AidItemProps) {
+}: ConsumableItemProps) {
   const [hover, setHover] = useState(false);
 
   return (

@@ -1,20 +1,10 @@
 import type { Player } from "@player/types/index.types";
 
-export type SetPlayerInput =
-  | {
-      action: "add";
-      newPlayer: Player;
-    }
-  | {
-      action: "reuse";
-      existingPlayerName: string;
-    };
-
 export type GameContextType = {
   // Player
   player: Player;
-  setPlayer: (input: SetPlayerInput) => void;
-  playerExists: (name: string) => boolean;
+  setPlayer: (input: Player) => void;
+  findPlayer: (name: string) => Player | null;
   logoutPlayer: () => void;
 
   // Sidebar

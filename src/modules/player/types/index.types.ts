@@ -1,5 +1,5 @@
 import {
-  DEFAULT_SELECTED_AID,
+  DEFAULT_SELECTED_CONSUMABLE,
   DEFAULT_SELECTED_ARMOR,
   DEFAULT_SELECTED_WEAPON,
 } from "@player/defs/inventory";
@@ -11,36 +11,41 @@ import type { WeaponId } from "@weapons/types/ids.types";
 
 import type { ArmorId } from "@armor/types/ids.types";
 
-import type { AidId } from "@aid/types/ids.types";
+import type { ConsumableId } from "@src/modules/items/consumables/types/ids.types";
 
-type TypeMap = {
+type InventoryTypeMap = {
   weapon: WeaponId;
   armor: ArmorId;
-  aid: AidId;
+  consumable: ConsumableId;
 };
 
 type PlayerInventoryItem = {
-  [K in keyof TypeMap]: {
+  [K in keyof InventoryTypeMap]: {
     type: K;
-    id: TypeMap[K];
+    id: InventoryTypeMap[K];
     quantity: number;
   };
-}[keyof TypeMap];
+}[keyof InventoryTypeMap];
+
+export type PlayerGender = "male" | "female";
 
 export class Player {
-  /** characterId ObjectId */
+  /** Player's Id */
   id: string;
 
-  /** Character's name */
+  /** Player's name */
   name: string;
 
-  /** Character's Rank */
+  /** Player's Rank */
   rank: string = LEVEL_RANKS[0].name;
+
+  /** Player's gender */
+  gender: PlayerGender;
 
   /** Strength – affects physical damage. Higher strength means more power. */
   str: number = STR;
 
-  /** Vitality – affects HP. The higher the value, the more life the character has. */
+  /** Vitality – affects HP. The higher the value, the more life the Player has. */
   vit: number = VIT;
 
   /** Energy – determines stamina capacity and recovery rate. */
@@ -52,7 +57,7 @@ export class Player {
   /** Luck – affects critical rate. More luck increases critical hit chance. */
   luk: number = LUK;
 
-  /** Character level – used to scale base stats over time. Starts at 1. */
+  /** Player level – used to scale base stats over time. Starts at 1. */
   level: number = 1;
 
   /** Current experience – used to determine level progression. Starts at 0. */
@@ -61,7 +66,7 @@ export class Player {
   /** Experience required to reach the next level. Starts at 0. */
   expToNextLevel: number = LEVELS[0][1];
 
-  /** Gold – character's currency. Starts at 0. */
+  /** Gold – Player's currency. Starts at 0. */
   gold: number = 0;
 
   /** Current HP – actual life points. Can be reduced or restored during gameplay. */
@@ -85,7 +90,7 @@ export class Player {
   /** Resistance rate – resistance bonus gained per level */
   res: number = 0;
 
-  /** Physical damage – calculated from strength (STR). */
+  /** Physical damage rate – calculated from strength (STR). */
   dmg: number = 0;
 
   inventory: PlayerInventoryItem[] = [];
@@ -93,9 +98,10 @@ export class Player {
   selectedWeapon: WeaponId = DEFAULT_SELECTED_WEAPON;
   selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
 
-  constructor(name: string) {
+  constructor(name: string, gender: PlayerGender) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
     this.name = name;
+    this.gender = gender;
 
     this.inventory.push(
       {
@@ -119,10 +125,10 @@ export class Player {
         quantity: 1,
       },
       {
-        type: "aid",
-        id: DEFAULT_SELECTED_AID,
+        type: "consumable",
+        id: DEFAULT_SELECTED_CONSUMABLE,
         quantity: 3,
-      },
+      }
     );
   }
 }

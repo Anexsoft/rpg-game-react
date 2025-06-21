@@ -1,24 +1,29 @@
+import { PlayerSelectArmorHandler } from "@player/handlers/player-select-armor.handler";
+import { PlayerSelectWeaponHandler } from "@player/handlers/player-select-weapon.handler";
 import type { Player } from "@player/types/index.types";
 
 import { sortWeaponByRarityAndName } from "@weapons/filters/index.filter";
 import { WEAPONS } from "@weapons/index";
+import type { WeaponId } from "@weapons/types/ids.types";
 
 import { sortArmorByRarityAndName } from "@armor/filters/index.filter";
 import { ARMORS } from "@armor/index";
+import type { ArmorId } from "@armor/types/ids.types";
 
-import { AIDS } from "@aid/index";
+import { CONSUMABLES } from "@src/modules/items/consumables/index";
 
-import AidItem from "./Components/AidItem";
 import BattleItem from "./Components/BattleItem";
+import ConsumableItem from "./Components/ConsumableItem";
 import EquippedInventory from "./Components/EquippedInventory";
 
 type InventoryProps = {
   player: Player;
+  setPlayer: (player: Player) => void;
 };
 
-export default function Inventory({ player }: InventoryProps) {
+export default function Inventory({ player, setPlayer }: InventoryProps) {
   const equippedWeapon = WEAPONS.find(
-    (item) => item.id === player.selectedWeapon,
+    (item) => item.id === player.selectedWeapon
   );
 
   const equippedArmor = ARMORS.find((item) => item.id === player.selectedArmor);
@@ -26,6 +31,14 @@ export default function Inventory({ player }: InventoryProps) {
   if (!equippedWeapon || !equippedArmor) {
     return;
   }
+
+  const updateArmor = (id: ArmorId) => {
+    setPlayer(PlayerSelectArmorHandler.handle(player, id));
+  };
+
+  const updateWeapon = (id: WeaponId) => {
+    setPlayer(PlayerSelectWeaponHandler.handle(player, id));
+  };
 
   return (
     <div className="space-y-6">
@@ -53,7 +66,7 @@ export default function Inventory({ player }: InventoryProps) {
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id,
+                ({ id }) => id === item.id
               );
 
               if (!availableItem) {
@@ -62,6 +75,8 @@ export default function Inventory({ player }: InventoryProps) {
 
               return (
                 <BattleItem
+                  key={item.id}
+                  onClick={() => updateWeapon(item.id as WeaponId)}
                   name={item.name}
                   description={item.description}
                   picture={item.picture}
@@ -81,7 +96,7 @@ export default function Inventory({ player }: InventoryProps) {
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id,
+                ({ id }) => id === item.id
               );
 
               if (!availableItem) {
@@ -90,6 +105,8 @@ export default function Inventory({ player }: InventoryProps) {
 
               return (
                 <BattleItem
+                  key={item.id}
+                  onClick={() => updateArmor(item.id as ArmorId)}
                   name={item.name}
                   description={item.description}
                   picture={item.picture}
@@ -103,13 +120,13 @@ export default function Inventory({ player }: InventoryProps) {
       </div>
 
       <div>
-        <h4 className="text-white font-semibold mb-2">AIDs</h4>
+        <h4 className="text-white font-semibold mb-2">Consumables</h4>
         <div className="grid grid-cols-12">
-          {AIDS.filter((item) =>
-            player.inventory.some(({ id }) => id === item.id),
+          {CONSUMABLES.filter((item) =>
+            player.inventory.some(({ id }) => id === item.id)
           ).map((item) => {
             const availableItem = player.inventory.find(
-              ({ id }) => id === item.id,
+              ({ id }) => id === item.id
             );
 
             if (!availableItem) {
@@ -117,7 +134,8 @@ export default function Inventory({ player }: InventoryProps) {
             }
 
             return (
-              <AidItem
+              <ConsumableItem
+                key={item.id}
                 name={item.name}
                 description={item.description}
                 picture={item.picture}

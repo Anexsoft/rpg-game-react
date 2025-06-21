@@ -1,5 +1,6 @@
-import { Castle, Home, LogOut, Shield } from "lucide-react";
+import { Castle, Home, LogOut, Shield, Biohazard } from "lucide-react";
 
+import { ZONES } from "@src/modules/zones";
 import {
   REST_PATH,
   LOGOUT_PATH,
@@ -31,6 +32,12 @@ export const menu = [
       { text: "Go to the Bar", path: BAR_PATH },
       { text: "Go to Rest", path: REST_PATH },
     ],
+  },
+  {
+    type: "group",
+    icon: Biohazard,
+    text: "Hunting Zone",
+    items: ZONES.map(({ name, path }) => ({ text: name, path })),
   },
   {
     type: "item",

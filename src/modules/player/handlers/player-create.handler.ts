@@ -1,7 +1,7 @@
-import { Player } from "@player/types/index.types";
+import { Player, type PlayerGender } from "@player/types/index.types";
 
 export class PlayerCreateHandler {
-  static handle(name: string): Player {
-    return new Player(name.trim());
+  static handle(name: string, gender: PlayerGender): Player {
+    return new Player(name.trim(), gender);
   }
 }

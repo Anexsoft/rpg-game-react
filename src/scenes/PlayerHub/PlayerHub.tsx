@@ -2,10 +2,11 @@ import { useGame } from "@core/context/GameContext";
 
 import SceneLayout from "@layout/SceneLayout/SceneLayout";
 
-import avatar from "@resources/images/player/avatar.png";
 import backgroundImage from "@resources/images/scenes/player.jpg";
 
 import type { SceneComponent } from "@scenes/types/index.types";
+
+import { getPlayerAvatar } from "@player/index";
 
 import BattleStats from "./components/BattleStats/BattleStats";
 import Block from "./components/Block";
@@ -15,7 +16,8 @@ import Inventory from "./components/Inventory/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
 
 export default function PlayerHubScene(): SceneComponent {
-  const { player } = useGame();
+  const { player, setPlayer } = useGame();
+  const avatar = getPlayerAvatar(player.gender);
 
   return (
     <SceneLayout
@@ -47,7 +49,7 @@ export default function PlayerHubScene(): SceneComponent {
 
         <div className="flex flex-col gap-6 col-span-2">
           <Block>
-            <Inventory player={player} />
+            <Inventory player={player} setPlayer={setPlayer} />
           </Block>
         </div>
       </div>
