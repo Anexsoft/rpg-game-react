@@ -25,14 +25,12 @@ export default function ConsumableItem({
     >
       <img alt={name} src={picture} className="w-full h-full object-contain" />
 
-      {/* Quantity badge */}
       {quantity > 1 && (
         <span className="absolute -bottom-1 -right-1 bg-black text-white text-[10px] px-1 rounded-full border border-black shadow-md">
           {quantity}
         </span>
       )}
 
-      {/* Tooltip */}
       {hover && (
         <Tooltip picture={picture}>
           <p className="font-bold">{name}</p>

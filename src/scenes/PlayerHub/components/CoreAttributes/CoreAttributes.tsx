@@ -1,4 +1,4 @@
-import { MAX_LEVEL } from "@player/defs/levels";
+import { MAX_LEVEL } from "@player/levels";
 import type { Player } from "@player/types/index.types";
 
 import ProgressBar from "./components/ProgressBar";

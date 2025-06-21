@@ -56,6 +56,7 @@ export default tseslint.config(
             { pattern: "@scenes/**", group: "internal", position: "after" },
             { pattern: "@npc/**", group: "internal", position: "after" },
             { pattern: "@player/**", group: "internal", position: "after" },
+            { pattern: "@enemy/**", group: "internal", position: "after" },
             { pattern: "@weapons/**", group: "internal", position: "after" },
             { pattern: "@armor/**", group: "internal", position: "after" },
             {

@@ -17,6 +17,7 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "src/modules/shared"),
       "@npc": path.resolve(__dirname, "src/modules/npc"),
       "@player": path.resolve(__dirname, "src/modules/player"),
+      "@enemy": path.resolve(__dirname, "src/modules/enemy"),
       "@weapons": path.resolve(__dirname, "src/modules/items/weapons"),
       "@armor": path.resolve(__dirname, "src/modules/items/armor"),
       "@consumables": path.resolve(__dirname, "src/modules/items/consumables"),

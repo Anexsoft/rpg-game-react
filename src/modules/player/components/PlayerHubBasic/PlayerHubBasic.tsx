@@ -2,7 +2,7 @@ import { useGame } from "@core/context/GameContext";
 
 import { GOLD_STYLES } from "@ui/theme/gold";
 
-import { getPlayerAvatar } from "@player/index";
+import { getPlayerAvatar } from "@player/utils/index";
 
 import Stat from "./components/Stat";
 

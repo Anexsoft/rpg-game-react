@@ -2,10 +2,10 @@ import {
   DEFAULT_SELECTED_CONSUMABLE,
   DEFAULT_SELECTED_ARMOR,
   DEFAULT_SELECTED_WEAPON,
-} from "@player/defs/inventory";
-import { LEVELS } from "@player/defs/levels";
-import { LEVEL_RANKS } from "@player/defs/ranks";
-import { DEX, INT, LUK, STR, VIT } from "@player/defs/stats";
+} from "@player/inventory";
+import { LEVELS } from "@player/levels";
+import { LEVEL_RANKS } from "@player/ranks";
+import { DEX, INT, LUK, STR, VIT } from "@player/stats";
 
 import type { WeaponId } from "@weapons/types/ids.types";
 
@@ -86,9 +86,6 @@ export class Player {
 
   /** Critical rate – chance to land a critical hit, based on luck (as a proportion). */
   ctr: number = 0;
-
-  /** Resistance rate – resistance bonus gained per level */
-  res: number = 0;
 
   /** Physical damage rate – calculated from strength (STR). */
   dmg: number = 0;

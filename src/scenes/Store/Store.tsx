@@ -11,7 +11,7 @@ import backgroundImage from "@resources/images/scenes/store.jpg";
 
 import type { SceneComponent } from "@scenes/types/index.types";
 
-import { NPC } from "@npc/defs";
+import { NPC } from "@npc/index";
 
 import { STORE_KEEPER_CHAT_PATH } from "@src/router.defs";
 

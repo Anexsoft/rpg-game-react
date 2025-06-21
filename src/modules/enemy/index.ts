@@ -1,0 +1,150 @@
+import doctorZombie1 from "@resources/images/enemies/avatars/doctor-zombie-1.jpg";
+import dogZombie1 from "@resources/images/enemies/avatars/dog-zombie-1.jpg";
+import femaleZombie1 from "@resources/images/enemies/avatars/female-zombie-1.jpg";
+import maleZombie1 from "@resources/images/enemies/avatars/male-zombie-1.jpg";
+import maleZombie2 from "@resources/images/enemies/avatars/male-zombie-2.jpg";
+import nurseZombie1 from "@resources/images/enemies/avatars/nurse-zombie-1.jpg";
+import policeZombie1 from "@resources/images/enemies/avatars/police-zombie-1.jpg";
+import raptor1 from "@resources/images/enemies/avatars/raptor-1.jpg";
+import stalker1 from "@resources/images/enemies/avatars/stalker-1.jpg";
+import titan1 from "@resources/images/enemies/avatars/titan-1.jpg";
+
+import type { EnemyBase } from "./types/base.type";
+
+export const ENEMIES: EnemyBase[] = [
+  {
+    id: "female-zombie-1",
+    name: "Zombie",
+    description: "A twitchy infected female. Agile but fragile.",
+    dmg: 6,
+    hp: 18,
+    eva: 0.01,
+    ctr: 0.01,
+    picture: femaleZombie1,
+    level: [1, 5],
+    expGiven: [5, 8],
+    goldGiven: [3, 6],
+  },
+  {
+    id: "male-zombie-1",
+    name: "Zombie",
+    description:
+      "A strong but decaying male zombie. Slow, yet dangerous up close.",
+    dmg: 7,
+    hp: 22,
+    eva: 0.01,
+    ctr: 0.01,
+    picture: maleZombie1,
+    level: [1, 5],
+    expGiven: [5, 8],
+    goldGiven: [4, 7],
+  },
+  {
+    id: "male-zombie-2",
+    name: "Zombie",
+    description:
+      "Lumbers forward with heavy steps. Hard to kill, but easy to avoid.",
+    dmg: 5,
+    hp: 26,
+    eva: 0.01,
+    ctr: 0.01,
+    picture: maleZombie2,
+    level: [1, 5],
+    expGiven: [5, 8],
+    goldGiven: [3, 6],
+  },
+  {
+    id: "police-zombie-1",
+    name: "Zombie",
+    description:
+      "Once a police officer, wears armor making it harder to bring down.",
+    dmg: 6,
+    hp: 28,
+    eva: 0.01,
+    ctr: 0.01,
+    picture: policeZombie1,
+    level: [1, 5],
+    expGiven: [6, 9],
+    goldGiven: [5, 8],
+  },
+  {
+    id: "doctor-zombie-1",
+    name: "Zombie",
+    description: "Erratic movements and occasional access to healing items.",
+    dmg: 6,
+    hp: 20,
+    eva: 0.02,
+    ctr: 0.02,
+    picture: doctorZombie1,
+    level: [1, 5],
+    expGiven: [6, 10],
+    goldGiven: [6, 10],
+  },
+  {
+    id: "nurse-zombie-1",
+    name: "Zombie",
+    description: "Fast and unpredictable. Sometimes carries healing items.",
+    dmg: 6,
+    hp: 19,
+    eva: 0.03,
+    ctr: 0.02,
+    picture: nurseZombie1,
+    level: [1, 5],
+    expGiven: [6, 10],
+    goldGiven: [6, 10],
+  },
+  {
+    id: "dog-zombie-1",
+    name: "Zombie Dog",
+    description: "Fast, vicious, and hard to hit. Attacks in sudden bursts.",
+    dmg: 9,
+    hp: 24,
+    eva: 0.05,
+    ctr: 0.03,
+    picture: dogZombie1,
+    level: [1, 5],
+    expGiven: [8, 12],
+    goldGiven: [7, 12],
+  },
+  {
+    id: "raptor-1",
+    name: "Raptor",
+    description: "A mutated creature with enhanced speed and reflexes.",
+    dmg: 11,
+    hp: 36,
+    eva: 0.06,
+    ctr: 0.05,
+    picture: raptor1,
+    level: [1, 5],
+    expGiven: [10, 15],
+    goldGiven: [10, 14],
+  },
+  {
+    id: "stalker-1",
+    name: "Stalker",
+    description:
+      "A stealthy and intelligent enemy. Strikes with lethal precision.",
+    dmg: 12,
+    hp: 40,
+    eva: 0.07,
+    ctr: 0.06,
+    picture: stalker1,
+    level: [1, 5],
+    expGiven: [11, 16],
+    goldGiven: [10, 15],
+  },
+  {
+    id: "titan-1",
+    name: "Titan",
+    description:
+      "A towering monstrosity. Extremely resilient and hits like a truck.",
+    dmg: 22,
+    hp: 100,
+    eva: 0.01,
+    ctr: 0.08,
+    picture: titan1,
+    level: [1, 5],
+    expGiven: [20, 30],
+    goldGiven: [20, 30],
+  },
+];

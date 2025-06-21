@@ -6,7 +6,7 @@ import backgroundImage from "@resources/images/scenes/player.jpg";
 
 import type { SceneComponent } from "@scenes/types/index.types";
 
-import { getPlayerAvatar } from "@player/index";
+import { getPlayerAvatar } from "@player/utils/index";
 
 import BattleStats from "./components/BattleStats/BattleStats";
 import Block from "./components/Block";

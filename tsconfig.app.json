@@ -33,6 +33,7 @@
       "@shared/*": ["src/modules/shared/*"],
       "@npc/*": ["src/modules/npc/*"],
       "@player/*": ["src/modules/player/*"],
+      "@enemy/*": ["src/modules/enemy/*"],
       "@weapons/*": ["src/modules/items/weapons/*"],
       "@armor/*": ["src/modules/items/armor/*"],
       "@consumables/*": ["src/modules/items/consumables/*"],

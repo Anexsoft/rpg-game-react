@@ -7,7 +7,7 @@ import QuoteBox from "@ui/QuoteBox";
 
 import backgroundImage from "@resources/images/scenes/store.jpg";
 
-import { NPC } from "@npc/defs";
+import { NPC } from "@npc/index";
 
 import { STORE_PATH } from "@src/router.defs";
 

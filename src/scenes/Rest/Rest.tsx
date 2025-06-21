@@ -6,7 +6,7 @@ import backgroundImage from "@resources/images/scenes/rest.jpg";
 
 import type { SceneComponent } from "@scenes/types/index.types";
 
-import { NPC } from "@npc/defs";
+import { NPC } from "@npc/index";
 
 export default function RestScene(): SceneComponent {
   const { REST_KEEPER } = NPC;

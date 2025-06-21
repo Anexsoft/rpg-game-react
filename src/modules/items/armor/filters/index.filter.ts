@@ -1,9 +1,9 @@
-import { RarityOrder } from "../../defs/index.defs";
+import { RarityOrder } from "../../shared/index";
 import type { ItemRarity } from "../../types/index.type";
 
 export const sortArmorByRarityAndName = (
   a: { rarity: ItemRarity; name: string },
-  b: { rarity: ItemRarity; name: string },
+  b: { rarity: ItemRarity; name: string }
 ) => {
   const rarityDiff = RarityOrder[a.rarity] - RarityOrder[b.rarity];
 

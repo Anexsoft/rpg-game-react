@@ -4,7 +4,7 @@ import prostituteAvatarYoung1 from "@resources/images/npc/avatars/prostitute-you
 import prostituteAvatarYoung2 from "@resources/images/npc/avatars/prostitute-young-2.png";
 import unknowManAvatar1 from "@resources/images/npc/avatars/unknow-man-1.png";
 
-import { NPC } from "@npc/defs";
+import { NPC } from "@npc/index";
 
 const UNKNOW_MAN_NAME = "Brian Walker";
 const DRUNK_NAME = "Jack Miller";
