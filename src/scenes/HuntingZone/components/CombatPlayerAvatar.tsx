@@ -1,5 +1,5 @@
-import { getPlayerAvatar } from "@player/utils/index";
 import type { Player } from "@player/types/index.types";
+import { getPlayerAvatar } from "@player/utils/index";
 
 type CombatPlayerAvatarProps = {
   player: Player;

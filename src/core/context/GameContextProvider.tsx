@@ -10,7 +10,7 @@ import setPlayerHandler from "./handlers/set-player.handler";
 
 export function GameContextProvider({ children }: { children: ReactNode }) {
   const [_player, _setPlayer] = useState<Player | null>(
-    findSignedInPlayerHandler()
+    findSignedInPlayerHandler(),
   );
 
   const setPlayer = (player: Player) => setPlayerHandler(_setPlayer, player);

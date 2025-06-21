@@ -125,7 +125,7 @@ export class Player {
         type: "consumable",
         id: DEFAULT_SELECTED_CONSUMABLE,
         quantity: 3,
-      }
+      },
     );
   }
 }

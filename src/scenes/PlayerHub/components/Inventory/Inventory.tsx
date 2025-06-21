@@ -23,7 +23,7 @@ type InventoryProps = {
 
 export default function Inventory({ player, setPlayer }: InventoryProps) {
   const equippedWeapon = WEAPONS.find(
-    (item) => item.id === player.selectedWeapon
+    (item) => item.id === player.selectedWeapon,
   );
 
   const equippedArmor = ARMORS.find((item) => item.id === player.selectedArmor);
@@ -66,7 +66,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id
+                ({ id }) => id === item.id,
               );
 
               if (!availableItem) {
@@ -96,7 +96,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id
+                ({ id }) => id === item.id,
               );
 
               if (!availableItem) {
@@ -123,10 +123,10 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
         <h4 className="text-white font-semibold mb-2">Consumables</h4>
         <div className="grid grid-cols-12">
           {CONSUMABLES.filter((item) =>
-            player.inventory.some(({ id }) => id === item.id)
+            player.inventory.some(({ id }) => id === item.id),
           ).map((item) => {
             const availableItem = player.inventory.find(
-              ({ id }) => id === item.id
+              ({ id }) => id === item.id,
             );
 
             if (!availableItem) {

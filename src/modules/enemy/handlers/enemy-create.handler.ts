@@ -37,7 +37,7 @@ export class EnemyCreateHandler {
   private static scaleValue(
     baseValue: number,
     level: number,
-    rounded = false
+    rounded = false,
   ): number {
     if (level <= 1) return baseValue;
 

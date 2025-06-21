@@ -45,7 +45,7 @@ export class Enemy {
       goldGiven: number;
       level: number;
       avatar: string;
-    }
+    },
   ) {
     this.name = name;
     this.maxHp = options.maxHp;
