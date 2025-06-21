@@ -1,3 +1,5 @@
+import type { EnemyId } from "@enemy/types/ids.type";
+
 import type { ZoneId } from "./ids.types";
 
 export type Zone = {
@@ -6,4 +8,5 @@ export type Zone = {
   description: string;
   background: string;
   path: string;
+  enemies: EnemyId[];
 };

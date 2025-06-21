@@ -20,7 +20,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   type = "default",
   disabled = false,
   size = "medium",
-  align = "left",
+  align = "center",
+  width = "full",
 }) => {
   const variantClass = ActionVariantsCssClass[type];
   const iconSizeClass = ActionIconSizeClass[size];
@@ -28,7 +29,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   const alignClass = ActionAlignCssClass[align];
   const disabledClass = disabled ? ActionDisabledCssClass : "";
 
-  const classes = `${variantClass} ${sizeClass} ${alignClass} ${disabledClass}`;
+  const classes = `${variantClass} ${sizeClass} ${alignClass} ${disabledClass} w-${width}`;
 
   return (
     <button className={classes} onClick={onClick} disabled={disabled}>

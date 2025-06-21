@@ -29,7 +29,7 @@ export default function CombatPlayerConsumableItems({
                 <img
                   src={consumableItem.picture}
                   alt={consumableItem.name}
-                  className="w-15 h-15 object-contain mb-1"
+                  className="w-24 object-contain mb-1"
                 />
                 <span className="absolute -bottom-1 -right-1 bg-black text-white text-xs px-1 rounded-full border border-black shadow-md">
                   {item.quantity}

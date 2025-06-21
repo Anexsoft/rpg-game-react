@@ -66,12 +66,24 @@ const PATHS = [
   DefineRoute(REST_PATH, <RestScene />),
 
   /* Hunting Zones */
-  DefineRoute(ZONE_1_PATH, <HuntingZoneScene zoneId="outskirts" />),
-  DefineRoute(ZONE_2_PATH, <HuntingZoneScene zoneId="residential" />),
-  DefineRoute(ZONE_3_PATH, <HuntingZoneScene zoneId="hospital" />),
-  DefineRoute(ZONE_4_PATH, <HuntingZoneScene zoneId="university" />),
-  DefineRoute(ZONE_5_PATH, <HuntingZoneScene zoneId="factory" />),
-  DefineRoute(ZONE_6_PATH, <HuntingZoneScene zoneId="labs" />),
+  DefineRoute(
+    ZONE_1_PATH,
+    <HuntingZoneScene key="outskirts" zoneId="outskirts" />,
+  ),
+  DefineRoute(
+    ZONE_2_PATH,
+    <HuntingZoneScene key="residential" zoneId="residential" />,
+  ),
+  DefineRoute(
+    ZONE_3_PATH,
+    <HuntingZoneScene key="hospital" zoneId="hospital" />,
+  ),
+  DefineRoute(
+    ZONE_4_PATH,
+    <HuntingZoneScene key="university" zoneId="university" />,
+  ),
+  DefineRoute(ZONE_5_PATH, <HuntingZoneScene key="factory" zoneId="factory" />),
+  DefineRoute(ZONE_6_PATH, <HuntingZoneScene key="labs" zoneId="labs" />),
 
   /* Logout */
   DefineRoute(LOGOUT_PATH, <LogoutScene />),

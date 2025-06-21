@@ -9,12 +9,23 @@ import raptor1 from "@resources/images/enemies/avatars/raptor-1.jpg";
 import stalker1 from "@resources/images/enemies/avatars/stalker-1.jpg";
 import titan1 from "@resources/images/enemies/avatars/titan-1.jpg";
 
+import { EnemyCreateHandler } from "./handlers/enemy-create.handler";
 import type { EnemyBase } from "./types/base.type";
+import type { EnemyId } from "./types/ids.type";
+import type { Enemy } from "./types/index.type";
+
+export function generateEnemies(ids: EnemyId[]): Enemy[] {
+  const enemies = ids.map((id) => {
+    return EnemyCreateHandler.handle(id);
+  });
+
+  return enemies.sort((e1, e2) => e2.powerScore - e1.powerScore);
+}
 
 export const ENEMIES: EnemyBase[] = [
   {
     id: "female-zombie-1",
-    name: "Zombie",
+    name: "Female Zombie",
     description: "A twitchy infected female. Agile but fragile.",
     dmg: 6,
     hp: 18,
@@ -27,7 +38,7 @@ export const ENEMIES: EnemyBase[] = [
   },
   {
     id: "male-zombie-1",
-    name: "Zombie",
+    name: "Male Zombie",
     description:
       "A strong but decaying male zombie. Slow, yet dangerous up close.",
     dmg: 7,
@@ -41,7 +52,7 @@ export const ENEMIES: EnemyBase[] = [
   },
   {
     id: "male-zombie-2",
-    name: "Zombie",
+    name: "Male Zombie",
     description:
       "Lumbers forward with heavy steps. Hard to kill, but easy to avoid.",
     dmg: 5,
@@ -55,7 +66,7 @@ export const ENEMIES: EnemyBase[] = [
   },
   {
     id: "police-zombie-1",
-    name: "Zombie",
+    name: "Cop Zombie",
     description:
       "Once a police officer, wears armor making it harder to bring down.",
     dmg: 6,
@@ -69,7 +80,7 @@ export const ENEMIES: EnemyBase[] = [
   },
   {
     id: "doctor-zombie-1",
-    name: "Zombie",
+    name: "Doctor Zombie",
     description: "Erratic movements and occasional access to healing items.",
     dmg: 6,
     hp: 20,
@@ -82,7 +93,7 @@ export const ENEMIES: EnemyBase[] = [
   },
   {
     id: "nurse-zombie-1",
-    name: "Zombie",
+    name: "Nurse Zombie",
     description: "Fast and unpredictable. Sometimes carries healing items.",
     dmg: 6,
     hp: 19,

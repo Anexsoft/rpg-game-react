@@ -24,6 +24,7 @@ export const ZONES: Zone[] = [
       "The outer perimeter of the fortress. Tense and patrolled, but still dangerous.",
     background: outskirtsBg,
     path: ZONE_1_PATH,
+    enemies: ["male-zombie-1", "police-zombie-1", "female-zombie-1"],
   },
   {
     id: "residential",
@@ -32,6 +33,12 @@ export const ZONES: Zone[] = [
       "Once a peaceful neighborhood. Now a hollow shell crawling with infected.",
     background: residentialBg,
     path: ZONE_2_PATH,
+    enemies: [
+      "male-zombie-1",
+      "police-zombie-1",
+      "female-zombie-1",
+      "doctor-zombie-1",
+    ],
   },
   {
     id: "hospital",
@@ -40,6 +47,13 @@ export const ZONES: Zone[] = [
       "Collapsed floors and bloodied halls. Medical supplies may still be inside.",
     background: hospitalBg,
     path: ZONE_3_PATH,
+    enemies: [
+      "male-zombie-1",
+      "doctor-zombie-1",
+      "nurse-zombie-1",
+      "stalker-1",
+      "stalker-1",
+    ],
   },
   {
     id: "university",
@@ -48,6 +62,7 @@ export const ZONES: Zone[] = [
       "Dark lecture halls and silent libraries. Survivors say strange things roam here.",
     background: universityBg,
     path: ZONE_4_PATH,
+    enemies: ["male-zombie-1", "male-zombie-2", "raptor-1", "raptor-1"],
   },
   {
     id: "factory",
@@ -56,6 +71,14 @@ export const ZONES: Zone[] = [
       "Dusty machines and creaking steel. Something lurks beneath the surface.",
     background: factoryBg,
     path: ZONE_5_PATH,
+    enemies: [
+      "male-zombie-1",
+      "male-zombie-2",
+      "police-zombie-1",
+      "female-zombie-1",
+      "stalker-1",
+      "raptor-1",
+    ],
   },
   {
     id: "labs",
@@ -64,5 +87,6 @@ export const ZONES: Zone[] = [
       "Secured labs with corrupted data and failed experiments. The origin of the outbreak?",
     background: labsBg,
     path: ZONE_6_PATH,
+    enemies: ["stalker-1", "raptor-1", "stalker-1", "raptor-1", "titan-1"],
   },
 ];

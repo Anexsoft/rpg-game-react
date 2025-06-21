@@ -1,7 +1,7 @@
 import type { UIDirectionType, UISizeType, UIVariantType } from ".";
 
 const ActionVariantsCssBaseClass =
-  "bg-gray-950 w-full p-3 rounded-md flex items-center gap-2 text-left cursor-pointer border";
+  "bg-gray-950 p-3 rounded-md flex items-center gap-2 text-left cursor-pointer border";
 
 export const ActionVariantsCssClass: Record<UIVariantType, string> = {
   default: `${ActionVariantsCssBaseClass} border-gray-600 text-gray-400 hover:border-gray-400 hover:text-white`,
@@ -26,7 +26,7 @@ export const ActionDisabledCssClass =
   "opacity-50 cursor-not-allowed pointer-events-none";
 
 export const ActionIconSizeClass: Record<UISizeType, string> = {
-  small: "w-4 h-4",
-  medium: "w-5 h-5",
-  large: "w-6 h-6",
+  small: "h-4",
+  medium: "h-5",
+  large: "h-6",
 };

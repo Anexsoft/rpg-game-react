@@ -4,6 +4,8 @@ export type EnemyReward = {
 };
 
 export class Enemy {
+  id: string;
+
   /** Enemy's name */
   name: string;
 
@@ -34,8 +36,12 @@ export class Enemy {
   /** Avatar's path */
   avatar: string;
 
+  /** Points calculated base in its statues **/
+  powerScore: number;
+
   constructor(
     name: string,
+    powerScore: number,
     options: {
       maxHp: number;
       dmg: number;
@@ -47,7 +53,10 @@ export class Enemy {
       avatar: string;
     },
   ) {
+    this.id = `${Math.random().toString(36).slice(2, 8)}`;
     this.name = name;
+    this.powerScore = powerScore;
+
     this.maxHp = options.maxHp;
     this.hp = options.maxHp;
     this.dmg = options.dmg;

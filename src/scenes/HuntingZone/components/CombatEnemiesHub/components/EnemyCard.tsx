@@ -5,9 +5,15 @@ type EnemyCardProps = {
 };
 
 export default function EnemyCard({ enemy }: EnemyCardProps) {
+  const isAlive = enemy.isAlive();
+
   return (
-    <div className="bg-black/50 border border-gray-700 rounded w-50 overflow-hidden text-sm">
-      <div className="flex justify-between font-bold  bg-black p-2">
+    <div
+      className={`bg-black/50 border border-gray-700 rounded w-50 overflow-hidden text-sm transition ${
+        isAlive ? "" : "opacity-95 grayscale"
+      }`}
+    >
+      <div className="flex justify-between font-bold bg-black p-2">
         <span className="text-gray-400">{enemy.name}</span>
         <span className="text-gray-300">Lv. {enemy.level}</span>
       </div>

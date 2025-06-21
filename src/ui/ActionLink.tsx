@@ -13,6 +13,7 @@ import type { ActionBase } from "./types/action.types";
 
 type ActionLinkProps = {
   to: string;
+  width?: string;
 } & ActionBase;
 
 const ActionLink: React.FC<ActionLinkProps> = ({
@@ -22,7 +23,8 @@ const ActionLink: React.FC<ActionLinkProps> = ({
   type = "default",
   disabled = false,
   size = "medium",
-  align = "left",
+  align = "center",
+  width = "full",
 }) => {
   const variantClass = ActionVariantsCssClass[type];
   const iconSizeClass = ActionIconSizeClass[size];
@@ -30,7 +32,7 @@ const ActionLink: React.FC<ActionLinkProps> = ({
   const alignClass = ActionAlignCssClass[align];
   const disabledClass = disabled ? ActionDisabledCssClass : "";
 
-  const classes = `${variantClass} ${sizeClass} ${alignClass} ${disabledClass}`;
+  const classes = `${variantClass} ${sizeClass} ${alignClass} ${disabledClass} w-${width}`;
 
   const content = (
     <>
