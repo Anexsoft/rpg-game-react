@@ -26,13 +26,13 @@ export default function CombatPlayerEquippedItem({
             <img
               src={weapon.picture}
               alt="Weapon"
-              className="w-full h-full object-contain rounded"
+              className="object-contain rounded"
             />
           </div>
 
           <div className="flex flex-col justify-center">
             <p className="text-xs text-gray-400">Equipped Weapon</p>
-            <p className="text-sm text-white font-semibold truncate max-w-[300px]">
+            <p className="text-sm text-white font-semibold truncate max-w-[200px]">
               {weapon.name}
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function CombatPlayerEquippedItem({
 
           <div className="flex flex-col justify-center">
             <p className="text-xs text-gray-400">Equipped Armor</p>
-            <p className="text-sm text-white font-semibold truncate max-w-[300px]">
+            <p className="text-sm text-white font-semibold truncate max-w-[200px]">
               {armor.name}
             </p>
           </div>

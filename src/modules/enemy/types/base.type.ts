@@ -6,7 +6,7 @@ export type EnemyBase = {
   description: string;
   hp: number;
   dmg: number;
-  eva: number;
+  res: number;
   ctr: number;
   level: [number, number];
   expGiven: [number, number];

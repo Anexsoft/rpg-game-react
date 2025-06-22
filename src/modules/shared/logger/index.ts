@@ -6,3 +6,5 @@ export const logger = {
   warn: console.warn.bind(console),
   error: console.error.bind(console),
 };
+
+export const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));

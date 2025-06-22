@@ -18,8 +18,8 @@ export class Enemy {
   /** Damage output */
   dmg: number;
 
-  /** Evasion chance (%) */
-  eva: number;
+  /** Resistance chance (%) */
+  res: number;
 
   /** Critical hit chance (%) */
   ctr: number;
@@ -39,13 +39,17 @@ export class Enemy {
   /** Points calculated base in its statues **/
   powerScore: number;
 
+  /** Animations **/
+  isAttacking: boolean = false;
+  isAttacked: boolean = false;
+
   constructor(
     name: string,
     powerScore: number,
     options: {
       maxHp: number;
       dmg: number;
-      eva: number;
+      res: number;
       ctr: number;
       expGiven: number;
       goldGiven: number;
@@ -60,7 +64,7 @@ export class Enemy {
     this.maxHp = options.maxHp;
     this.hp = options.maxHp;
     this.dmg = options.dmg;
-    this.eva = options.eva;
+    this.res = options.res;
     this.ctr = options.ctr;
     this.expGiven = options.expGiven;
     this.goldGiven = options.goldGiven;
@@ -69,17 +73,23 @@ export class Enemy {
   }
 
   /** Returns true if the enemy is still alive */
-  isAlive(): boolean {
+  get isAlive(): boolean {
     return this.hp > 0;
   }
 
   /** Apply damage to the enemy */
   takeDamage(amount: number): void {
     this.hp = Math.max(0, this.hp - amount);
+    this.isAttacked = true;
   }
 
   /** Returns the reward after defeat (for now: only experience) */
-  getReward(): EnemyReward {
+  get rewards(): EnemyReward {
     return { exp: this.expGiven, gold: this.goldGiven };
+  }
+
+  resetAnimations(): void {
+    this.isAttacking = false;
+    this.isAttacked = false;
   }
 }

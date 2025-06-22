@@ -1,6 +1,6 @@
 import { ENEMIES } from "..";
 import {
-  ENEMY_MAX_EVA,
+  ENEMY_MAX_RES,
   ENEMY_MAX_CTR,
   ENEMY_STAT_FACTOR_PER_LEVEL,
 } from "../stats-progress";
@@ -19,7 +19,7 @@ export class EnemyCreateHandler {
 
     const maxHp = this.scaleValue(baseEnemy.hp, level, true);
     const dmg = this.scaleValue(baseEnemy.dmg, level, true);
-    const eva = Math.min(this.scaleValue(baseEnemy.eva, level), ENEMY_MAX_EVA);
+    const res = Math.min(this.scaleValue(baseEnemy.res, level), ENEMY_MAX_RES);
     const ctr = Math.min(this.scaleValue(baseEnemy.ctr, level), ENEMY_MAX_CTR);
     const expGiven = this.scaleValue(this.pickValue(baseEnemy.expGiven), level);
     const goldGiven = this.scaleValue(
@@ -27,13 +27,13 @@ export class EnemyCreateHandler {
       level,
     );
 
-    const power = this.calculatePowerScore({ maxHp, dmg, eva, ctr });
+    const power = this.calculatePowerScore({ maxHp, dmg, res, ctr });
 
     return new Enemy(baseEnemy.name, power, {
       level,
       maxHp,
       dmg,
-      eva,
+      res,
       ctr,
       expGiven,
       goldGiven,
@@ -65,14 +65,14 @@ export class EnemyCreateHandler {
   private static calculatePowerScore({
     maxHp,
     dmg,
-    eva,
+    res,
     ctr,
   }: {
     maxHp: number;
     dmg: number;
-    eva: number;
+    res: number;
     ctr: number;
   }): number {
-    return Math.round(maxHp * 0.4 + dmg * 3 + eva * 1.5 + ctr * 2);
+    return Math.round(maxHp * 0.4 + dmg * 3 + res * 1.5 + ctr * 2);
   }
 }

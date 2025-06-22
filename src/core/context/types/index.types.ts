@@ -3,7 +3,7 @@ import type { Player } from "@player/types/index.types";
 export type GameContextType = {
   // Player
   player: Player;
-  setPlayer: (input: Player) => void;
+  setPlayer: (player: Player) => void;
   findPlayer: (name: string) => Player | null;
   logoutPlayer: () => void;
 

@@ -8,9 +8,9 @@ type CombatEnemiesProps = {
 
 export default function CombatEnemies({ enemies }: CombatEnemiesProps) {
   return (
-    <div className="w-full h-full flex justify-center items-center">
-      <div className="flex flex-wrap justify-center gap-4">
-        {enemies.map((enemy: Enemy) => (
+    <div className="bg-black/50 border border-gray-700 flex-1 flex justify-center items-center">
+      <div className="flex flex-wrap justify-center gap-4 p-4">
+        {enemies.map((enemy) => (
           <EnemyCard key={enemy.name} enemy={enemy} />
         ))}
       </div>

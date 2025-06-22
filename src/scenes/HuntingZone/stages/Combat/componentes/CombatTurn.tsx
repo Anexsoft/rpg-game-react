@@ -1,8 +1,8 @@
-type CombatTurnHubProps = {
+type CombatTurnProps = {
   turn: number;
 };
 
-export default function CombatTurnHub({ turn }: CombatTurnHubProps) {
+export default function CombatTurn({ turn }: CombatTurnProps) {
   return (
     <div className="text-center">
       <p className="text-xs text-gray-400">Turn</p>
