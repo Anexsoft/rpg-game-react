@@ -1,6 +1,6 @@
 import { Player } from "@player/types/index.types";
 
-import { WEAPONS } from "@weapons/index";
+import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 export type PlayerCalculateDamageHandlerResponse = {
   amount: number;
@@ -18,13 +18,7 @@ export class PlayerCalculateDamageHandler {
     enemyResistance: number,
     overrideMultiplier?: number,
   ): PlayerCalculateDamageHandlerResponse {
-    const weapon = WEAPONS.find(
-      (weapon) => weapon.id === player.selectedWeapon,
-    );
-
-    if (!weapon) {
-      throw new Error("Equipped weapon could not be found");
-    }
+    const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
 
     const isCritical = Math.random() < player.ctr;
     const baseDamage = weapon.dmg * (1 + player.dmg);

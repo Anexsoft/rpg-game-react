@@ -1,14 +1,8 @@
-import type { ItemRarity } from "../../types/index.type";
-
-import type { ArmorId } from "./ids.types";
+import type { ItemBase, ItemRarity } from "../../types/index.type";
 
 export type Armor = {
-  id: ArmorId;
   rarity: ItemRarity;
-  name: string;
-  description: string;
-  picture: string;
 
   // attributes
   def: number;
-};
+} & ItemBase;

@@ -1,12 +1,21 @@
 import { wait } from "@shared/logger";
 
+import { PlayerPushRewardsHandler } from "@player/handlers/player-push-rewards.handler";
+import { PlayerUpdateExperienceHandler } from "@player/handlers/player-update-experience.handler";
+import { PlayerUpgradeHandler } from "@player/handlers/player-upgrade.handler";
 import type { Player } from "@player/types/index.types";
 
 import type { Enemy } from "@enemy/types/index.type";
 
-import { WEAPONS } from "@weapons/index";
+import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
+import type { ItemBase } from "@src/modules/items/types/index.type";
+import { ZoneGetRewardsHandler } from "@src/modules/zones/handlers/zone-get-rewards.handler";
+import type { ZoneId } from "@src/modules/zones/types/ids.types";
+
+import type { HuntingZoneRewards } from "../types/index.type";
 
 type AttackHandlerParams = {
+  zoneId: ZoneId;
   player: Player;
   setPlayer: (player: Player) => void;
   enemies: Enemy[];
@@ -14,16 +23,40 @@ type AttackHandlerParams = {
   setIsPlayerTurn: (value: boolean) => void;
   setTurn: (updater: (prev: number) => number) => void;
   setResult: (result: "victory" | "defeat") => void;
+  setRewards: (rewards: HuntingZoneRewards) => void;
 };
 
 type AttackHandlerResponse = Promise<"victory" | "defeat" | null>;
 
-function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
-  const weapon = WEAPONS.find((weapon) => weapon.id === player.selectedWeapon);
+function updatePlayerRewards(
+  player: Player,
+  zoneId: ZoneId,
+  enemies: Enemy[],
+  setRewards: (rewards: HuntingZoneRewards) => void,
+): Player {
+  const rewards = ZoneGetRewardsHandler.handle(zoneId);
+  player = PlayerPushRewardsHandler.handle(player, rewards);
 
-  if (!weapon) {
-    throw new Error("Equipped weapon could not be found");
-  }
+  const gold = enemies.reduce((acc, e) => acc + e.goldGiven, 0);
+  player.gold += gold;
+
+  const totalExp = enemies.reduce((acc, e) => acc + e.expGiven, 0);
+  player = PlayerUpdateExperienceHandler.handle(player, totalExp);
+
+  player = PlayerUpgradeHandler.handle(player);
+
+  setRewards({
+    gold,
+    rewards: rewards.map(
+      (item) => ItemGetByIdHandler.handle(item.type, item.id) as ItemBase,
+    ),
+  });
+
+  return player;
+}
+
+function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
+  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
 
   if (weapon.target.type === "single") {
     const target = enemies.find((enemy) => enemy.isAlive);
@@ -47,6 +80,7 @@ function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
 }
 
 export async function attackHandler({
+  zoneId,
   player,
   setPlayer,
   enemies,
@@ -54,6 +88,7 @@ export async function attackHandler({
   setIsPlayerTurn,
   setTurn,
   setResult,
+  setRewards,
 }: AttackHandlerParams): AttackHandlerResponse {
   const targets = getEnemyTargets(player, enemies);
 
@@ -75,7 +110,17 @@ export async function attackHandler({
 
   if (!stillAlive) {
     result = "victory";
+
     setResult(result);
+    updatePlayerRewards(player, zoneId, enemies, setRewards);
+
+    const updatedPlayer = updatePlayerRewards(
+      player,
+      zoneId,
+      enemies,
+      setRewards,
+    );
+    setPlayer(updatedPlayer);
 
     return result;
   }

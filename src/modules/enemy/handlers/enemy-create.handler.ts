@@ -21,10 +21,15 @@ export class EnemyCreateHandler {
     const dmg = this.scaleValue(baseEnemy.dmg, level, true);
     const res = Math.min(this.scaleValue(baseEnemy.res, level), ENEMY_MAX_RES);
     const ctr = Math.min(this.scaleValue(baseEnemy.ctr, level), ENEMY_MAX_CTR);
-    const expGiven = this.scaleValue(this.pickValue(baseEnemy.expGiven), level);
+    const expGiven = this.scaleValue(
+      this.pickValue(baseEnemy.expGiven),
+      level,
+      true,
+    );
     const goldGiven = this.scaleValue(
       this.pickValue(baseEnemy.goldGiven),
       level,
+      true,
     );
 
     const power = this.calculatePowerScore({ maxHp, dmg, res, ctr });

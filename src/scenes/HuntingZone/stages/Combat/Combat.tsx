@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import CombatEnemies from "@scenes/HuntingZone/components/CombatEnemies/CombatEnemies";
 import { attackHandler } from "@scenes/HuntingZone/handlers/attack.handler";
+import type { HuntingZoneRewards } from "@scenes/HuntingZone/types/index.type";
 
 import type { Player } from "@player/types/index.types";
 
@@ -9,21 +10,27 @@ import { generateEnemies } from "@enemy/index";
 import type { EnemyId } from "@enemy/types/ids.type";
 import type { Enemy } from "@enemy/types/index.type";
 
+import type { ZoneId } from "@src/modules/zones/types/ids.types";
+
 import CombatCurrentAttacker from "./componentes/CombatCurrentAttacker";
 import CombatTurn from "./componentes/CombatTurn";
 
 interface CombatProps {
+  zoneId: ZoneId;
   player: Player;
   setPlayer: (p: Player) => void;
+  setRewards: (rewards: HuntingZoneRewards) => void;
   enemyIds: EnemyId[];
   setResult: (result: "victory" | "defeat") => void;
 }
 
 export default function Combat({
+  zoneId,
   player,
   setPlayer,
   enemyIds,
   setResult,
+  setRewards,
 }: CombatProps) {
   const [enemies, setEnemies] = useState<Enemy[]>(() =>
     generateEnemies(enemyIds),
@@ -36,6 +43,7 @@ export default function Combat({
     if (!isPlayerTurn) return;
 
     const result = await attackHandler({
+      zoneId,
       player: { ...player },
       setPlayer,
       enemies: [...enemies],
@@ -43,6 +51,7 @@ export default function Combat({
       setIsPlayerTurn,
       setTurn,
       setResult,
+      setRewards,
     });
 
     if (result) {

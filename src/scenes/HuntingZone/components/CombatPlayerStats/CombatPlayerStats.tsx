@@ -1,6 +1,6 @@
 import type { Player } from "@player/types/index.types";
 
-import { WEAPONS } from "@weapons/index";
+import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 import StatBar from "./components/StarBar";
 
@@ -9,10 +9,7 @@ type CombatPlayerStatsProps = {
 };
 
 export default function CombatPlayerStats({ player }: CombatPlayerStatsProps) {
-  const weapon = WEAPONS.find((weapon) => weapon.id === player.selectedWeapon);
-  if (!weapon) {
-    throw new Error("Equipped weapon could not be found");
-  }
+  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
 
   const playerDamage = weapon.dmg * (1 + player.dmg);
 

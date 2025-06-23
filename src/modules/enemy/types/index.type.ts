@@ -3,6 +3,7 @@ import { PlayerReceiveDamageHandler } from "@player/handlers/player-receive-dama
 import type { Player } from "@player/types/index.types";
 
 import { EnemyCalculateDamageHandler } from "@enemy/handlers/enemy-calculate-damage.handler";
+
 import { ARMORS } from "@armor/index";
 
 export type EnemyReward = {
@@ -67,7 +68,7 @@ export class Enemy {
       goldGiven: number;
       level: number;
       avatar: string;
-    }
+    },
   ) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
     this.name = name;
@@ -93,7 +94,7 @@ export class Enemy {
   takeDamage(enemy: Player): void {
     const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
       enemy,
-      this.res
+      this.res,
     );
 
     this.hp = Math.max(0, this.hp - amount);
@@ -108,7 +109,7 @@ export class Enemy {
   /** Update attacking information */
   attack(target: Player): void {
     const targetArmor = ARMORS.find(
-      (armor) => armor.id === target.selectedArmor
+      (armor) => armor.id === target.selectedArmor,
     );
 
     if (!targetArmor) {
@@ -117,7 +118,7 @@ export class Enemy {
 
     const { amount, isCritical } = EnemyCalculateDamageHandler.handle(
       this,
-      targetArmor.def
+      targetArmor.def,
     );
 
     this.actionStatus = {

@@ -1,6 +1,6 @@
 import type { Player } from "@player/types/index.types";
 
-import { CONSUMABLES } from "@consumables/index";
+import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 type CombatPlayerConsumableItemsProps = {
   player: Player;
@@ -18,8 +18,7 @@ export default function CombatPlayerConsumableItems({
       ) : (
         <div className="grid grid-cols-5 gap-4">
           {items.map((item) => {
-            const consumableItem = CONSUMABLES.find((c) => c.id === item.id);
-            if (!consumableItem) return null;
+            const consumable = ItemGetByIdHandler.handle("consumable", item.id);
 
             return (
               <div
@@ -27,8 +26,8 @@ export default function CombatPlayerConsumableItems({
                 className="relative flex flex-col items-center justify-center border border-gray-700 hover:border-gray-400 cursor-pointer rounded"
               >
                 <img
-                  src={consumableItem.picture}
-                  alt={consumableItem.name}
+                  src={consumable.picture}
+                  alt={consumable.name}
                   className="w-24 object-contain mb-1"
                 />
                 <span className="absolute -bottom-1 -right-1 bg-black text-white text-xs px-1 rounded-full border border-black shadow-md">

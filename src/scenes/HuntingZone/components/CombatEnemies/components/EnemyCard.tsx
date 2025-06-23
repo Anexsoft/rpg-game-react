@@ -34,7 +34,6 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
           </div>
         </div>
       )}
-
       <div
         className={`relative rounded w-50 overflow-hidden text-sm border transition-transform duration-200 ${
           !isAlive ? "grayscale" : ""

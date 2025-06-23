@@ -1,8 +1,6 @@
 import type { Player } from "@player/types/index.types";
 
-import { WEAPONS } from "@weapons/index";
-
-import { ARMORS } from "@armor/index";
+import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 type CombatPlayerEquippedItemProps = {
   player: Player;
@@ -11,12 +9,8 @@ type CombatPlayerEquippedItemProps = {
 export default function CombatPlayerEquippedItem({
   player,
 }: CombatPlayerEquippedItemProps) {
-  const weapon = WEAPONS.find((w) => w.id === player.selectedWeapon);
-  const armor = ARMORS.find((a) => a.id === player.selectedArmor);
-
-  if (!weapon || !armor) {
-    return;
-  }
+  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
+  const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
 
   return (
     <div className="bg-black/50 border border-gray-700 rounded p-4 text-white">

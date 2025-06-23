@@ -12,20 +12,13 @@ import type { WeaponId } from "@weapons/types/ids.types";
 import type { ArmorId } from "@armor/types/ids.types";
 
 import type { ConsumableId } from "@src/modules/items/consumables/types/ids.types";
-
-type InventoryTypeMap = {
-  weapon: WeaponId;
-  armor: ArmorId;
-  consumable: ConsumableId;
-};
+import type { ItemType } from "@src/modules/items/types/index.type";
 
 type PlayerInventoryItem = {
-  [K in keyof InventoryTypeMap]: {
-    type: K;
-    id: InventoryTypeMap[K];
-    quantity: number;
-  };
-}[keyof InventoryTypeMap];
+  type: ItemType;
+  id: WeaponId | ArmorId | ConsumableId;
+  quantity: number;
+};
 
 export type PlayerGender = "male" | "female";
 
@@ -94,6 +87,8 @@ export class Player {
 
   selectedWeapon: WeaponId = DEFAULT_SELECTED_WEAPON;
   selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
+
+  avilableStatsPoints: number = 0;
 
   constructor(name: string, gender: PlayerGender) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;

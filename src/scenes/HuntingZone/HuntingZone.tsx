@@ -7,7 +7,6 @@ import SceneLayout from "@layout/SceneLayout/SceneLayout";
 import type { SceneComponent } from "@scenes/types/index.types";
 
 import { ZONES } from "@src/modules/zones";
-import type { ZoneId } from "@src/modules/zones/types/ids.types";
 
 import CombatPlayerAvatar from "./components/CombatPlayerAvatar";
 import CombatPlayerConsumableItems from "./components/CombatPlayerConsumableItems";
@@ -16,10 +15,10 @@ import CombatPlayerStats from "./components/CombatPlayerStats/CombatPlayerStats"
 import Combat from "./stages/Combat/Combat";
 import Result from "./stages/Result";
 import Start from "./stages/Start";
-
-type HuntingZoneSceneProps = {
-  zoneId: ZoneId;
-};
+import type {
+  HuntingZoneRewards,
+  HuntingZoneSceneProps,
+} from "./types/index.type";
 
 export default function HuntingZoneScene({
   zoneId,
@@ -30,7 +29,9 @@ export default function HuntingZoneScene({
   const [combatStage, setCombatStage] = useState<"start" | "combat" | "result">(
     "start",
   );
+
   const [result, setResult] = useState<"victory" | "defeat" | null>(null);
+  const [rewards, setRewards] = useState<HuntingZoneRewards | null>(null);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -64,13 +65,17 @@ export default function HuntingZoneScene({
           {combatStage === "start" && <Start playerHp={player.hp} />}
           {combatStage === "combat" && (
             <Combat
+              zoneId={zoneId}
+              setRewards={setRewards}
               enemyIds={zone.enemies}
               player={player}
               setPlayer={setPlayer}
               setResult={setResult}
             />
           )}
-          {combatStage === "result" && <Result result={result} />}
+          {combatStage === "result" && (
+            <Result result={result} rewards={rewards} />
+          )}
         </div>
 
         <div className="flex flex-col space-y-4 w-80">

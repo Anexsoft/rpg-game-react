@@ -9,7 +9,8 @@ export type EnemyBase = {
   res: number;
   ctr: number;
   level: [number, number];
+  picture: string;
+
   expGiven: [number, number];
   goldGiven: [number, number];
-  picture: string;
 };
