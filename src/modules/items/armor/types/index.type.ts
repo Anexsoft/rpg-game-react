@@ -8,4 +8,7 @@ export type Armor = {
   name: string;
   description: string;
   picture: string;
+
+  // attributes
+  def: number;
 };

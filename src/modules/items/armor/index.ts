@@ -11,6 +11,7 @@ export const ARMORS: Armor[] = [
       "A rugged jacket offering minimal protection and good mobility.",
     picture: leatherJacket,
     rarity: "standard",
+    def: 0.05,
   },
   {
     id: "body-guard-vest",
@@ -19,5 +20,6 @@ export const ARMORS: Armor[] = [
       "A reinforced vest with decent protection against basic attacks.",
     picture: bodyGuard,
     rarity: "standard",
+    def: 0.15,
   },
 ];

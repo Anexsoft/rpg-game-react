@@ -15,7 +15,7 @@ export type Weapon = {
   description: string;
   picture: string;
 
-  /** Attributes **/
+  // attributes
   dmg: number;
   target: WeaponTarget;
 };

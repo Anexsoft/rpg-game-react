@@ -1,6 +1,5 @@
 import { wait } from "@shared/logger";
 
-import { PlayerCalculateDamageHandler } from "@player/handlers/player-calculate-damage.handler";
 import type { Player } from "@player/types/index.types";
 
 import type { Enemy } from "@enemy/types/index.type";
@@ -47,19 +46,6 @@ function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
   return [];
 }
 
-function damageEnemy(player: Player, target: Enemy): void {
-  const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
-    player,
-    target.res,
-  );
-
-  target.takeDamage(amount, isCritical);
-}
-
-function damagePlayer(enemy: Enemy, target: Player): void {
-  enemy.attack(target);
-}
-
 export async function attackHandler({
   player,
   setPlayer,
@@ -72,7 +58,7 @@ export async function attackHandler({
   const targets = getEnemyTargets(player, enemies);
 
   for (const enemy of targets) {
-    damageEnemy(player, enemy);
+    enemy.takeDamage(player);
     setEnemies([...enemies]);
   }
 
@@ -95,7 +81,7 @@ export async function attackHandler({
   }
 
   for (const enemy of enemies.filter(({ isAlive }) => isAlive)) {
-    damagePlayer(enemy, player);
+    enemy.attack(player);
 
     setPlayer({ ...player });
     setEnemies([...enemies]);

@@ -1,7 +1,9 @@
+import { PlayerCalculateDamageHandler } from "@player/handlers/player-calculate-damage.handler";
 import { PlayerReceiveDamageHandler } from "@player/handlers/player-receive-damage.handler";
 import type { Player } from "@player/types/index.types";
 
 import { EnemyCalculateDamageHandler } from "@enemy/handlers/enemy-calculate-damage.handler";
+import { ARMORS } from "@armor/index";
 
 export type EnemyReward = {
   exp: number;
@@ -65,7 +67,7 @@ export class Enemy {
       goldGiven: number;
       level: number;
       avatar: string;
-    },
+    }
   ) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
     this.name = name;
@@ -88,30 +90,44 @@ export class Enemy {
   }
 
   /** Apply damage to the enemy */
-  takeDamage(amount: number, wasCritical: boolean): void {
+  takeDamage(enemy: Player): void {
+    const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
+      enemy,
+      this.res
+    );
+
     this.hp = Math.max(0, this.hp - amount);
 
     this.actionStatus = {
       type: "attacked",
-      amount: amount,
-      wasCritical,
+      amount,
+      wasCritical: isCritical,
     };
   }
 
   /** Update attacking information */
-  attack(target: Player) {
-    const result = EnemyCalculateDamageHandler.handle(this, 0);
+  attack(target: Player): void {
+    const targetArmor = ARMORS.find(
+      (armor) => armor.id === target.selectedArmor
+    );
+
+    if (!targetArmor) {
+      throw new Error("Equipped armor could not be found");
+    }
+
+    const { amount, isCritical } = EnemyCalculateDamageHandler.handle(
+      this,
+      targetArmor.def
+    );
 
     this.actionStatus = {
       type: "attacking",
-      amount: result.amount,
-      wasCritical: result.isCritical,
+      amount,
+      wasCritical: isCritical,
     };
 
-    const { hp } = PlayerReceiveDamageHandler.handle(target, result.amount);
+    const { hp } = PlayerReceiveDamageHandler.handle(target, amount);
     target.hp = hp;
-
-    return result;
   }
 
   /** Returns the reward after defeat (for now: only experience) */

@@ -18,12 +18,8 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
           <div className="filter-none saturate-150 contrast-125">
             <span
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold animate-pulse text-3xl text-shadow-black ${
-                isAttacking
-                  ? !actionStatus.wasCritical
-                    ? "text-yellow-200"
-                    : "text-white"
-                  : "text-red-400"
-              }`}
+                isAttacking ? "text-yellow-200" : "text-red-400"
+              } ${actionStatus?.wasCritical ? "text-5xl" : "text-3xl"}`}
             >
               {isAttacking ? (
                 <>

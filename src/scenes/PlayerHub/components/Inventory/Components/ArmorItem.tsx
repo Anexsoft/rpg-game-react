@@ -54,6 +54,9 @@ export default function ArmorItem({
           <p className="font-bold">{item.name}</p>
           <p className={`${style.text} capitalize`}>{item.rarity}</p>
           <p className="mt-1 text-gray-300">{item.description}</p>
+          <p className="mt-1 italic text-xs text-gray-400">
+            Reduces incoming damage by {Math.round(item.def * 100)}%
+          </p>
         </Tooltip>
       )}
     </div>
