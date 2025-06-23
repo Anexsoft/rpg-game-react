@@ -11,7 +11,7 @@ export default function CombatEnemies({ enemies }: CombatEnemiesProps) {
     <div className="bg-black/50 border border-gray-700 flex-1 flex justify-center items-center">
       <div className="flex flex-wrap justify-center gap-4 p-4">
         {enemies.map((enemy) => (
-          <EnemyCard key={enemy.name} enemy={enemy} />
+          <EnemyCard key={enemy.id} enemy={enemy} />
         ))}
       </div>
     </div>

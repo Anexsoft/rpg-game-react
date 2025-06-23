@@ -1,6 +1,17 @@
+import { PlayerReceiveDamageHandler } from "@player/handlers/player-receive-damage.handler";
+import type { Player } from "@player/types/index.types";
+
+import { EnemyCalculateDamageHandler } from "@enemy/handlers/enemy-calculate-damage.handler";
+
 export type EnemyReward = {
   exp: number;
   gold: number;
+};
+
+export type EnemyActionStatus = {
+  type: "attacking" | "attacked";
+  amount: number;
+  wasCritical: boolean;
 };
 
 export class Enemy {
@@ -39,9 +50,8 @@ export class Enemy {
   /** Points calculated base in its statues **/
   powerScore: number;
 
-  /** Animations **/
-  isAttacking: boolean = false;
-  isAttacked: boolean = false;
+  /** Current Status information **/
+  actionStatus: EnemyActionStatus | null = null;
 
   constructor(
     name: string,
@@ -78,18 +88,34 @@ export class Enemy {
   }
 
   /** Apply damage to the enemy */
-  takeDamage(amount: number): void {
+  takeDamage(amount: number, wasCritical: boolean): void {
     this.hp = Math.max(0, this.hp - amount);
-    this.isAttacked = true;
+
+    this.actionStatus = {
+      type: "attacked",
+      amount: amount,
+      wasCritical,
+    };
+  }
+
+  /** Update attacking information */
+  attack(target: Player) {
+    const result = EnemyCalculateDamageHandler.handle(this, 0);
+
+    this.actionStatus = {
+      type: "attacking",
+      amount: result.amount,
+      wasCritical: result.isCritical,
+    };
+
+    const { hp } = PlayerReceiveDamageHandler.handle(target, result.amount);
+    target.hp = hp;
+
+    return result;
   }
 
   /** Returns the reward after defeat (for now: only experience) */
   get rewards(): EnemyReward {
     return { exp: this.expGiven, gold: this.goldGiven };
-  }
-
-  resetAnimations(): void {
-    this.isAttacking = false;
-    this.isAttacked = false;
   }
 }

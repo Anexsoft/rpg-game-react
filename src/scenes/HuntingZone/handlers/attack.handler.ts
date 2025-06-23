@@ -1,8 +1,11 @@
 import { wait } from "@shared/logger";
 
+import { PlayerCalculateDamageHandler } from "@player/handlers/player-calculate-damage.handler";
 import type { Player } from "@player/types/index.types";
 
 import type { Enemy } from "@enemy/types/index.type";
+
+import { WEAPONS } from "@weapons/index";
 
 type AttackHandlerParams = {
   player: Player;
@@ -16,6 +19,47 @@ type AttackHandlerParams = {
 
 type AttackHandlerResponse = Promise<"victory" | "defeat" | null>;
 
+function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
+  const weapon = WEAPONS.find((weapon) => weapon.id === player.selectedWeapon);
+
+  if (!weapon) {
+    throw new Error("Equipped weapon could not be found");
+  }
+
+  if (weapon.target.type === "single") {
+    const target = enemies.find((enemy) => enemy.isAlive);
+    return target ? [target] : [];
+  }
+
+  if (weapon.target.type === "multiple") {
+    return enemies
+      .filter((enemy) => enemy.isAlive)
+      .slice(0, weapon.target.targets);
+  }
+
+  if (weapon.target.type === "random") {
+    const aliveEnemies = enemies.filter((enemy) => enemy.isAlive);
+
+    const shuffled = [...aliveEnemies].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, weapon.target.targets);
+  }
+
+  return [];
+}
+
+function damageEnemy(player: Player, target: Enemy): void {
+  const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
+    player,
+    target.res,
+  );
+
+  target.takeDamage(amount, isCritical);
+}
+
+function damagePlayer(enemy: Enemy, target: Player): void {
+  enemy.attack(target);
+}
+
 export async function attackHandler({
   player,
   setPlayer,
@@ -25,22 +69,22 @@ export async function attackHandler({
   setTurn,
   setResult,
 }: AttackHandlerParams): AttackHandlerResponse {
-  const updatedEnemies = [...enemies];
-  const target = updatedEnemies.find((e) => e.isAlive);
+  const targets = getEnemyTargets(player, enemies);
 
-  if (!target) return null;
+  for (const enemy of targets) {
+    damageEnemy(player, enemy);
+    setEnemies([...enemies]);
+  }
 
-  target.takeDamage(player.dmg);
-  setEnemies(updatedEnemies);
-
-  await wait(300);
-  target.resetAnimations();
-  setEnemies([...updatedEnemies]);
-
+  setEnemies([...enemies]);
   setIsPlayerTurn(false);
+
   await wait(500);
 
-  const stillAlive = updatedEnemies.some((e) => e.isAlive);
+  targets.forEach((target) => (target.actionStatus = null));
+  setEnemies([...enemies]);
+
+  const stillAlive = enemies.some((e) => e.isAlive);
   let result: "victory" | "defeat" | null = null;
 
   if (!stillAlive) {
@@ -50,18 +94,16 @@ export async function attackHandler({
     return result;
   }
 
-  for (const enemy of updatedEnemies) {
-    if (!enemy?.isAlive) continue;
+  for (const enemy of enemies.filter(({ isAlive }) => isAlive)) {
+    damagePlayer(enemy, player);
 
-    enemy.isAttacking = true;
-    setEnemies([...updatedEnemies]);
-    await wait(500);
-
-    player.hp = Math.max(player.hp - enemy.dmg, 0);
     setPlayer({ ...player });
+    setEnemies([...enemies]);
 
-    enemy.isAttacking = false;
-    setEnemies([...updatedEnemies]);
+    await wait(500);
+    enemy.actionStatus = null;
+
+    setEnemies([...enemies]);
 
     if (player.hp <= 0) {
       result = "defeat";
@@ -73,5 +115,6 @@ export async function attackHandler({
 
   setTurn((prev) => prev + 1);
   setIsPlayerTurn(true);
+
   return result;
 }

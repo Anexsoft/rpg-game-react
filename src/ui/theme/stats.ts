@@ -93,7 +93,7 @@ export const STAT_STYLES = {
     fill: "bg-orange-500",
     description: "Physical Damage",
     longDescription:
-      "Damage - calculated from strength. Determines attack power.",
+      "Damage - A percentage-based bonus to your weapon's base damage.",
   },
   exp: {
     label: "EXP",

@@ -25,7 +25,10 @@ export default function Combat({
   enemyIds,
   setResult,
 }: CombatProps) {
-  const [enemies, setEnemies] = useState<Enemy[]>(generateEnemies(enemyIds));
+  const [enemies, setEnemies] = useState<Enemy[]>(() =>
+    generateEnemies(enemyIds),
+  );
+
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
   const [turn, setTurn] = useState(1);
 
@@ -33,9 +36,9 @@ export default function Combat({
     if (!isPlayerTurn) return;
 
     const result = await attackHandler({
-      player,
+      player: { ...player },
       setPlayer,
-      enemies,
+      enemies: [...enemies],
       setEnemies,
       setIsPlayerTurn,
       setTurn,

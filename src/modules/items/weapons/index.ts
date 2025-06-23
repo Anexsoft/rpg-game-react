@@ -11,6 +11,11 @@ export const WEAPONS: Weapon[] = [
     description: "Reliable sidearm for close to mid-range.",
     picture: handgun9mmPic,
     rarity: "standard",
+    dmg: 7,
+    target: {
+      type: "single",
+      damageMultiplier: 1,
+    },
   },
   {
     id: "remington-870-pump-action-shotgun",
@@ -19,5 +24,11 @@ export const WEAPONS: Weapon[] = [
     description: "Powerful shotgun, best at close range.",
     picture: shotgunRemington,
     rarity: "standard",
+    dmg: 12,
+    target: {
+      type: "multiple",
+      targets: 3,
+      damageMultiplier: 0.65,
+    },
   },
 ];

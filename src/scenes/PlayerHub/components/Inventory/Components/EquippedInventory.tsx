@@ -17,7 +17,7 @@ export default function EquippedInventory({
         src={picture}
       />
       <div>
-        <p className="text-white font-bold text-sm">{label}</p>
+        <p className="text-white font-bold text-sm">Equipped {label}</p>
         <p className="text-gray-300 text-sm">{name}</p>
       </div>
     </div>

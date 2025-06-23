@@ -14,9 +14,9 @@ export class PlayerUpgradeHandler {
     const maxHp = Math.round(BASE_HP + player.vit * HP_PER_VIT);
     const maxSta = Math.round(BASE_MP + player.nrg * ST_PER_NRG);
 
-    const eva = parseFloat((player.dex * EVA_PER_DEX_RATE * 100).toFixed(3));
-    const ctr = parseFloat((player.luk * CTR_PER_LUK_RATE * 100).toFixed(3));
-    const dmg = parseFloat((player.str * DMG_PER_STR_RATE * 100).toFixed(3));
+    const eva = parseFloat((player.dex * EVA_PER_DEX_RATE).toFixed(3));
+    const ctr = parseFloat((player.luk * CTR_PER_LUK_RATE).toFixed(3));
+    const dmg = parseFloat((player.str * DMG_PER_STR_RATE).toFixed(3));
 
     return {
       ...player,
