@@ -1,14 +1,34 @@
-import type { Player } from "@player/types/index.types";
+import { useEffect, useState } from "react";
+
+import { useGame } from "@core/context/GameContext";
+
+import { PlayerUseConsumableHandler } from "@player/handlers/player-use-consumable.handler";
+
+import type { ConsumableId } from "@consumables/types/ids.types";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
-type CombatPlayerConsumableItemsProps = {
-  player: Player;
-};
+import { useCombat } from "../context/CombatContext";
 
-export default function CombatPlayerConsumableItems({
-  player,
-}: CombatPlayerConsumableItemsProps) {
+export default function CombatPlayerConsumableItems() {
+  const { player, setPlayer } = useGame();
+  const { playerTurn } = useCombat();
+
+  const [isEnabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    setEnabled(playerTurn === "player");
+  }, [playerTurn]);
+
+  const handleUseConsumable = (itemId: ConsumableId) => {
+    if (!isEnabled) return;
+
+    const updatedPlayer = PlayerUseConsumableHandler.handle(player, itemId);
+
+    setPlayer(updatedPlayer);
+    setEnabled(false);
+  };
+
   const items = player.inventory.filter((item) => item.type === "consumable");
 
   return (
@@ -16,14 +36,21 @@ export default function CombatPlayerConsumableItems({
       {items.length === 0 ? (
         <p className="text-center text-gray-400 text-sm">No items available</p>
       ) : (
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-5 gap-2">
           {items.map((item) => {
             const consumable = ItemGetByIdHandler.handle("consumable", item.id);
 
             return (
               <div
                 key={item.id}
-                className="relative flex flex-col items-center justify-center border border-gray-700 hover:border-gray-400 cursor-pointer rounded"
+                onClick={() =>
+                  isEnabled && handleUseConsumable(item.id as ConsumableId)
+                }
+                className={`relative flex flex-col items-center justify-center border border-gray-700 rounded transition-all ${
+                  isEnabled
+                    ? "hover:border-gray-400 cursor-pointer"
+                    : "cursor-not-allowed grayscale"
+                }`}
               >
                 <img
                   src={consumable.picture}

@@ -23,7 +23,7 @@ export default function ConsumableItem({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <img alt={name} src={picture} className="w-full h-full object-contain" />
+      <img alt={name} src={picture} />
 
       {quantity > 1 && (
         <span className="absolute -bottom-1 -right-1 bg-black text-white text-[10px] px-1 rounded-full border border-black shadow-md">

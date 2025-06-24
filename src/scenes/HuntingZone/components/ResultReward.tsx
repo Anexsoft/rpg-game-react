@@ -1,12 +1,14 @@
 import { Coins } from "lucide-react";
 
-import type { HuntingZoneRewards } from "../types/index.type";
+import { useCombat } from "../context/CombatContext";
 
-type ResultRewardProps = {
-  rewards: HuntingZoneRewards;
-};
+export default function ResultReward() {
+  const { rewards } = useCombat();
 
-export default function ResultReward({ rewards }: ResultRewardProps) {
+  if (!rewards) {
+    return;
+  }
+
   return (
     <>
       <div className="flex items-center gap-2 text-yellow-400 text-sm mb-6 ">

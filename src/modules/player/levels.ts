@@ -51,4 +51,4 @@ export const LEVELS = [
   [12741, 13250],
 ];
 
-export const MAX_LEVEL = LEVELS.length - 1;
+export const MAX_LEVEL = LEVELS.length;

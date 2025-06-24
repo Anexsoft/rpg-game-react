@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import { REST_PATH } from "@src/router.defs";
 
 import ResultReward from "../components/ResultReward";
-import type { HuntingZoneRewards } from "../types/index.type";
+import { useCombat } from "../context/CombatContext";
 
-type ResultProps = {
-  result: "victory" | "defeat" | null;
-  rewards: HuntingZoneRewards | null;
-};
+export default function Result() {
+  const { result, rewards } = useCombat();
 
-export default function Result({ result, rewards }: ResultProps) {
-  if (!result) return null;
+  if (!result) {
+    return;
+  }
 
   const isVictory = result === "victory";
 
@@ -23,7 +22,7 @@ export default function Result({ result, rewards }: ResultProps) {
             Victory!
           </div>
 
-          {rewards && <ResultReward rewards={rewards} />}
+          {rewards && <ResultReward />}
         </>
       ) : (
         <>

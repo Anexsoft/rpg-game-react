@@ -1,5 +1,4 @@
 import {
-  DEFAULT_SELECTED_CONSUMABLE,
   DEFAULT_SELECTED_ARMOR,
   DEFAULT_SELECTED_WEAPON,
 } from "@player/inventory";
@@ -88,7 +87,7 @@ export class Player {
   selectedWeapon: WeaponId = DEFAULT_SELECTED_WEAPON;
   selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
 
-  avilableStatsPoints: number = 0;
+  availableStatPoints: number = 0;
 
   constructor(name: string, gender: PlayerGender) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
@@ -102,24 +101,9 @@ export class Player {
         quantity: 1,
       },
       {
-        type: "weapon",
-        id: "remington-870-pump-action-shotgun",
-        quantity: 1,
-      },
-      {
         type: "armor",
         id: this.selectedArmor,
         quantity: 1,
-      },
-      {
-        type: "armor",
-        id: "leather-jacket",
-        quantity: 1,
-      },
-      {
-        type: "consumable",
-        id: DEFAULT_SELECTED_CONSUMABLE,
-        quantity: 3,
       },
     );
   }

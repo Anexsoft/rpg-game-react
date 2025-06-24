@@ -3,9 +3,11 @@ import hospitalBg from "@resources/images/scenes/zone_hospital.jpg";
 import labsBg from "@resources/images/scenes/zone_laboratory.jpg";
 import outskirtsBg from "@resources/images/scenes/zone_outskirts.jpg";
 import residentialBg from "@resources/images/scenes/zone_residential.jpg";
+import trainingBg from "@resources/images/scenes/zone_training.jpg";
 import universityBg from "@resources/images/scenes/zone_university.jpg";
 
 import {
+  ZONE_0_PATH,
   ZONE_1_PATH,
   ZONE_2_PATH,
   ZONE_3_PATH,
@@ -17,6 +19,15 @@ import {
 import type { Zone } from "./types/index.type";
 
 export const ZONES: Zone[] = [
+  {
+    id: "training",
+    name: "Training",
+    description:
+      "A controlled environment for new recruits to hone their skills before facing real danger.",
+    background: trainingBg,
+    path: ZONE_0_PATH,
+    enemies: ["police-zombie-1"],
+  },
   {
     id: "outskirts",
     name: "Outskirts",
@@ -37,7 +48,7 @@ export const ZONES: Zone[] = [
       "male-zombie-1",
       "police-zombie-1",
       "female-zombie-1",
-      "doctor-zombie-1",
+      "dog-zombie-1",
     ],
   },
   {
@@ -48,7 +59,7 @@ export const ZONES: Zone[] = [
     background: hospitalBg,
     path: ZONE_3_PATH,
     enemies: [
-      "male-zombie-1",
+      "police-zombie-1",
       "doctor-zombie-1",
       "nurse-zombie-1",
       "stalker-1",
@@ -62,7 +73,13 @@ export const ZONES: Zone[] = [
       "Dark lecture halls and silent libraries. Survivors say strange things roam here.",
     background: universityBg,
     path: ZONE_4_PATH,
-    enemies: ["male-zombie-1", "male-zombie-2", "raptor-1", "raptor-1"],
+    enemies: [
+      "male-zombie-1",
+      "male-zombie-2",
+      "raptor-1",
+      "raptor-1",
+      "dog-zombie-1",
+    ],
   },
   {
     id: "factory",
@@ -78,6 +95,7 @@ export const ZONES: Zone[] = [
       "female-zombie-1",
       "stalker-1",
       "raptor-1",
+      "dog-zombie-1",
     ],
   },
   {
@@ -87,6 +105,14 @@ export const ZONES: Zone[] = [
       "Secured labs with corrupted data and failed experiments. The origin of the outbreak?",
     background: labsBg,
     path: ZONE_6_PATH,
-    enemies: ["stalker-1", "raptor-1", "stalker-1", "raptor-1", "titan-1"],
+    enemies: [
+      "stalker-1",
+      "raptor-1",
+      "stalker-1",
+      "raptor-1",
+      "titan-1",
+      "dog-zombie-1",
+      "dog-zombie-1",
+    ],
   },
 ];

@@ -1,15 +1,20 @@
 import { STAT_STYLES } from "@ui/theme/stats";
-import type { StatType } from "@ui/types/stats.type";
 
-type ProgressBarProps = {
-  type: StatType;
+import { calculatePlayerExpProgress } from "@player/utils";
+
+type ProgressExpBarProps = {
+  level: number;
   value: number;
   max: number;
 };
 
-export default function ProgressBar({ type, value, max }: ProgressBarProps) {
-  const config = STAT_STYLES[type as keyof typeof STAT_STYLES];
-  const percentage = Math.max(0, Math.min(100, (value / max) * 100));
+export default function ProgressExpBar({
+  level,
+  value,
+  max,
+}: ProgressExpBarProps) {
+  const config = STAT_STYLES["exp"];
+  const percentage = calculatePlayerExpProgress(level, value);
 
   return (
     <div>
@@ -23,7 +28,7 @@ export default function ProgressBar({ type, value, max }: ProgressBarProps) {
       <div className={`h-3 w-full rounded ${config.bg}`}>
         <div
           className={`h-full rounded ${config.fill}`}
-          style={{ width: `${percentage}%` }}
+          style={{ width: `${percentage * 100}%` }}
         />
       </div>
     </div>

@@ -14,3 +14,5 @@ export type StatType =
   | "dmg"
   | "exp"
   | "lvl";
+
+export type UpgradableStats = "str" | "vit" | "nrg" | "dex" | "luk";

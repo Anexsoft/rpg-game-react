@@ -62,7 +62,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
 
       <div>
         <h4 className="text-white font-semibold mb-2">Weapons</h4>
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 gap-15">
           {WEAPONS.sort(sortWeaponByRarityAndName)
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
@@ -89,7 +89,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
 
       <div>
         <h4 className="text-white font-semibold mb-2">Armors</h4>
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 gap-15">
           {ARMORS.sort(sortArmorByRarityAndName)
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
@@ -116,29 +116,33 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
 
       <div>
         <h4 className="text-white font-semibold mb-2">Consumables</h4>
-        <div className="grid grid-cols-12">
-          {CONSUMABLES.filter((item) =>
-            player.inventory.some(({ id }) => id === item.id),
-          ).map((item) => {
-            const availableItem = player.inventory.find(
-              ({ id }) => id === item.id,
-            );
+        {CONSUMABLES.filter((item) =>
+          player.inventory.some(({ id }) => id === item.id),
+        ).length === 0 ? (
+          <p className="text-gray-400 text-sm">No items available</p>
+        ) : (
+          <div className="grid grid-cols-12 gap-15">
+            {CONSUMABLES.filter((item) =>
+              player.inventory.some(({ id }) => id === item.id),
+            ).map((item) => {
+              const availableItem = player.inventory.find(
+                ({ id }) => id === item.id,
+              );
 
-            if (!availableItem) {
-              return;
-            }
+              if (!availableItem) return null;
 
-            return (
-              <ConsumableItem
-                key={item.id}
-                name={item.name}
-                description={item.description}
-                picture={item.picture}
-                quantity={availableItem.quantity}
-              />
-            );
-          })}
-        </div>
+              return (
+                <ConsumableItem
+                  key={item.id}
+                  name={item.name}
+                  description={item.description}
+                  picture={item.picture}
+                  quantity={availableItem.quantity}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

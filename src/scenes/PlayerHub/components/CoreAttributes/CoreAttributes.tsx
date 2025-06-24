@@ -2,6 +2,7 @@ import { MAX_LEVEL } from "@player/levels";
 import type { Player } from "@player/types/index.types";
 
 import ProgressBar from "./components/ProgressBar";
+import ProgressExpBar from "./components/ProgressExpBar";
 
 type CoreAttributesProps = {
   player: Player;
@@ -14,8 +15,8 @@ export default function CoreAttributes({ player }: CoreAttributesProps) {
       <div className="grid grid-cols-2 gap-4">
         <ProgressBar type="hp" value={player.hp} max={player.maxHp} />
         <ProgressBar type="sta" value={player.sta} max={player.maxSta} />
-        <ProgressBar
-          type="exp"
+        <ProgressExpBar
+          level={player.level}
           value={player.exp}
           max={player.expToNextLevel}
         />

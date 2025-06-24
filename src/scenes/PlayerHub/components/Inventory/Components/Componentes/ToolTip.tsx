@@ -11,7 +11,7 @@ export default function Tooltip({ picture, children }: TooltipProps) {
       <img
         src={picture}
         alt="Item"
-        className="w-20 rounded object-contain border border-gray-700"
+        className="w-20 h-20 rounded object-contain border border-gray-700"
       />
       <div className="space-y-1">{children}</div>
     </div>

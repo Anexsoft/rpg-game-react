@@ -8,7 +8,7 @@ function createVariation(id: WeaponId, base: Weapon, level: number) {
   return {
     id,
     name: `${base.name}+${level}`,
-    dmg: Math.round(base.dmg + (1 + 0.02 * level)),
+    dmg: Math.round(base.dmg * (1 + 0.25 * level)),
   };
 }
 
@@ -33,7 +33,7 @@ export const BASE_SHOTGUN: Weapon = {
   description: "Powerful shotgun, best at close range.",
   picture: shotgunRemington,
   rarity: "standard",
-  dmg: 12,
+  dmg: 10,
   target: {
     type: "multiple",
     targets: 3,

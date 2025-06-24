@@ -6,6 +6,6 @@ import type { ConsumableId } from "@src/modules/items/consumables/types/ids.type
 
 export const DEFAULT_SELECTED_WEAPON: WeaponId = "9mm-semi-automatic-handgun";
 
-export const DEFAULT_SELECTED_ARMOR: ArmorId = "body-guard-vest";
+export const DEFAULT_SELECTED_ARMOR: ArmorId = "leather-jacket";
 
 export const DEFAULT_SELECTED_CONSUMABLE: ConsumableId = "health-shot";

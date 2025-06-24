@@ -1,5 +1,6 @@
 import { wait } from "@shared/logger";
 
+import { PlayerAttackHandler } from "@player/handlers/player-attack.handler";
 import { PlayerPushRewardsHandler } from "@player/handlers/player-push-rewards.handler";
 import { PlayerUpdateExperienceHandler } from "@player/handlers/player-update-experience.handler";
 import { PlayerUpgradeHandler } from "@player/handlers/player-upgrade.handler";
@@ -20,7 +21,6 @@ type AttackHandlerParams = {
   setPlayer: (player: Player) => void;
   enemies: Enemy[];
   setEnemies: (enemies: Enemy[]) => void;
-  setIsPlayerTurn: (value: boolean) => void;
   setTurn: (updater: (prev: number) => number) => void;
   setResult: (result: "victory" | "defeat") => void;
   setRewards: (rewards: HuntingZoneRewards) => void;
@@ -41,9 +41,15 @@ function updatePlayerRewards(
   player.gold += gold;
 
   const totalExp = enemies.reduce((acc, e) => acc + e.expGiven, 0);
-  player = PlayerUpdateExperienceHandler.handle(player, totalExp);
 
-  player = PlayerUpgradeHandler.handle(player);
+  const { updatedPlayer, newLevelEarned } =
+    PlayerUpdateExperienceHandler.handle(player, totalExp);
+
+  player = updatedPlayer;
+
+  if (newLevelEarned) {
+    player = PlayerUpgradeHandler.handle(player);
+  }
 
   setRewards({
     gold,
@@ -55,54 +61,22 @@ function updatePlayerRewards(
   return player;
 }
 
-function getEnemyTargets(player: Player, enemies: Enemy[]): Enemy[] {
-  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
-
-  if (weapon.target.type === "single") {
-    const target = enemies.find((enemy) => enemy.isAlive);
-    return target ? [target] : [];
-  }
-
-  if (weapon.target.type === "multiple") {
-    return enemies
-      .filter((enemy) => enemy.isAlive)
-      .slice(0, weapon.target.targets);
-  }
-
-  if (weapon.target.type === "random") {
-    const aliveEnemies = enemies.filter((enemy) => enemy.isAlive);
-
-    const shuffled = [...aliveEnemies].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, weapon.target.targets);
-  }
-
-  return [];
-}
-
 export async function attackHandler({
   zoneId,
   player,
   setPlayer,
   enemies,
   setEnemies,
-  setIsPlayerTurn,
   setTurn,
   setResult,
   setRewards,
 }: AttackHandlerParams): AttackHandlerResponse {
-  const targets = getEnemyTargets(player, enemies);
-
-  for (const enemy of targets) {
-    enemy.takeDamage(player);
-    setEnemies([...enemies]);
-  }
-
+  enemies = PlayerAttackHandler.handle(player, enemies);
   setEnemies([...enemies]);
-  setIsPlayerTurn(false);
 
   await wait(500);
 
-  targets.forEach((target) => (target.actionStatus = null));
+  enemies.forEach((enemy) => (enemy.actionStatus = null));
   setEnemies([...enemies]);
 
   const stillAlive = enemies.some((e) => e.isAlive);
@@ -120,6 +94,7 @@ export async function attackHandler({
       enemies,
       setRewards,
     );
+
     setPlayer(updatedPlayer);
 
     return result;
@@ -145,7 +120,6 @@ export async function attackHandler({
   }
 
   setTurn((prev) => prev + 1);
-  setIsPlayerTurn(true);
 
   return result;
 }

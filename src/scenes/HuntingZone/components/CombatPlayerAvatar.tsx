@@ -1,13 +1,9 @@
-import type { Player } from "@player/types/index.types";
+import { useGame } from "@core/context/GameContext";
+
 import { getPlayerAvatar } from "@player/utils/index";
 
-type CombatPlayerAvatarProps = {
-  player: Player;
-};
-
-export default function CombatPlayerAvatar({
-  player,
-}: CombatPlayerAvatarProps) {
+export default function CombatPlayerAvatar() {
+  const { player } = useGame();
   const avatar = getPlayerAvatar(player.gender);
 
   return (

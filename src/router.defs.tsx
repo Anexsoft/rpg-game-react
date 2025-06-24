@@ -8,6 +8,7 @@ export const STORE_KEEPER_CHAT_PATH = `${STORE_PATH}/chat`;
 export const BAR_PATH = "/bar";
 export const REST_PATH = "/rest";
 
+export const ZONE_0_PATH = "/training";
 export const ZONE_1_PATH = "/outskirts";
 export const ZONE_2_PATH = "/residential";
 export const ZONE_3_PATH = "/hospital";

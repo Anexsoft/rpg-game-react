@@ -1,4 +1,4 @@
-import { Sword, Heart } from "lucide-react";
+import { Sword, Heart, ShieldOff } from "lucide-react";
 
 import type { Enemy } from "@enemy/types/index.type";
 
@@ -8,32 +8,48 @@ type EnemyCardProps = {
 
 export default function EnemyCard({ enemy }: EnemyCardProps) {
   const { isAlive, actionStatus } = enemy;
+
   const isAttacked = actionStatus?.type === "attacked";
-  const isAttacking = actionStatus?.type === "attacking";
+  const isAttacking = actionStatus?.type === "attack";
+  const isMissed = actionStatus?.type === "missed";
 
   return (
     <div className="relative">
       {actionStatus && (
         <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
           <div className="filter-none saturate-150 contrast-125">
-            <span
-              className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold animate-pulse text-3xl text-shadow-black ${
-                isAttacking ? "text-yellow-200" : "text-red-400"
-              } ${actionStatus?.wasCritical ? "text-5xl" : "text-3xl"}`}
-            >
-              {isAttacking ? (
-                <>
-                  <Sword className="w-7 h-7" />+{actionStatus.amount}
-                </>
-              ) : (
-                <>
-                  <Heart className="w-7 h-7" />-{actionStatus.amount}
-                </>
-              )}
-            </span>
+            {isAttacked && (
+              <span
+                className={`flex items-center gap-2 px-4 py-2 rounded-full animate-pulse text-3xl text-shadow-black ${
+                  actionStatus.wasCritical ? "text-5xl" : "text-3xl"
+                } text-red-400`}
+              >
+                <Heart className="w-7 h-7" />-{actionStatus.amount}
+              </span>
+            )}
+
+            {isAttacking && (
+              <span
+                className={`flex items-center gap-2 px-4 py-2 rounded-full animate-pulse text-shadow-black text-yellow-200 ${
+                  actionStatus.wasCritical ? "text-5xl" : "text-3xl"
+                }`}
+              >
+                <Sword className="w-7 h-7" />+{actionStatus.amount}
+              </span>
+            )}
+
+            {isMissed && (
+              <span
+                className={`flex items-center gap-2 px-4 py-2 rounded-full animate-pulse text-2xl text-shadow-black text-gray-400`}
+              >
+                <ShieldOff className="w-6 h-6" />
+                <span className="line-through">+{actionStatus.amount}</span>
+              </span>
+            )}
           </div>
         </div>
       )}
+
       <div
         className={`relative rounded w-50 overflow-hidden text-sm border transition-transform duration-200 ${
           !isAlive ? "grayscale" : ""
@@ -50,7 +66,7 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
           <span>Lv. {enemy.level}</span>
         </div>
 
-        <div className="bg-gray-800 border-t border-b border-gray-700 flex items-center justify-center">
+        <div className="bg-gray-800 border-y border-gray-700 flex items-center justify-center">
           <img src={enemy.avatar} alt={enemy.name} className="object-contain" />
         </div>
 

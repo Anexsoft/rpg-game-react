@@ -84,7 +84,8 @@ export const STAT_STYLES = {
     bg: "bg-blue-900",
     fill: "bg-blue-500",
     description: "Damage Resistance",
-    longDescription: "Resistance - resistance bonus gained per level.",
+    longDescription:
+      "Resistance - reduces a % of enemy damage based on equipped armor.",
   },
   dmg: {
     label: "DMG",

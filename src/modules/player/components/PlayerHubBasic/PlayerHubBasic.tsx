@@ -4,6 +4,7 @@ import { GOLD_STYLES } from "@ui/theme/gold";
 
 import { getPlayerAvatar } from "@player/utils/index";
 
+import Exp from "./components/Exp";
 import Stat from "./components/Stat";
 
 export default function PlayerHubBasic() {
@@ -29,7 +30,11 @@ export default function PlayerHubBasic() {
       <div className="grid items-center grid-cols-2 gap-4">
         <Stat type="hp" current={player.hp} max={player.maxHp} />
         <Stat type="nrg" current={player.sta} max={player.maxSta} />
-        <Stat type="exp" current={player.exp} max={player.expToNextLevel} />
+        <Exp
+          level={player.level}
+          current={player.exp}
+          max={player.expToNextLevel}
+        />
 
         <div
           className={`flex items-center justify-between text-xs ${GOLD_STYLES.text}`}

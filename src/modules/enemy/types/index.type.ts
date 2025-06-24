@@ -12,7 +12,7 @@ export type EnemyReward = {
 };
 
 export type EnemyActionStatus = {
-  type: "attacking" | "attacked";
+  type: "attack" | "attacked" | "missed";
   amount: number;
   wasCritical: boolean;
 };
@@ -121,11 +121,17 @@ export class Enemy {
       targetArmor.def,
     );
 
+    const isEvaded = Math.random() <= target.eva;
+
     this.actionStatus = {
-      type: "attacking",
+      type: isEvaded ? "missed" : "attack",
       amount,
       wasCritical: isCritical,
     };
+
+    if (isEvaded) {
+      return;
+    }
 
     const { hp } = PlayerReceiveDamageHandler.handle(target, amount);
     target.hp = hp;

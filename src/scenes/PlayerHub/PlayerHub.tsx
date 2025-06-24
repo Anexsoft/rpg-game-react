@@ -14,6 +14,7 @@ import CoreAttributes from "./components/CoreAttributes/CoreAttributes";
 import CurrentGold from "./components/CurrentGold";
 import Inventory from "./components/Inventory/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
+import StatPoints from "./components/StatPoints";
 
 export default function PlayerHubScene(): SceneComponent {
   const { player, setPlayer } = useGame();
@@ -26,28 +27,34 @@ export default function PlayerHubScene(): SceneComponent {
       backgroundImage={backgroundImage}
       size="large"
     >
-      <div className="grid md:grid-cols-5 gap-6 text-white">
-        <div className="flex flex-col gap-6 col-span-1">
+      <div className="flex gap-6 text-white">
+        <div className="flex flex-col gap-6 w-140">
           <Block className="flex flex-col items-center col-span-1">
             <PlayerInfo player={player} avatar={avatar} />
           </Block>
 
-          <Block>
-            <CurrentGold amount={player.gold} />
-          </Block>
+          <div className="grid grid-cols-2 gap-6">
+            <Block>
+              <CurrentGold amount={player.gold} />
+            </Block>
+
+            <Block>
+              <StatPoints amount={player.availableStatPoints} />
+            </Block>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-6 col-span-2">
+        <div className="flex flex-col gap-6">
           <Block>
             <CoreAttributes player={player} />
           </Block>
 
           <Block>
-            <BattleStats player={player} />
+            <BattleStats player={player} setPlayer={setPlayer} />
           </Block>
         </div>
 
-        <div className="flex flex-col gap-6 col-span-2">
+        <div className="flex flex-col gap-6 w-200">
           <Block>
             <Inventory player={player} setPlayer={setPlayer} />
           </Block>

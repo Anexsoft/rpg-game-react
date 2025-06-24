@@ -33,6 +33,7 @@ import {
   ZONE_4_PATH,
   ZONE_5_PATH,
   ZONE_6_PATH,
+  ZONE_0_PATH,
 } from "./router.defs";
 
 function ProtectedScene({ children }: { children: SceneComponent }) {
@@ -66,6 +67,10 @@ const PATHS = [
   DefineRoute(REST_PATH, <RestScene />),
 
   /* Hunting Zones */
+  DefineRoute(
+    ZONE_0_PATH,
+    <HuntingZoneScene key="training" zoneId="training" />,
+  ),
   DefineRoute(
     ZONE_1_PATH,
     <HuntingZoneScene key="outskirts" zoneId="outskirts" />,

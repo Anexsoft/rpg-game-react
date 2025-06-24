@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Check } from "lucide-react";
+import { Check, Crosshair, Sword } from "lucide-react";
 
 import { RARITY_STYLES } from "@ui/theme/rarity";
 
@@ -56,11 +56,7 @@ export default function WeaponItem({
       onMouseLeave={() => setHover(false)}
       className={`relative w-12 h-12 ${style.background} border ${style.border} ${style.hoverBorder} rounded cursor-pointer transition`}
     >
-      <img
-        alt={item.name}
-        src={item.picture}
-        className="relative w-12 h-12 bg-gray-800 border border-gray-500 hover:border-gray-400 rounded cursor-pointer transition"
-      />
+      <img alt={item.name} src={item.picture} />
 
       {selected && (
         <div className="absolute -top-1 -left-1 bg-black rounded-full p-[2px] border border-black">
@@ -79,9 +75,16 @@ export default function WeaponItem({
           <p className="font-bold">{item.name}</p>
           <p className={`${style.text} capitalize`}>{item.rarity}</p>
           <p className="mt-1 text-gray-300">{item.description}</p>
-          <p className="mt-1 italic text-xs text-gray-400">
-            {item.target && renderWeaponTooltip(item.target)}
-          </p>
+          <ul className="mt-2 text-gray-400 list-disc list-inside">
+            <li className="flex items-center gap-2">
+              <Sword className="text-red-400 w-4" />
+              <span>+{item.dmg}dmg</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Crosshair className="text-blue-400 w-4" />
+              <span>{renderWeaponTooltip(item.target)}</span>
+            </li>
+          </ul>
         </Tooltip>
       )}
     </div>

@@ -1,14 +1,10 @@
-import type { Player } from "@player/types/index.types";
+import { useGame } from "@core/context/GameContext";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
-type CombatPlayerEquippedItemProps = {
-  player: Player;
-};
+export default function CombatPlayerEquippedItem() {
+  const { player } = useGame();
 
-export default function CombatPlayerEquippedItem({
-  player,
-}: CombatPlayerEquippedItemProps) {
   const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
   const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
 

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 
+import { useGame } from "@core/context/GameContext";
+
 import { REST_PATH } from "@src/router.defs";
 
-type StartProps = {
-  playerHp: number;
-};
-
-export default function Start({ playerHp }: StartProps) {
-  const canFight = playerHp > 0;
+export default function Start() {
+  const { player } = useGame();
+  const canFight = player.hp > 0;
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center bg-black/50 border border-gray-700 p-4 text-center text-white text-xl">

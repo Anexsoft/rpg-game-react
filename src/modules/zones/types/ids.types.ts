@@ -1,4 +1,5 @@
 export type ZoneId =
+  | "training"
   | "outskirts"
   | "residential"
   | "hospital"

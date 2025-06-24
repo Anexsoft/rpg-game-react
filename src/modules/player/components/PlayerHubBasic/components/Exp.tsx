@@ -1,15 +1,16 @@
 import { STAT_STYLES } from "@ui/theme/stats";
-import type { StatType } from "@ui/types/stats.type";
 
-type StatProps = {
-  type: StatType;
+import { calculatePlayerExpProgress } from "@player/utils";
+
+type ExpProps = {
+  level: number;
   current: number;
   max: number;
 };
 
-export default function Stat({ type, current, max }: StatProps) {
-  const config = STAT_STYLES[type as keyof typeof STAT_STYLES];
-  const percentage = Math.max(0, Math.min(100, (current / max) * 100));
+export default function Exp({ level, current, max }: ExpProps) {
+  const config = STAT_STYLES["exp"];
+  const percentage = calculatePlayerExpProgress(level, current);
 
   return (
     <div>
@@ -23,7 +24,7 @@ export default function Stat({ type, current, max }: StatProps) {
       <div className={`h-2 w-full rounded ${config.bg}`}>
         <div
           className={`h-full rounded ${config.fill}`}
-          style={{ width: `${percentage}%` }}
+          style={{ width: `${percentage * 100}%` }}
         />
       </div>
     </div>

@@ -11,7 +11,7 @@ export const CONSUMABLES: Consumable[] = [
     name: "Health Shot",
     description: "Quick injection restoring a small amount of HP.",
     picture: minorHpRecoveryPic,
-    potency: "low",
+    restoreRate: 0.3,
   },
   {
     id: "blood-transfusion-pack",
@@ -19,7 +19,7 @@ export const CONSUMABLES: Consumable[] = [
     name: "Blood Transfusion Pack",
     description: "Portable blood bag restoring moderate HP.",
     picture: mediumHpRecoveryPic,
-    potency: "mid",
+    restoreRate: 0.45,
   },
   {
     id: "medical-field-kit",
@@ -27,6 +27,6 @@ export const CONSUMABLES: Consumable[] = [
     name: "Medical Field Kit",
     description: "Full kit restoring a large portion of HP.",
     picture: highHpRecoveryPic,
-    potency: "high",
+    restoreRate: 0.8,
   },
 ];

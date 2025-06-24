@@ -1,15 +1,14 @@
-import type { Player } from "@player/types/index.types";
+import { useGame } from "@core/context/GameContext";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 import StatBar from "./components/StarBar";
 
-type CombatPlayerStatsProps = {
-  player: Player;
-};
+export default function CombatPlayerStats() {
+  const { player } = useGame();
 
-export default function CombatPlayerStats({ player }: CombatPlayerStatsProps) {
   const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
+  const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
 
   const playerDamage = weapon.dmg * (1 + player.dmg);
 
@@ -20,18 +19,26 @@ export default function CombatPlayerStats({ player }: CombatPlayerStatsProps) {
           <StatBar type="hp" value={player.hp} max={player.maxHp} />
           <StatBar type="sta" value={player.sta} max={player.maxSta} />
         </div>
-        <div className="grid grid-cols-3 gap-2 text-xs text-white w-full">
-          <div className="bg-gray-800/60 p-2 rounded">
+        <div className="grid grid-cols-4 gap-2 text-xs text-white w-full">
+          <div className="bg-gray-800/60 p-1 rounded">
             <p className="text-gray-400">ATK</p>
             <p className="text-lg font-bold">{playerDamage.toFixed(1)}</p>
           </div>
-          <div className="bg-gray-800/60 p-2 rounded">
+          <div className="bg-gray-800/60 p-1 rounded">
             <p className="text-gray-400">CTR</p>
-            <p className="text-lg font-bold">{player.ctr * 100}%</p>
+            <p className="text-lg font-bold">
+              {(player.ctr * 100).toFixed(1)}%
+            </p>
           </div>
-          <div className="bg-gray-800/60 p-2 rounded">
+          <div className="bg-gray-800/60 p-1 rounded">
             <p className="text-gray-400">EVA</p>
-            <p className="text-lg font-bold">{player.eva * 100}%</p>
+            <p className="text-lg font-bold">
+              {(player.eva * 100).toFixed(1)}%
+            </p>
+          </div>
+          <div className="bg-gray-800/60 p-1 rounded">
+            <p className="text-gray-400">RES</p>
+            <p className="text-lg font-bold">{(armor.def * 100).toFixed(1)}%</p>
           </div>
         </div>
       </div>

@@ -3,13 +3,16 @@ import type { ItemReward } from "../items/types/index.type";
 import type { ZoneId } from "./types/ids.types";
 
 export const REWARDS: Record<ZoneId, ItemReward[]> = {
+  training: [
+    { type: "consumable", id: "health-shot", prob: 0.45 },
+    { type: "weapon", id: "9mm-semi-automatic-handgun", prob: 0.1 },
+    { type: "weapon", id: "remington-870-pump-action-shotgun", prob: 0.05 },
+  ],
+
   outskirts: [
-    { type: "consumable", id: "health-shot", prob: 15 },
-    { type: "consumable", id: "blood-transfusion-pack", prob: 1 },
-    { type: "weapon", id: "9mm-semi-automatic-handgun+1", prob: 1 },
-    { type: "armor", id: "leather-jacket+1", prob: 1 },
-    { type: "armor", id: "leather-jacket+1", prob: 1 },
-    { type: "armor", id: "body-guard-vest+1", prob: 1 },
+    { type: "consumable", id: "health-shot", prob: 0.45 },
+    { type: "consumable", id: "blood-transfusion-pack", prob: 0.2 },
+    { type: "weapon", id: "9mm-semi-automatic-handgun+1", prob: 0.1 },
   ],
 
   residential: [

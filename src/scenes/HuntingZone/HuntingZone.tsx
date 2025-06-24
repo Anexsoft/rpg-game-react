@@ -12,26 +12,22 @@ import CombatPlayerAvatar from "./components/CombatPlayerAvatar";
 import CombatPlayerConsumableItems from "./components/CombatPlayerConsumableItems";
 import CombatPlayerEquippedItem from "./components/CombatPlayerEquippedItems";
 import CombatPlayerStats from "./components/CombatPlayerStats/CombatPlayerStats";
+import { CombatProvider } from "./context/CombatProvider";
 import Combat from "./stages/Combat/Combat";
 import Result from "./stages/Result";
 import Start from "./stages/Start";
-import type {
-  HuntingZoneRewards,
-  HuntingZoneSceneProps,
-} from "./types/index.type";
+import type { HuntingZoneSceneProps } from "./types/index.type";
 
 export default function HuntingZoneScene({
   zoneId,
 }: HuntingZoneSceneProps): SceneComponent {
-  const { player, setPlayer } = useGame();
+  const { player } = useGame();
+
   const zone = ZONES.find((zone) => zone.id === zoneId);
 
   const [combatStage, setCombatStage] = useState<"start" | "combat" | "result">(
     "start",
   );
-
-  const [result, setResult] = useState<"victory" | "defeat" | null>(null);
-  const [rewards, setRewards] = useState<HuntingZoneRewards | null>(null);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -44,47 +40,38 @@ export default function HuntingZoneScene({
     return () => window.removeEventListener("keydown", handleKey);
   }, [combatStage]);
 
-  useEffect(() => {
-    if (result !== null) {
-      setCombatStage("result");
-    }
-  }, [result]);
-
   if (!zone) return;
 
   return (
-    <SceneLayout
-      title={zone.name}
-      subtitle={zone.description}
-      backgroundImage={zone.background}
-      size="large"
-      isCentered={false}
-    >
-      <div className="flex gap-6 text-white justify-center items-stretch h-full">
-        <div className="flex flex-col flex-1 gap-6">
-          {combatStage === "start" && <Start playerHp={player.hp} />}
-          {combatStage === "combat" && (
-            <Combat
-              zoneId={zoneId}
-              setRewards={setRewards}
-              enemyIds={zone.enemies}
-              player={player}
-              setPlayer={setPlayer}
-              setResult={setResult}
-            />
-          )}
-          {combatStage === "result" && (
-            <Result result={result} rewards={rewards} />
-          )}
-        </div>
+    <CombatProvider>
+      <SceneLayout
+        title={zone.name}
+        subtitle={zone.description}
+        backgroundImage={zone.background}
+        size="large"
+        isCentered={false}
+      >
+        <div className="flex gap-6 text-white justify-center items-stretch h-full">
+          <div className="flex flex-col flex-1 gap-6">
+            {combatStage === "start" && <Start />}
+            {combatStage === "combat" && (
+              <Combat
+                zoneId={zoneId}
+                enemyIds={zone.enemies}
+                setCombatStage={setCombatStage}
+              />
+            )}
+            {combatStage === "result" && <Result />}
+          </div>
 
-        <div className="flex flex-col space-y-4 w-80">
-          <CombatPlayerAvatar player={player} />
-          <CombatPlayerStats player={player} />
-          <CombatPlayerEquippedItem player={player} />
-          <CombatPlayerConsumableItems player={player} />
+          <div className="flex flex-col space-y-4 w-80">
+            <CombatPlayerAvatar />
+            <CombatPlayerStats />
+            <CombatPlayerEquippedItem />
+            <CombatPlayerConsumableItems />
+          </div>
         </div>
-      </div>
-    </SceneLayout>
+      </SceneLayout>
+    </CombatProvider>
   );
 }

@@ -29,7 +29,7 @@ const BASE_BODY_GUARD_VEST: Armor = {
     "A reinforced vest with decent protection against basic attacks.",
   picture: bodyGuard,
   rarity: "standard",
-  def: 0.15,
+  def: 0.1,
 };
 
 export const ARMORS: Armor[] = [
@@ -43,3 +43,5 @@ export const ARMORS: Armor[] = [
   createArmorVariation("body-guard-vest+2", BASE_BODY_GUARD_VEST, 2),
   createArmorVariation("body-guard-vest+3", BASE_BODY_GUARD_VEST, 3),
 ];
+
+console.info(ARMORS);

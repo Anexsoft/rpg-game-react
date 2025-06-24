@@ -1,20 +1,22 @@
+import type { PlayerTurn } from "@scenes/HuntingZone/context/types";
+
 type CombatCurrentAttackerProps = {
-  isPlayerTurn: boolean;
+  playerTurn: PlayerTurn;
 };
 
 export default function CombatCurrentAttacker({
-  isPlayerTurn,
+  playerTurn,
 }: CombatCurrentAttackerProps) {
   return (
     <div className="text-center">
       <p className="text-xs text-gray-400">Turn Status</p>
-      <p
-        className={`text-2xl font-semibold mt-1 animate-pulse ${
-          isPlayerTurn ? "text-cyan-400" : "text-red-500"
-        }`}
-      >
-        {isPlayerTurn ? "Your turn" : "Enemy turn"}
-      </p>
+      {playerTurn === "player" && (
+        <p className={`text-2xl mt-1 animate-pulse text-cyan-400`}>Your turn</p>
+      )}
+
+      {playerTurn === "enemy" && (
+        <p className={`text-2xl mt-1 animate-pulse text-red-500`}>Enemy Turn</p>
+      )}
     </div>
   );
 }

@@ -8,7 +8,9 @@ type BlockProps = {
 export default function Block({ children, className }: BlockProps) {
   return (
     <section
-      className={`bg-black/40 p-4 rounded-lg border border-gray-700 ${className}`}
+      className={`bg-black/40 p-4 rounded-lg border border-gray-700 ${
+        className ?? ""
+      }`}
     >
       {children}
     </section>
