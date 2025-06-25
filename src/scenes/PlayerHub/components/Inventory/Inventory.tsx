@@ -26,11 +26,11 @@ type InventoryProps = {
 export default function Inventory({ player, setPlayer }: InventoryProps) {
   const equippedWeapon = ItemGetByIdHandler.handle(
     "weapon",
-    player.selectedWeapon,
+    player.selectedWeapon
   );
   const equippedArmor = ItemGetByIdHandler.handle(
     "armor",
-    player.selectedArmor,
+    player.selectedArmor
   );
 
   const updateArmor = (id: ArmorId) => {
@@ -62,12 +62,12 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
 
       <div>
         <h4 className="text-white font-semibold mb-2">Weapons</h4>
-        <div className="grid grid-cols-12 gap-15">
+        <div className="grid grid-cols-9 gap-6">
           {WEAPONS.sort(sortWeaponByRarityAndName)
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id,
+                ({ id }) => id === item.id
               );
 
               if (!availableItem) {
@@ -89,12 +89,12 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
 
       <div>
         <h4 className="text-white font-semibold mb-2">Armors</h4>
-        <div className="grid grid-cols-12 gap-15">
+        <div className="grid grid-cols-9 gap-6">
           {ARMORS.sort(sortArmorByRarityAndName)
             .filter((item) => player.inventory.some(({ id }) => id === item.id))
             .map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id,
+                ({ id }) => id === item.id
               );
 
               if (!availableItem) {
@@ -117,16 +117,16 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
       <div>
         <h4 className="text-white font-semibold mb-2">Consumables</h4>
         {CONSUMABLES.filter((item) =>
-          player.inventory.some(({ id }) => id === item.id),
+          player.inventory.some(({ id }) => id === item.id)
         ).length === 0 ? (
           <p className="text-gray-400 text-sm">No items available</p>
         ) : (
-          <div className="grid grid-cols-12 gap-15">
+          <div className="grid grid-cols-9 gap-6">
             {CONSUMABLES.filter((item) =>
-              player.inventory.some(({ id }) => id === item.id),
+              player.inventory.some(({ id }) => id === item.id)
             ).map((item) => {
               const availableItem = player.inventory.find(
-                ({ id }) => id === item.id,
+                ({ id }) => id === item.id
               );
 
               if (!availableItem) return null;

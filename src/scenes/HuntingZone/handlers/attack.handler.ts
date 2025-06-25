@@ -1,4 +1,4 @@
-import { wait } from "@shared/logger";
+import { wait } from "@shared/index";
 
 import { PlayerAttackHandler } from "@player/handlers/player-attack.handler";
 import { PlayerPushRewardsHandler } from "@player/handlers/player-push-rewards.handler";
@@ -32,7 +32,7 @@ function updatePlayerRewards(
   player: Player,
   zoneId: ZoneId,
   enemies: Enemy[],
-  setRewards: (rewards: HuntingZoneRewards) => void,
+  setRewards: (rewards: HuntingZoneRewards) => void
 ): Player {
   const rewards = ZoneGetRewardsHandler.handle(zoneId);
   player = PlayerPushRewardsHandler.handle(player, rewards);
@@ -54,7 +54,7 @@ function updatePlayerRewards(
   setRewards({
     gold,
     rewards: rewards.map(
-      (item) => ItemGetByIdHandler.handle(item.type, item.id) as ItemBase,
+      (item) => ItemGetByIdHandler.handle(item.type, item.id) as ItemBase
     ),
   });
 
@@ -92,7 +92,7 @@ export async function attackHandler({
       player,
       zoneId,
       enemies,
-      setRewards,
+      setRewards
     );
 
     setPlayer(updatedPlayer);

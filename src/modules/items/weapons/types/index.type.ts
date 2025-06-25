@@ -1,6 +1,6 @@
 import type { ItemBase, ItemRarity } from "../../types/index.type";
 
-export type WeaponType = "handgun" | "shotgun" | "rifle" | "machinegun";
+export type WeaponType = "handgun" | "shotgun" | "rifle" | "smg";
 
 type WeaponTarget =
   | { type: "single"; damageMultiplier: 1 }

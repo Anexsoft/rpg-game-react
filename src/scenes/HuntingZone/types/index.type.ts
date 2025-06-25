@@ -9,3 +9,5 @@ export type HuntingZoneRewards = {
   gold: number;
   rewards: ItemBase[];
 };
+
+export type CombatStage = "start" | "combat" | "result";

@@ -5,6 +5,7 @@ import { useGame } from "@core/context/GameContext";
 import CombatEnemies from "@scenes/HuntingZone/components/CombatEnemies/CombatEnemies";
 import { useCombat } from "@scenes/HuntingZone/context/CombatContext";
 import { attackHandler } from "@scenes/HuntingZone/handlers/attack.handler";
+import type { CombatStage } from "@scenes/HuntingZone/types/index.type";
 
 import { generateEnemies } from "@enemy/index";
 import type { EnemyId } from "@enemy/types/ids.type";
@@ -18,7 +19,7 @@ import CombatTurn from "./componentes/CombatTurn";
 interface CombatProps {
   zoneId: ZoneId;
   enemyIds: EnemyId[];
-  setCombatStage: (value: "start" | "combat" | "result") => void;
+  setCombatStage: (value: CombatStage) => void;
 }
 
 export default function Combat({
@@ -32,7 +33,7 @@ export default function Combat({
   const { setRewards, setResult, playerTurn, setPlayerTurn } = useCombat();
 
   const [enemies, setEnemies] = useState<Enemy[]>(() =>
-    generateEnemies(enemyIds),
+    generateEnemies(enemyIds)
   );
 
   const [turn, setTurn] = useState(1);
@@ -86,7 +87,6 @@ export default function Combat({
 
   return (
     <div className="flex flex-col items-stretch h-full space-y-4">
-      {player.hp}
       <CombatEnemies enemies={enemies} />
 
       <div className="grid grid-cols-4 text-center text-base font-semibold bg-black/50 border border-gray-700 items-stretch">

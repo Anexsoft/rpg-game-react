@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { Pill } from "lucide-react";
 
 import { useGame } from "@core/context/GameContext";
@@ -17,7 +19,9 @@ import { PlayerRestoreHandler } from "@player/handlers/player-restore.handler";
 export default function RestScene(): SceneComponent {
   const { player, setPlayer } = useGame();
 
-  setPlayer(PlayerRestoreHandler.handle(player));
+  useEffect(() => {
+    setPlayer(PlayerRestoreHandler.handle(player));
+  }, []);
 
   const { REST_KEEPER } = NPC;
 

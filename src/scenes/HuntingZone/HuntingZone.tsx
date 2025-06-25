@@ -16,7 +16,7 @@ import { CombatProvider } from "./context/CombatProvider";
 import Combat from "./stages/Combat/Combat";
 import Result from "./stages/Result";
 import Start from "./stages/Start";
-import type { HuntingZoneSceneProps } from "./types/index.type";
+import type { CombatStage, HuntingZoneSceneProps } from "./types/index.type";
 
 export default function HuntingZoneScene({
   zoneId,
@@ -25,9 +25,7 @@ export default function HuntingZoneScene({
 
   const zone = ZONES.find((zone) => zone.id === zoneId);
 
-  const [combatStage, setCombatStage] = useState<"start" | "combat" | "result">(
-    "start",
-  );
+  const [combatStage, setCombatStage] = useState<CombatStage>("start");
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -61,7 +59,9 @@ export default function HuntingZoneScene({
                 setCombatStage={setCombatStage}
               />
             )}
-            {combatStage === "result" && <Result />}
+            {combatStage === "result" && (
+              <Result setCombatStage={setCombatStage} />
+            )}
           </div>
 
           <div className="flex flex-col space-y-4 w-80">

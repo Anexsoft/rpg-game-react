@@ -19,7 +19,7 @@ export function generateEnemies(ids: EnemyId[]): Enemy[] {
     return EnemyCreateHandler.handle(id);
   });
 
-  return enemies.sort((e1, e2) => e2.powerScore - e1.powerScore);
+  return enemies.sort(() => Math.random() - 0.5);
 }
 
 export const ENEMIES: EnemyBase[] = [

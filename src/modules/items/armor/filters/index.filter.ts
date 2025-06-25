@@ -3,7 +3,7 @@ import type { ItemRarity } from "../../types/index.type";
 
 export const sortArmorByRarityAndName = (
   a: { rarity: ItemRarity; name: string },
-  b: { rarity: ItemRarity; name: string },
+  b: { rarity: ItemRarity; name: string }
 ) => {
   const rarityDiff = RarityOrder[a.rarity] - RarityOrder[b.rarity];
 
@@ -11,5 +11,5 @@ export const sortArmorByRarityAndName = (
     return rarityDiff;
   }
 
-  return a.name.localeCompare(b.name);
+  return b.name.localeCompare(a.name);
 };

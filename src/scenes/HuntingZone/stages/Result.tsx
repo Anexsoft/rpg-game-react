@@ -1,16 +1,34 @@
+import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
 
 import { REST_PATH } from "@src/router.defs";
 
 import ResultReward from "../components/ResultReward";
 import { useCombat } from "../context/CombatContext";
+import type { CombatStage } from "../types/index.type";
 
-export default function Result() {
+type Props = {
+  setCombatStage: (stage: CombatStage) => void;
+};
+
+export default function Result({ setCombatStage }: Props) {
   const { result, rewards } = useCombat();
 
-  if (!result) {
-    return;
-  }
+  useEffect(() => {
+    if (result === "victory") {
+      const handleKey = (e: KeyboardEvent) => {
+        if (e.code === "Space") {
+          setCombatStage("combat");
+        }
+      };
+
+      window.addEventListener("keydown", handleKey);
+      return () => window.removeEventListener("keydown", handleKey);
+    }
+  }, [result, setCombatStage]);
+
+  if (!result) return null;
 
   const isVictory = result === "victory";
 
@@ -23,6 +41,11 @@ export default function Result() {
           </div>
 
           {rewards && <ResultReward />}
+
+          <p className="text-gray-400 text-sm font-semibold">
+            Press <span className="text-cyan-400 font-bold">SPACE</span> to
+            begin
+          </p>
         </>
       ) : (
         <>
