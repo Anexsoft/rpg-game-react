@@ -14,7 +14,6 @@ import LogoutScene from "@scenes/Logout/Logout";
 import PlayerHubScene from "@scenes/PlayerHub/PlayerHub";
 import RestScene from "@scenes/Rest/Rest";
 import SignInScene from "@scenes/SignIn/SignIn";
-import StoreKeeperChatScene from "@scenes/Store/scenes/StoreKeeperChat";
 import StoreScene from "@scenes/Store/Store";
 import type { SceneComponent } from "@scenes/types/index.types";
 import WelcomeScene from "@scenes/Welcome/Welcome";
@@ -25,7 +24,6 @@ import {
   STORE_PATH,
   BAR_PATH,
   REST_PATH,
-  STORE_KEEPER_CHAT_PATH,
   PLAYER_HUB_PATH,
   ZONE_1_PATH,
   ZONE_2_PATH,
@@ -61,8 +59,6 @@ const PATHS = [
 
   /* Town */
   DefineRoute(STORE_PATH, <StoreScene />),
-  DefineRoute(STORE_KEEPER_CHAT_PATH, <StoreKeeperChatScene />),
-
   DefineRoute(BAR_PATH, <BarScene />),
   DefineRoute(REST_PATH, <RestScene />),
 

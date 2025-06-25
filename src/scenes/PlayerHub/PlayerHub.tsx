@@ -8,8 +8,9 @@ import type { SceneComponent } from "@scenes/types/index.types";
 
 import { getPlayerAvatar } from "@player/utils/index";
 
+import Block from "../../ui/Block";
+
 import BattleStats from "./components/BattleStats/BattleStats";
-import Block from "./components/Block";
 import CoreAttributes from "./components/CoreAttributes/CoreAttributes";
 import CurrentGold from "./components/CurrentGold";
 import Inventory from "./components/Inventory/Inventory";

@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 
 import { useGame } from "@core/context/GameContext";
 
+import Block from "@ui/Block";
+
 import { PlayerUseConsumableHandler } from "@player/handlers/player-use-consumable.handler";
 
+import { CONSUMABLES } from "@consumables/index";
 import type { ConsumableId } from "@consumables/types/ids.types";
+import type { Consumable } from "@consumables/types/index.type";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
@@ -29,16 +33,18 @@ export default function CombatPlayerConsumableItems() {
     setEnabled(false);
   };
 
-  const items = player.inventory.filter((item) => item.type === "consumable");
+  const items = player.inventory.filter((item) =>
+    CONSUMABLES.some((c) => c.id === item.id),
+  );
 
   return (
-    <div className="bg-black/50 border border-gray-700 rounded p-4 text-white">
+    <Block>
       {items.length === 0 ? (
         <p className="text-center text-gray-400 text-sm">No items available</p>
       ) : (
         <div className="grid grid-cols-5 gap-2">
           {items.map((item) => {
-            const consumable = ItemGetByIdHandler.handle("consumable", item.id);
+            const consumable = ItemGetByIdHandler.handle<Consumable>(item.id);
 
             return (
               <div
@@ -65,6 +71,6 @@ export default function CombatPlayerConsumableItems() {
           })}
         </div>
       )}
-    </div>
+    </Block>
   );
 }

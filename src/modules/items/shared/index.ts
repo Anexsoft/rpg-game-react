@@ -10,7 +10,9 @@ export const RarityOrder: Record<ItemRarity, number> = {
 
 export const WeaponTypeOrder: Record<WeaponType, number> = {
   rifle: 0,
-  machinegun: 1,
+  smg: 1,
   shotgun: 2,
   handgun: 3,
 };
+
+export const DEFAULT_SELL_PRICE_RATE = 0.6;

@@ -14,8 +14,11 @@ export type ItemReward = {
 };
 
 export type ItemBase = {
+  level: number;
   id: WeaponId | ArmorId | ConsumableId;
   name: string;
   description: string;
   picture: string;
+  price: number;
+  rarity: ItemRarity;
 };

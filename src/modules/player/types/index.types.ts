@@ -11,10 +11,8 @@ import type { WeaponId } from "@weapons/types/ids.types";
 import type { ArmorId } from "@armor/types/ids.types";
 
 import type { ConsumableId } from "@src/modules/items/consumables/types/ids.types";
-import type { ItemType } from "@src/modules/items/types/index.type";
 
-type PlayerInventoryItem = {
-  type: ItemType;
+export type PlayerInventoryItem = {
   id: WeaponId | ArmorId | ConsumableId;
   quantity: number;
 };
@@ -59,7 +57,7 @@ export class Player {
   expToNextLevel: number = LEVELS[0][1];
 
   /** Gold – Player's currency. Starts at 0. */
-  gold: number = 0;
+  gold: number = 100;
 
   /** Current HP – actual life points. Can be reduced or restored during gameplay. */
   hp: number = 0;
@@ -96,12 +94,10 @@ export class Player {
 
     this.inventory.push(
       {
-        type: "weapon",
         id: this.selectedWeapon,
         quantity: 1,
       },
       {
-        type: "armor",
         id: this.selectedArmor,
         quantity: 1,
       },

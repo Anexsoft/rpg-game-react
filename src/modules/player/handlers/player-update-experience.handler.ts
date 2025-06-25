@@ -15,7 +15,7 @@ export class PlayerUpdateExperienceHandler {
     player: Player,
     earnedExp: number,
   ): PlayerUpdateExperienceResponse {
-    const newExp = player.exp + earnedExp;
+    const newExp = this.getNewExp(player.exp, earnedExp, player.level);
     const newLevel = this.getNewLevel(newExp, player.level);
     const expToNextLevel = this.getExpToNextLevel(newLevel);
 
@@ -54,5 +54,17 @@ export class PlayerUpdateExperienceHandler {
 
     const nextIndex = Math.min(level, LEVELS.length - 1);
     return Math.max(LEVELS[nextIndex][1], 0);
+  }
+
+  private static getNewExp(
+    currentExp: number,
+    earnedExp: number,
+    level: number,
+  ): number {
+    if (level >= MAX_LEVEL) {
+      return LEVELS[LEVELS.length - 1][1];
+    }
+
+    return currentExp + earnedExp;
   }
 }

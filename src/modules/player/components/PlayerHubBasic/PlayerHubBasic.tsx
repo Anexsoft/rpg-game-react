@@ -40,7 +40,7 @@ export default function PlayerHubBasic() {
           className={`flex items-center justify-between text-xs ${GOLD_STYLES.text}`}
         >
           <span>{GOLD_STYLES.label}</span>
-          <span>{player.gold}</span>
+          <span>{player.gold.toLocaleString()}₲</span>
         </div>
       </div>
     </div>

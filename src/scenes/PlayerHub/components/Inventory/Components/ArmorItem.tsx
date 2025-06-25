@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Check, Info, Shield } from "lucide-react";
 
+import Rarity from "@shared/components/Rarity";
+
 import { RARITY_STYLES } from "@ui/theme/rarity";
 
 import type { Armor } from "@armor/types/index.type";
@@ -48,7 +50,7 @@ export default function ArmorItem({
       {hover && (
         <Tooltip picture={item.picture}>
           <p className="font-bold">{item.name}</p>
-          <p className={`${style.text} capitalize`}>{item.rarity}</p>
+          <Rarity rarity={item.rarity} />
           <p className="mt-1 text-gray-300">{item.description}</p>
           <ul className="mt-2 text-gray-400 list-disc list-inside">
             <li className="flex items-center gap-2">

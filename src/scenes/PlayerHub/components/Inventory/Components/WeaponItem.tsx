@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Check, Crosshair, Sword } from "lucide-react";
 
+import Rarity from "@shared/components/Rarity";
+
 import { RARITY_STYLES } from "@ui/theme/rarity";
 
 import type { WeaponTarget } from "@player/handlers/player-calculate-damage.handler";
@@ -18,7 +20,7 @@ type WeaponItemProps = {
 };
 
 function renderWeaponTooltip(target: WeaponTarget) {
-  const dmg = Math.round(target.damageMultiplier * 100);
+  const dmg = Math.round(target.dmgMultiplier * 100);
 
   switch (target.type) {
     case "single":
@@ -73,7 +75,7 @@ export default function WeaponItem({
       {hover && (
         <Tooltip picture={item.picture}>
           <p className="font-bold">{item.name}</p>
-          <p className={`${style.text} capitalize`}>{item.rarity}</p>
+          <Rarity rarity={item.rarity} />
           <p className="mt-1 text-gray-300">{item.description}</p>
           <ul className="mt-2 text-gray-400 list-disc list-inside">
             <li className="flex items-center gap-2">

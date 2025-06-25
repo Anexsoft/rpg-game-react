@@ -1,15 +1,21 @@
 import { useGame } from "@core/context/GameContext";
 
+import Block from "@ui/Block";
+
+import type { Weapon } from "@weapons/types/index.type";
+
+import type { Armor } from "@armor/types/index.type";
+
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 export default function CombatPlayerEquippedItem() {
   const { player } = useGame();
 
-  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
-  const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
+  const weapon = ItemGetByIdHandler.handle<Weapon>(player.selectedWeapon);
+  const armor = ItemGetByIdHandler.handle<Armor>(player.selectedArmor);
 
   return (
-    <div className="bg-black/50 border border-gray-700 rounded p-4 text-white">
+    <Block>
       <div className="flex flex-col justify-center space-y-2">
         <div className="flex items-center gap-2">
           <div className="w-15 aspect-square border border-gray-700 rounded flex items-center justify-center">
@@ -45,6 +51,6 @@ export default function CombatPlayerEquippedItem() {
           </div>
         </div>
       </div>
-    </div>
+    </Block>
   );
 }

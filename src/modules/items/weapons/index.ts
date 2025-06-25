@@ -29,9 +29,10 @@ function createVariation(
     picture,
     rarity,
   }: { base: Weapon; picture?: string; rarity?: ItemRarity },
-  level: number
+  level: number,
 ): Weapon {
   return {
+    level,
     id,
     name: `${base.name}+${level}`,
     rarity: rarity ?? base.rarity,
@@ -40,11 +41,13 @@ function createVariation(
     target: base.target,
     type: base.type,
     description: base.description,
+    price: Math.round(base.price * (1 + 0.25 * level)),
   };
 }
 
 // Base weapons
 const BASE_HANDGUN: Weapon = {
+  level: 0,
   id: "9mm-semi-automatic-handgun",
   type: "handgun",
   name: "9mm Semi-Automatic Handgun",
@@ -54,11 +57,14 @@ const BASE_HANDGUN: Weapon = {
   dmg: 10,
   target: {
     type: "single",
-    damageMultiplier: 1,
+    targets: 1,
+    dmgMultiplier: 1,
   },
+  price: 250,
 };
 
 const BASE_DESERT_EAGLE: Weapon = {
+  level: 0,
   id: "desert-eagle",
   type: "handgun",
   name: "Desert Eagle",
@@ -68,11 +74,14 @@ const BASE_DESERT_EAGLE: Weapon = {
   dmg: 18,
   target: {
     type: "single",
-    damageMultiplier: 1.35,
+    targets: 1,
+    dmgMultiplier: 1.35,
   },
+  price: 1000,
 };
 
 const BASE_SHOTGUN: Weapon = {
+  level: 0,
   id: "remington-870-pump-action-shotgun",
   type: "shotgun",
   name: "Remington 870 Pump-Action Shotgun",
@@ -83,11 +92,13 @@ const BASE_SHOTGUN: Weapon = {
   target: {
     type: "multiple",
     targets: 3,
-    damageMultiplier: 0.65,
+    dmgMultiplier: 0.65,
   },
+  price: 600,
 };
 
 const BASE_SPAS12: Weapon = {
+  level: 0,
   id: "spas-12",
   type: "shotgun",
   name: "SPAS-12 Shotgun",
@@ -98,11 +109,13 @@ const BASE_SPAS12: Weapon = {
   target: {
     type: "multiple",
     targets: 4,
-    damageMultiplier: 0.7,
+    dmgMultiplier: 0.7,
   },
+  price: 800,
 };
 
 const BASE_UZI: Weapon = {
+  level: 0,
   id: "uzi",
   type: "smg",
   name: "Uzi",
@@ -113,11 +126,13 @@ const BASE_UZI: Weapon = {
   target: {
     type: "random",
     targets: 3,
-    damageMultiplier: 0.6,
+    dmgMultiplier: 0.6,
   },
+  price: 400,
 };
 
 const BASE_MP5: Weapon = {
+  level: 0,
   id: "mp5",
   type: "smg",
   name: "MP5",
@@ -128,8 +143,9 @@ const BASE_MP5: Weapon = {
   target: {
     type: "multiple",
     targets: 4,
-    damageMultiplier: 0.7,
+    dmgMultiplier: 0.7,
   },
+  price: 600,
 };
 
 export const WEAPONS: Weapon[] = [
@@ -176,7 +192,7 @@ export const WEAPONS: Weapon[] = [
       return createVariation(
         `${base.id}+${lvl}` as WeaponId,
         { base, rarity: rarity as ItemRarity, picture: pic },
-        lvl
+        lvl,
       );
     });
   }),

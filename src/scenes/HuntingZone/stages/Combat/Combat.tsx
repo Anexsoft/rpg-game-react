@@ -33,7 +33,7 @@ export default function Combat({
   const { setRewards, setResult, playerTurn, setPlayerTurn } = useCombat();
 
   const [enemies, setEnemies] = useState<Enemy[]>(() =>
-    generateEnemies(enemyIds)
+    generateEnemies(enemyIds),
   );
 
   const [turn, setTurn] = useState(1);
@@ -89,9 +89,9 @@ export default function Combat({
     <div className="flex flex-col items-stretch h-full space-y-4">
       <CombatEnemies enemies={enemies} />
 
-      <div className="grid grid-cols-4 text-center text-base font-semibold bg-black/50 border border-gray-700 items-stretch">
+      <div className="grid grid-cols-4 text-center text-base font-semibold bg-black/50 border border-gray-700 items-stretch overflow-hidden rounded-lg">
         <button
-          className={`p-4 border-r border-gray-700 h-full transition cursor-pointer ${
+          className={`p-4 border-r border-gray-700 h-full transition cursor-pointer rounded-l-lg ${
             playerTurn === "player"
               ? "hover:bg-gray-800 text-white"
               : "bg-gray-800 text-gray-500 cursor-not-allowed"
@@ -110,7 +110,7 @@ export default function Combat({
           <CombatCurrentAttacker playerTurn={playerTurn} />
         </div>
 
-        <button className="p-4 h-full border-l border-gray-700 hover:bg-gray-800 transition">
+        <button className="p-4 h-full border-l border-gray-700 hover:bg-gray-800 transition rounded-r-lg">
           Skills
         </button>
       </div>

@@ -2,6 +2,8 @@ import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
+import Block from "@ui/Block";
+
 import { REST_PATH } from "@src/router.defs";
 
 import ResultReward from "../components/ResultReward";
@@ -33,7 +35,7 @@ export default function Result({ setCombatStage }: Props) {
   const isVictory = result === "victory";
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center bg-black/50 border border-gray-700 p-6 text-center">
+    <Block className="flex-1 flex flex-col items-center justify-center text-center">
       {isVictory ? (
         <>
           <div className="text-green-400 text-2xl font-bold animate-pulse mb-4">
@@ -60,6 +62,6 @@ export default function Result({ setCombatStage }: Props) {
           </div>
         </>
       )}
-    </div>
+    </Block>
   );
 }

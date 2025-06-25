@@ -20,20 +20,23 @@ function createArmorVariation(
     picture,
     rarity,
   }: { base: Armor; picture?: string; rarity?: ItemRarity },
-  level: number
+  level: number,
 ): Armor {
   return {
     ...base,
+    level,
     id,
     name: `${base.name}+${level}`,
     rarity: rarity ?? base.rarity,
     picture: picture ?? base.picture,
     def: parseFloat((base.def + 0.02 * level).toFixed(2)),
+    price: Math.round(base.price + 0.25 * level),
   };
 }
 
 const BASES: Record<string, Armor> = {
   "leather-jacket": {
+    level: 0,
     id: "leather-jacket",
     name: "Leather Jacket",
     description:
@@ -41,8 +44,10 @@ const BASES: Record<string, Armor> = {
     picture: leatherJacketStandard,
     rarity: "standard",
     def: 0.07,
+    price: 200,
   },
   "body-guard-vest": {
+    level: 0,
     id: "body-guard-vest",
     name: "Body Guard Vest",
     description:
@@ -50,14 +55,17 @@ const BASES: Record<string, Armor> = {
     picture: bodyGuardStandard,
     rarity: "standard",
     def: 0.1,
+    price: 400,
   },
   "advanced-armor": {
+    level: 0,
     id: "advanced-armor",
     name: "Advanced Armor",
     description: "High-tech armor offering maximum protection.",
     picture: advancedArmorStandard,
     rarity: "standard",
     def: 0.15,
+    price: 650,
   },
 };
 
@@ -86,7 +94,7 @@ export const ARMORS: Armor[] = Object.entries(BASES).flatMap(([key, base]) => {
     return createArmorVariation(
       `${key}+${lvl}` as ArmorId,
       { base, picture, rarity },
-      lvl
+      lvl,
     );
   });
 });

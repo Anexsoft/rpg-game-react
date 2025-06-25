@@ -1,5 +1,11 @@
 import { useGame } from "@core/context/GameContext";
 
+import Block from "@ui/Block";
+
+import type { Weapon } from "@weapons/types/index.type";
+
+import type { Armor } from "@armor/types/index.type";
+
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 import StatBar from "./components/StarBar";
@@ -7,13 +13,13 @@ import StatBar from "./components/StarBar";
 export default function CombatPlayerStats() {
   const { player } = useGame();
 
-  const weapon = ItemGetByIdHandler.handle("weapon", player.selectedWeapon);
-  const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
+  const weapon = ItemGetByIdHandler.handle<Weapon>(player.selectedWeapon);
+  const armor = ItemGetByIdHandler.handle<Armor>(player.selectedArmor);
 
   const playerDamage = weapon.dmg * (1 + player.dmg);
 
   return (
-    <div className="bg-black/50 border border-gray-700 rounded p-4 text-white">
+    <Block>
       <div className="flex flex-col items-center justify-center text-center space-y-4 w-full">
         <div className="flex gap-4 w-full space-y-2">
           <StatBar type="hp" value={player.hp} max={player.maxHp} />
@@ -42,6 +48,6 @@ export default function CombatPlayerStats() {
           </div>
         </div>
       </div>
-    </div>
+    </Block>
   );
 }

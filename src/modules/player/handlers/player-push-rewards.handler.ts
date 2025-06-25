@@ -13,7 +13,6 @@ export class PlayerPushRewardsHandler {
         item.quantity++;
       } else {
         inventory.push({
-          type: reward.type,
           id: reward.id,
           quantity: 1,
         });

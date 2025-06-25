@@ -12,9 +12,11 @@ export class EnemyCalculateDamageHandler {
   ): EnemyCalculateDamageHandlerResponse {
     const isCritical = Math.random() < enemy.ctr;
     const baseDamage = enemy.dmg;
-    const criticalMultiplier = 1.5;
+    const criticaldmgMultiplier = 1.5;
 
-    const rawDamage = isCritical ? baseDamage * criticalMultiplier : baseDamage;
+    const rawDamage = isCritical
+      ? baseDamage * criticaldmgMultiplier
+      : baseDamage;
     const reducedDamage = Math.max(
       Math.floor(rawDamage * (1 - playerResistance)),
       1,

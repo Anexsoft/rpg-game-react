@@ -1,12 +1,13 @@
 import type { Player } from "@player/types/index.types";
 
 import type { ConsumableId } from "@consumables/types/ids.types";
+import type { Consumable } from "@consumables/types/index.type";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
 export class PlayerUseConsumableHandler {
   static handle(player: Player, itemId: ConsumableId): Player {
-    const item = ItemGetByIdHandler.handle("consumable", itemId);
+    const item = ItemGetByIdHandler.handle<Consumable>(itemId);
 
     const healedAmount = Math.floor(player.maxHp * item.restoreRate);
 

@@ -86,7 +86,7 @@ export const LEVELS = adjustLevels(
     [12241, 12740],
     [12741, 13250],
   ],
-  DIFFICULTY
+  DIFFICULTY,
 );
 
 export const MAX_LEVEL = LEVELS.length;

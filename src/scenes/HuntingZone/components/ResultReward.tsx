@@ -14,8 +14,8 @@ export default function ResultReward() {
       <div className="flex items-center gap-2 text-yellow-400 text-sm mb-6 ">
         <Coins className="w-4 h-4" />
         <span>
-          You earned <span className="font-bold">+{rewards.gold} gold</span>{" "}
-          from the battle!
+          You earned <span className="font-bold">+{rewards.gold}₲</span> from
+          the battle!
         </span>
       </div>
 

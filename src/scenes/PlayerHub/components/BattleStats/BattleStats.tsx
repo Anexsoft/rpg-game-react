@@ -4,8 +4,13 @@ import { PlayerUpgradeStatHandler } from "@player/handlers/player-upgrade-stat.h
 import { PlayerUpgradeHandler } from "@player/handlers/player-upgrade.handler";
 import type { Player } from "@player/types/index.types";
 
+import type { Weapon } from "@weapons/types/index.type";
+
+import type { Armor } from "@armor/types/index.type";
+
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
+import DmgInfo from "./components/DmgInfo";
 import StatInfo from "./components/StatInfo";
 
 type BattleStatsProps = {
@@ -22,7 +27,8 @@ export default function BattleStats({ player, setPlayer }: BattleStatsProps) {
   };
 
   const enableStatUpgradeButton = player.availableStatPoints > 0;
-  const armor = ItemGetByIdHandler.handle("armor", player.selectedArmor);
+  const armor = ItemGetByIdHandler.handle<Armor>(player.selectedArmor);
+  const weapon = ItemGetByIdHandler.handle<Weapon>(player.selectedWeapon);
 
   return (
     <>
@@ -34,7 +40,11 @@ export default function BattleStats({ player, setPlayer }: BattleStatsProps) {
           enableStatUpgradeButton={enableStatUpgradeButton}
           handleUpgradeStat={handleUpgradeStat}
         />
-        <StatInfo type="dmg" value={player.dmg} isPercent={true} />
+
+        <DmgInfo
+          damage={weapon.dmg * (1 + player.dmg)}
+          incrementRate={player.dmg}
+        />
 
         <StatInfo
           type="vit"
@@ -50,6 +60,7 @@ export default function BattleStats({ player, setPlayer }: BattleStatsProps) {
           enableStatUpgradeButton={enableStatUpgradeButton}
           handleUpgradeStat={handleUpgradeStat}
         />
+
         <StatInfo type="sta" value={player.sta} />
 
         <StatInfo
