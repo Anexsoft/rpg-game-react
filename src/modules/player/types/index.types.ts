@@ -55,7 +55,7 @@ export class Player {
   exp: number = 0;
 
   /** Experience required to reach the next level. Starts at 0. */
-  expToNextLevel: number = LEVELS[0][1];
+  expToNextLevel: number = LEVELS[1][1];
 
   /** Gold – Player's currency. Starts at 0. */
   gold: number = 100;
@@ -89,6 +89,12 @@ export class Player {
   selectedSkill: SkillId | null = null;
 
   availableStatPoints: number = 0;
+
+  /**  Number of battles the player has won */
+  victories: number = 0;
+
+  /**  Number of battles the player has lost */
+  defeats: number = 0;
 
   constructor(name: string, gender: PlayerGender) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;

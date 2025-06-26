@@ -6,6 +6,7 @@ import Block from "@ui/Block";
 
 import { PlayerUseConsumableHandler } from "@player/handlers/player-use-consumable.handler";
 
+import { sortByTypeAndRestoreRate } from "@consumables/filters/index.filter";
 import { CONSUMABLES } from "@consumables/index";
 import type { ConsumableId } from "@consumables/types/ids.types";
 import type { Consumable } from "@consumables/types/index.type";
@@ -33,9 +34,12 @@ export default function CombatPlayerConsumableItems() {
     setEnabled(false);
   };
 
-  const items = player.inventory.filter((item) =>
-    CONSUMABLES.some((c) => c.id === item.id)
-  );
+  const items = CONSUMABLES.sort(sortByTypeAndRestoreRate)
+    .map((consumable) => {
+      const inv = player.inventory.find((item) => item.id === consumable.id);
+      return inv ? { ...consumable, quantity: inv.quantity } : null;
+    })
+    .filter(Boolean);
 
   return (
     <Block>

@@ -18,7 +18,7 @@ export type EnemyActionStatus = {
 
 export type EnemyCurseEffect =
   | { turns: number; type: "blind" }
-  | { turns: number; type: "bleeding"; hpPenaltyRate: number };
+  | { turns: number; type: "bleeding"; damage: number };
 
 export class Enemy {
   id: string;
@@ -109,8 +109,7 @@ export class Enemy {
 
   /** Update attacking information */
   attack(target: Player): void {
-    if (this.curseEffect?.type === "blind") {
-      this.updateCurseEffect();
+    if (this.updateCurseEffect() === "skip") {
       return;
     }
 
@@ -147,14 +146,31 @@ export class Enemy {
     target.hp = hp;
   }
 
-  private updateCurseEffect() {
+  /** Applies the curse effect and returns whether the entity can act this turn */
+  private updateCurseEffect(): "continue" | "skip" {
     const curse = this.curseEffect;
 
-    if (!curse) return;
+    let result: "continue" | "skip" = "continue";
 
-    if (curse.type === "bleeding") {
-      const bleedDamage = Math.floor(this.maxHp * curse.hpPenaltyRate);
-      this.hp = Math.max(0, this.hp - bleedDamage);
+    if (!curse) {
+      return result;
+    }
+
+    // Skip effect logic if already dead (handled externally)
+    if (!this.isAlive) {
+      this.curseEffect = null;
+      return "continue";
+    }
+
+    switch (curse.type) {
+      case "bleeding": {
+        this.hp = Math.max(0, this.hp - curse.damage);
+        break;
+      }
+
+      case "blind":
+        result = "skip";
+        break;
     }
 
     curse.turns--;
@@ -162,6 +178,8 @@ export class Enemy {
     if (curse.turns <= 0) {
       this.curseEffect = null;
     }
+
+    return result;
   }
 
   /** Returns the reward after defeat (for now: only experience) */

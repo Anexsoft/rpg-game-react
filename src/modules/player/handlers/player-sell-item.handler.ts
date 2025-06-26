@@ -5,7 +5,7 @@ import type { WeaponId } from "@weapons/types/ids.type";
 import type { ArmorId } from "@armor/types/ids.types";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
-import { DEFAULT_SELL_PRICE_RATE } from "@src/modules/items/shared";
+import { DEFAULT_SELL_PRICE_REDUCTION_RATE } from "@src/modules/items/shared";
 
 export type PlayerSellItemHandlerResponse =
   | {
@@ -36,7 +36,9 @@ export class PlayerSellItemHandler {
       return restriction;
     }
 
-    const sellPrice = Math.floor(item.price * DEFAULT_SELL_PRICE_RATE);
+    const sellPrice = Math.floor(
+      item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE
+    );
 
     const updatedInventory =
       playerItem.quantity > 1

@@ -13,5 +13,6 @@ export const ZONE_3_PATH = "/hospital";
 export const ZONE_4_PATH = "/university";
 export const ZONE_5_PATH = "/factory";
 export const ZONE_6_PATH = "/labs";
+export const ZONE_7_PATH = "/experiment-room";
 
 export const LOGOUT_PATH = "/logout";

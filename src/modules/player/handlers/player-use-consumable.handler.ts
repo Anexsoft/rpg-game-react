@@ -9,24 +9,37 @@ export class PlayerUseConsumableHandler {
   static handle(player: Player, itemId: ConsumableId): Player {
     const item = ItemGetByIdHandler.handle<Consumable>(itemId);
 
-    const healedAmount = Math.floor(player.maxHp * item.restoreRate);
+    if (item.type === "healing") {
+      this.applyHealing(player, item);
+    }
 
-    const newHp = Math.min(player.hp + healedAmount, player.maxHp);
-
-    const updatedInventory = player.inventory
-      .map((invItem) => {
-        if (invItem.id === itemId) {
-          return { ...invItem, quantity: invItem.quantity - 1 };
-        }
-
-        return invItem;
-      })
-      .filter((invItem) => invItem.quantity > 0);
+    if (item.type === "stamina") {
+      this.applyStamina(player, item);
+    }
 
     return {
       ...player,
-      hp: newHp,
-      inventory: updatedInventory,
+      inventory: this.consumeItem(player, itemId),
     };
+  }
+
+  private static applyHealing(player: Player, item: Consumable): void {
+    const healedAmount = Math.floor(player.maxHp * item.restoreRate);
+    player.hp = Math.min(player.hp + healedAmount, player.maxHp);
+  }
+
+  private static applyStamina(player: Player, item: Consumable): void {
+    const restoredAmount = Math.floor(player.maxSta * item.restoreRate);
+    player.sta = Math.min(player.sta + restoredAmount, player.maxSta);
+  }
+
+  private static consumeItem(player: Player, itemId: ConsumableId) {
+    return player.inventory
+      .map((invItem) =>
+        invItem.id === itemId
+          ? { ...invItem, quantity: invItem.quantity - 1 }
+          : invItem
+      )
+      .filter((invItem) => invItem.quantity > 0);
   }
 }

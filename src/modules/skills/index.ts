@@ -11,8 +11,8 @@ export const SKILLS: Skill[] = [
     name: "Double Shot",
     description: "You shoot twice. The second shot deals less damage.",
     picture: doubleShotPicture,
-    cost: 25,
-    cooldown: 3,
+    cost: 20,
+    cooldown: 2,
     price: 350,
     effect: {
       hits: 2,
@@ -24,12 +24,12 @@ export const SKILLS: Skill[] = [
     name: "Precision Shot",
     description: "A precise shot that causes bleeding by 3 turns.",
     picture: precisionShotPicture,
-    cost: 20,
-    cooldown: 3,
+    cost: 35,
+    cooldown: 2,
     price: 600,
     effect: {
       duration: 3,
-      penaltyHpRate: 0.05,
+      penaltyHpRate: 0.2,
     },
   },
   {
@@ -39,7 +39,7 @@ export const SKILLS: Skill[] = [
     description: "Blinds all enemies for 1 turn.",
     picture: blindLightPicture,
     cost: 30,
-    cooldown: 3,
+    cooldown: 2,
     price: 450,
     effect: {
       duration: 1,

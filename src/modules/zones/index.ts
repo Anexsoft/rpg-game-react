@@ -1,3 +1,4 @@
+import experimentRoomBg from "@resources/images/scenes/zone_experiment_room.png";
 import factoryBg from "@resources/images/scenes/zone_factory.jpg";
 import hospitalBg from "@resources/images/scenes/zone_hospital.jpg";
 import labsBg from "@resources/images/scenes/zone_laboratory.jpg";
@@ -14,6 +15,7 @@ import {
   ZONE_4_PATH,
   ZONE_5_PATH,
   ZONE_6_PATH,
+  ZONE_7_PATH,
 } from "@src/router.defs";
 
 import type { Zone } from "./types/index.type";
@@ -113,6 +115,23 @@ export const ZONES: Zone[] = [
       "titan-1",
       "dog-zombie-1",
       "dog-zombie-1",
+    ],
+  },
+  {
+    id: "experiment-room",
+    name: "Experiment Room",
+    description:
+      "The deepest section of the labs. Blood-soaked floors, shattered glass, and evidence of unspeakable experiments. Something monstrous was born here.",
+    background: experimentRoomBg,
+    path: ZONE_7_PATH,
+    enemies: [
+      "stalker-1",
+      "raptor-1",
+      "stalker-1",
+      "raptor-1",
+      "titan-1",
+      "titan-1",
+      "apocalipsis-1",
     ],
   },
 ];

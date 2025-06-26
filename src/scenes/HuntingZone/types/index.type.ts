@@ -7,6 +7,7 @@ export type HuntingZoneSceneProps = {
 
 export type HuntingZoneRewards = {
   gold: number;
+  exp: number;
   rewards: ItemBase[];
 };
 

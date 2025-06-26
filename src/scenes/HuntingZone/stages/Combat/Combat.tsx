@@ -5,6 +5,7 @@ import { useGame } from "@core/context/GameContext";
 import CombatEnemies from "@scenes/HuntingZone/components/CombatEnemies/CombatEnemies";
 import { useCombat } from "@scenes/HuntingZone/context/CombatContext";
 import { skillAttackUsageHandler } from "@scenes/HuntingZone/handlers/skill-attack-usage.handler";
+import { skillEffectUsageHandler } from "@scenes/HuntingZone/handlers/skill-effect-usage.handler";
 import { updatePlayerRewards } from "@scenes/HuntingZone/handlers/update-player-rewards.handler";
 import { weaponUsageHandler } from "@scenes/HuntingZone/handlers/weapon-usage.handler";
 import type { CombatStage } from "@scenes/HuntingZone/types/index.type";
@@ -23,7 +24,7 @@ import type { ZoneId } from "@src/modules/zones/types/ids.types";
 import CombatCurrentAttacker from "./componentes/CombatCurrentAttacker";
 import CombatSkills from "./componentes/CombatSkills";
 import CombatTurn from "./componentes/CombatTurn";
-import { skillEffectUsageHandler } from "@scenes/HuntingZone/handlers/skill-effect-usage.handler";
+import { PlayerUpdateCombatHistoryHandler } from "@player/handlers/player-update-combat-history.handler";
 
 interface CombatProps {
   zoneId: ZoneId;
@@ -53,24 +54,29 @@ export default function Combat({
 
   const determinateResult = () => {
     const _player = playerRef.current;
+    let result: "victory" | "defeat" | null = null;
+    let updatedPlayer = _player;
 
     if (_player.hp <= 0) {
-      setResult("defeat");
+      result = "defeat";
+      updatedPlayer = PlayerUpdateCombatHistoryHandler.handle(
+        _player,
+        "defeat"
+      );
+    } else if (enemies.every((e) => !e.isAlive)) {
+      result = "victory";
+
+      updatedPlayer = updatePlayerRewards(_player, zoneId, enemies, setRewards);
+      updatedPlayer = PlayerUpdateCombatHistoryHandler.handle(
+        updatedPlayer,
+        "victory"
+      );
+    }
+
+    if (result) {
+      setResult(result);
+      setPlayer(updatedPlayer);
       setCombatStage("result");
-    } else {
-      if (enemies.every((e) => !e.isAlive)) {
-        setResult("victory");
-
-        const updatedPlayer = updatePlayerRewards(
-          _player,
-          zoneId,
-          enemies,
-          setRewards
-        );
-
-        setPlayer(updatedPlayer);
-        setCombatStage("result");
-      }
     }
   };
 

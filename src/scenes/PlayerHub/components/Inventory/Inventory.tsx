@@ -12,6 +12,8 @@ import { ARMORS } from "@armor/index";
 import type { ArmorId } from "@armor/types/ids.types";
 import type { Armor } from "@armor/types/index.type";
 
+import { sortByTypeAndRestoreRate } from "@consumables/filters/index.filter";
+
 import { CONSUMABLES } from "@src/modules/items/consumables/index";
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
@@ -39,6 +41,18 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
     setPlayer(PlayerSelectWeaponHandler.handle(player, id));
   };
 
+  const weapons = WEAPONS.sort(sortWeaponByRarityAndName).filter(({ id }) =>
+    player.inventory.some((item) => item.id === id)
+  );
+
+  const armors = ARMORS.sort(sortArmorByRarityAndName).filter(({ id }) =>
+    player.inventory.some((item) => item.id === id)
+  );
+
+  const consumables = CONSUMABLES.sort(sortByTypeAndRestoreRate).filter(
+    ({ id }) => player.inventory.some((item) => item.id === id)
+  );
+
   return (
     <div className="space-y-6">
       <div>
@@ -49,7 +63,6 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
             name={equippedWeapon.name}
             picture={equippedWeapon.picture}
           />
-
           <EquippedInventory
             label="Armor"
             name={equippedArmor.name}
@@ -61,73 +74,54 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
       <div>
         <h4 className="text-white font-semibold mb-2">Weapons</h4>
         <div className="grid grid-cols-9 gap-6">
-          {WEAPONS.sort(sortWeaponByRarityAndName)
-            .filter((item) => player.inventory.some(({ id }) => id === item.id))
-            .map((item) => {
-              const availableItem = player.inventory.find(
-                ({ id }) => id === item.id
-              );
+          {weapons.map((item) => {
+            const available = player.inventory.find(({ id }) => id === item.id);
+            if (!available) return null;
 
-              if (!availableItem) {
-                return;
-              }
-
-              return (
-                <WeaponItem
-                  key={item.id}
-                  item={item}
-                  onClick={() => updateWeapon(item.id as WeaponId)}
-                  selected={item.id === player.selectedWeapon}
-                  quantity={availableItem.quantity}
-                />
-              );
-            })}
+            return (
+              <WeaponItem
+                key={item.id}
+                item={item}
+                onClick={() => updateWeapon(item.id as WeaponId)}
+                selected={item.id === player.selectedWeapon}
+                quantity={available.quantity}
+              />
+            );
+          })}
         </div>
       </div>
 
       <div>
         <h4 className="text-white font-semibold mb-2">Armors</h4>
         <div className="grid grid-cols-9 gap-6">
-          {ARMORS.sort(sortArmorByRarityAndName)
-            .filter((item) => player.inventory.some(({ id }) => id === item.id))
-            .map((item) => {
-              const availableItem = player.inventory.find(
-                ({ id }) => id === item.id
-              );
+          {armors.map((item) => {
+            const available = player.inventory.find(({ id }) => id === item.id);
+            if (!available) return null;
 
-              if (!availableItem) {
-                return;
-              }
-
-              return (
-                <ArmorItem
-                  key={item.id}
-                  item={item}
-                  onClick={() => updateArmor(item.id as ArmorId)}
-                  selected={item.id === player.selectedArmor}
-                  quantity={availableItem.quantity}
-                />
-              );
-            })}
+            return (
+              <ArmorItem
+                key={item.id}
+                item={item}
+                onClick={() => updateArmor(item.id as ArmorId)}
+                selected={item.id === player.selectedArmor}
+                quantity={available.quantity}
+              />
+            );
+          })}
         </div>
       </div>
 
       <div>
         <h4 className="text-white font-semibold mb-2">Consumables</h4>
-        {CONSUMABLES.filter((item) =>
-          player.inventory.some(({ id }) => id === item.id)
-        ).length === 0 ? (
+        {consumables.length === 0 ? (
           <p className="text-gray-400 text-sm">No items available</p>
         ) : (
           <div className="grid grid-cols-9 gap-6">
-            {CONSUMABLES.filter((item) =>
-              player.inventory.some(({ id }) => id === item.id)
-            ).map((item) => {
-              const availableItem = player.inventory.find(
+            {consumables.map((item) => {
+              const available = player.inventory.find(
                 ({ id }) => id === item.id
               );
-
-              if (!availableItem) return null;
+              if (!available) return null;
 
               return (
                 <ConsumableItem
@@ -135,7 +129,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
                   name={item.name}
                   description={item.description}
                   picture={item.picture}
-                  quantity={availableItem.quantity}
+                  quantity={available.quantity}
                 />
               );
             })}

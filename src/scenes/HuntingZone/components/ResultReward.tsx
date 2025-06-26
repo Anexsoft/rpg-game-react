@@ -1,4 +1,4 @@
-import { Coins } from "lucide-react";
+import { Coins, Sparkles } from "lucide-react";
 
 import { useCombat } from "../context/CombatContext";
 
@@ -11,12 +11,21 @@ export default function ResultReward() {
 
   return (
     <>
-      <div className="flex items-center gap-2 text-yellow-400 text-sm mb-6 ">
-        <Coins className="w-4 h-4" />
-        <span>
-          You earned <span className="font-bold">+{rewards.gold}₲</span> from
-          the battle!
-        </span>
+      <div className="flex flex-col gap-2 items-center text-sm text-yellow-400 mb-6">
+        <div className="flex items-center gap-2">
+          <Coins className="w-4 h-4" />
+          <span>
+            You earned <span className="font-bold">+{rewards.gold}₲</span> from
+            the battle!
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 text-purple-300">
+          <Sparkles className="w-4 h-4" />
+          <span>
+            <span className="font-bold">+{rewards.exp} EXP</span> gained
+          </span>
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4 max-w-sm">

@@ -13,6 +13,7 @@ import { WEAPONS } from "@weapons/index";
 import { sortArmorByRarityAndName } from "@armor/filters/index.filter";
 import { ARMORS } from "@armor/index";
 
+import { sortByTypeAndRestoreRate } from "@consumables/filters/index.filter";
 import { CONSUMABLES } from "@consumables/index";
 
 import type { ItemBase } from "@src/modules/items/types/index.type";
@@ -38,7 +39,7 @@ export default function SellerItems({ setNotification }: SellerItemsProps) {
     (item) => item.rarity === "standard" && itemLevels.includes(item.level)
   );
 
-  const consumables = CONSUMABLES.sort((a, b) => b.price - a.price);
+  const consumables = CONSUMABLES.sort(sortByTypeAndRestoreRate);
 
   const items: ItemBase[] = [...weapons, ...armors, ...consumables];
   const skills: Skill[] = SKILLS.filter(

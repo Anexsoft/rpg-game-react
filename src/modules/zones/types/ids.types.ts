@@ -5,4 +5,5 @@ export type ZoneId =
   | "hospital"
   | "university"
   | "factory"
-  | "labs";
+  | "labs"
+  | "experiment-room";

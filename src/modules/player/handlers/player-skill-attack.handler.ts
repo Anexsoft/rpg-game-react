@@ -61,7 +61,7 @@ export class PlayerSkillAttackHandler {
         target.curseEffect = {
           type: "bleeding",
           turns: skill.effect.duration,
-          hpPenaltyRate: skill.effect.penaltyHpRate,
+          damage: Math.round(skill.effect.penaltyHpRate * amount),
         };
       }
 

@@ -39,11 +39,12 @@ export default function CombatSkills({
   const handleSkillAttack = () => {
     if (canUseSkill && skill) {
       onClick(skill.behavior);
+      setTurnsUntilAttack(0);
     }
   };
 
   useEffect(() => {
-    if (turn >= 1) {
+    if (turn > 1) {
       setTurnsUntilAttack((prev) => prev + 1);
     }
   }, [turn]);
@@ -59,7 +60,7 @@ export default function CombatSkills({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [canUseSkill, skill]); // asegurar que `handleSkillAttack` esté al día
+  }, [canUseSkill, skill]);
 
   if (!skill) {
     return <p className="text-sm text-gray-400">No skill selected</p>;
@@ -83,7 +84,11 @@ export default function CombatSkills({
             <b className="text-cyan-500">STA</b>: {skill.cost}
           </span>
           <span>
-            <b className="text-blue-300">Cooldown</b>: {skill.cooldown} turns
+            <b className="text-blue-300">Cooldown</b>:{" "}
+            {turnsUntilAttack > skill.cooldown
+              ? skill.cooldown
+              : turnsUntilAttack}
+            /{skill.cooldown} turns
           </span>
         </p>
       </div>

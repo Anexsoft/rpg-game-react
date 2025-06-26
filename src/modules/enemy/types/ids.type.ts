@@ -8,4 +8,5 @@ export type EnemyId =
   | "dog-zombie-1"
   | "stalker-1"
   | "raptor-1"
-  | "titan-1";
+  | "titan-1"
+  | "apocalipsis-1";

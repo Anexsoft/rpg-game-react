@@ -1,4 +1,4 @@
-import { Sword, Heart, ShieldOff, Hammer } from "lucide-react";
+import { Sword, Heart, ShieldOff, Hammer, Droplet } from "lucide-react";
 
 import type { Enemy } from "@enemy/types/index.type";
 
@@ -80,7 +80,7 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
 
           {curseEffect?.type === "bleeding" && (
             <span className="absolute bottom-2 right-2 flex items-center gap-1 text-red-400 text-xs shadow-md animate-pulse">
-              <Hammer className="w-3 h-3" />
+              <Droplet className="w-3 h-3" />
               BLEEDING
             </span>
           )}

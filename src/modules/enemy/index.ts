@@ -8,6 +8,7 @@ import policeZombie1 from "@resources/images/enemies/avatars/police-zombie-1.jpg
 import raptor1 from "@resources/images/enemies/avatars/raptor-1.jpg";
 import stalker1 from "@resources/images/enemies/avatars/stalker-1.jpg";
 import titan1 from "@resources/images/enemies/avatars/titan-1.jpg";
+import apocalipsis1 from "@resources/images/enemies/avatars/apocalipsis-1.png";
 
 import { EnemyCreateHandler } from "./handlers/enemy-create.handler";
 import type { EnemyBase } from "./types/base.type";
@@ -157,5 +158,19 @@ export const ENEMIES: EnemyBase[] = [
     level: [1, 5],
     expGiven: [20, 30],
     goldGiven: [20, 30],
+  },
+  {
+    id: "apocalipsis-1",
+    name: "Apocalipsis",
+    description:
+      "The ultimate force of destruction. Its presence alone signals the end. Nearly impossible to defeat.",
+    dmg: 35,
+    hp: 180,
+    res: 0.35,
+    ctr: 0.2,
+    picture: apocalipsis1,
+    level: [1, 5],
+    expGiven: [50, 100],
+    goldGiven: [50, 100],
   },
 ];

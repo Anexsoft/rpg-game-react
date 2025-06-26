@@ -40,7 +40,15 @@ export async function weaponUsageHandler({
     return;
   }
 
-  for (const enemy of _enemies.filter(({ isAlive }) => isAlive)) {
+  for (const enemy of _enemies) {
+    if (!enemy.isAlive) {
+      if (enemy.curseEffect) {
+        enemy.curseEffect = null;
+      }
+
+      continue;
+    }
+
     enemy.attack(player);
 
     setPlayer({ ...player });

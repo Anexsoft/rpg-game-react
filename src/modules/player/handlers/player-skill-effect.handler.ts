@@ -42,7 +42,7 @@ export class PlayerSkillEffectHandler {
 
   private static applySkillEffect(targets: Enemy[], skill: Skill): Enemy[] {
     if (skill.id === "blind-light") {
-      for (const target of targets) {
+      for (const target of targets.filter((t) => t.isAlive)) {
         target.curseEffect = {
           turns: skill.effect.duration,
           type: "blind",

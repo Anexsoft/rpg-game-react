@@ -31,7 +31,7 @@ export function updatePlayerRewards(
   const { updatedPlayer, newLevelEarned } =
     PlayerUpdateExperienceHandler.handle(_player, totalExp);
 
-  player = updatedPlayer;
+  _player = updatedPlayer;
 
   if (newLevelEarned) {
     _player = PlayerUpgradeHandler.handle(_player);
@@ -39,6 +39,7 @@ export function updatePlayerRewards(
 
   setRewards({
     gold,
+    exp: totalExp,
     rewards: rewards.map(
       (item) => ItemGetByIdHandler.handle(item.id) as ItemBase
     ),

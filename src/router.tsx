@@ -32,6 +32,7 @@ import {
   ZONE_5_PATH,
   ZONE_6_PATH,
   ZONE_0_PATH,
+  ZONE_7_PATH,
 } from "./router.defs";
 
 function ProtectedScene({ children }: { children: SceneComponent }) {
@@ -65,26 +66,30 @@ const PATHS = [
   /* Hunting Zones */
   DefineRoute(
     ZONE_0_PATH,
-    <HuntingZoneScene key="training" zoneId="training" />,
+    <HuntingZoneScene key="training" zoneId="training" />
   ),
   DefineRoute(
     ZONE_1_PATH,
-    <HuntingZoneScene key="outskirts" zoneId="outskirts" />,
+    <HuntingZoneScene key="outskirts" zoneId="outskirts" />
   ),
   DefineRoute(
     ZONE_2_PATH,
-    <HuntingZoneScene key="residential" zoneId="residential" />,
+    <HuntingZoneScene key="residential" zoneId="residential" />
   ),
   DefineRoute(
     ZONE_3_PATH,
-    <HuntingZoneScene key="hospital" zoneId="hospital" />,
+    <HuntingZoneScene key="hospital" zoneId="hospital" />
   ),
   DefineRoute(
     ZONE_4_PATH,
-    <HuntingZoneScene key="university" zoneId="university" />,
+    <HuntingZoneScene key="university" zoneId="university" />
   ),
   DefineRoute(ZONE_5_PATH, <HuntingZoneScene key="factory" zoneId="factory" />),
   DefineRoute(ZONE_6_PATH, <HuntingZoneScene key="labs" zoneId="labs" />),
+  DefineRoute(
+    ZONE_7_PATH,
+    <HuntingZoneScene key="experiment-room" zoneId="experiment-room" />
+  ),
 
   /* Logout */
   DefineRoute(LOGOUT_PATH, <LogoutScene />),

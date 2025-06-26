@@ -11,6 +11,7 @@ import { getPlayerAvatar } from "@player/utils/index";
 import Block from "../../ui/Block";
 
 import BattleStats from "./components/BattleStats/BattleStats";
+import CombatHistory from "./components/CombatHistory";
 import CoreAttributes from "./components/CoreAttributes/CoreAttributes";
 import CurrentGold from "./components/CurrentGold";
 import Inventory from "./components/Inventory/Inventory";
@@ -44,6 +45,13 @@ export default function PlayerHubScene(): SceneComponent {
               <StatPoints amount={player.availableStatPoints} />
             </Block>
           </div>
+
+          <Block>
+            <CombatHistory
+              defeats={player.defeats}
+              victories={player.victories}
+            />
+          </Block>
         </div>
 
         <div className="flex flex-col gap-6">

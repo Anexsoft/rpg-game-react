@@ -12,7 +12,7 @@ import { ARMORS } from "@armor/index";
 
 import { CONSUMABLES } from "@consumables/index";
 
-import { DEFAULT_SELL_PRICE_RATE } from "@src/modules/items/shared";
+import { DEFAULT_SELL_PRICE_REDUCTION_RATE } from "@src/modules/items/shared";
 import type { ItemBase } from "@src/modules/items/types/index.type";
 
 import type { StoreNotification } from "../types";
@@ -88,7 +88,9 @@ export default function PlayerItems({ setNotification }: PlayerItemsProps) {
     >
       <div className="grid grid-cols-3 gap-4">
         {items.map((item) => {
-          const price = Math.floor(item.price * DEFAULT_SELL_PRICE_RATE);
+          const price = Math.floor(
+            item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE
+          );
 
           return (
             <button

@@ -1,5 +1,7 @@
 import type { WeaponType } from "@weapons/types/index.type";
 
+import type { ConsumableType } from "@consumables/types/index.type";
+
 import type { ItemRarity } from "../types/index.type";
 
 export const RarityOrder: Record<ItemRarity, number> = {
@@ -15,4 +17,9 @@ export const WeaponTypeOrder: Record<WeaponType, number> = {
   handgun: 3,
 };
 
-export const DEFAULT_SELL_PRICE_RATE = 0.6;
+export const ConsumableTypeOrder: Record<ConsumableType, number> = {
+  healing: 0,
+  stamina: 1,
+};
+
+export const DEFAULT_SELL_PRICE_REDUCTION_RATE = 0.4;
