@@ -1,10 +1,10 @@
 export type DoubleShotEffect = {
   hits: number;
-  penalty: number;
 };
 
 export type PrecisionShotEffect = {
-  multiplier: number;
+  duration: number;
+  penaltyHpRate: number;
 };
 
 export type BlindLightEffect = {

@@ -16,12 +16,9 @@ export type EnemyActionStatus = {
   wasCritical: boolean;
 };
 
-type EnemyCurseEffectType = "stun";
-
-export type EnemyCurseEffect = {
-  turns: number;
-  type: EnemyCurseEffectType;
-};
+export type EnemyCurseEffect =
+  | { turns: number; type: "blind" }
+  | { turns: number; type: "bleeding"; hpPenaltyRate: number };
 
 export class Enemy {
   id: string;
@@ -112,8 +109,12 @@ export class Enemy {
 
   /** Update attacking information */
   attack(target: Player): void {
-    const curseEffect = this.applyCurseEffect();
-    if (curseEffect === "stun") {
+    if (this.curseEffect?.type === "blind") {
+      this.updateCurseEffect();
+      return;
+    }
+
+    if (!this.isAlive) {
       return;
     }
 
@@ -146,19 +147,21 @@ export class Enemy {
     target.hp = hp;
   }
 
-  applyCurseEffect(): EnemyCurseEffectType | null {
-    if (!this.curseEffect) {
-      return null;
+  private updateCurseEffect() {
+    const curse = this.curseEffect;
+
+    if (!curse) return;
+
+    if (curse.type === "bleeding") {
+      const bleedDamage = Math.floor(this.maxHp * curse.hpPenaltyRate);
+      this.hp = Math.max(0, this.hp - bleedDamage);
     }
 
-    const currentEffect = this.curseEffect.type;
-    this.curseEffect.turns--;
+    curse.turns--;
 
-    if (this.curseEffect.turns <= 0) {
+    if (curse.turns <= 0) {
       this.curseEffect = null;
     }
-
-    return currentEffect;
   }
 
   /** Returns the reward after defeat (for now: only experience) */

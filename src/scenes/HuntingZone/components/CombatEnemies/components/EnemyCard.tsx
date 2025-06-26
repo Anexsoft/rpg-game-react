@@ -1,4 +1,4 @@
-import { Sword, Heart, ShieldOff } from "lucide-react";
+import { Sword, Heart, ShieldOff, Hammer } from "lucide-react";
 
 import type { Enemy } from "@enemy/types/index.type";
 
@@ -12,6 +12,8 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
   const isAttacked = actionStatus?.type === "attacked";
   const isAttacking = actionStatus?.type === "attack";
   const isMissed = actionStatus?.type === "missed";
+
+  const { curseEffect } = enemy;
 
   return (
     <div className="relative">
@@ -66,8 +68,22 @@ export default function EnemyCard({ enemy }: EnemyCardProps) {
           <span>Lv. {enemy.level}</span>
         </div>
 
-        <div className="bg-gray-800 border-y border-gray-700 flex items-center justify-center">
+        <div className="bg-gray-800 border-y border-gray-700 flex items-center justify-center relative">
           <img src={enemy.avatar} alt={enemy.name} className="object-contain" />
+
+          {curseEffect?.type === "blind" && (
+            <span className="absolute bottom-2 right-2 flex items-center gap-1 text-gray-400 text-xs shadow-md animate-pulse">
+              <Hammer className="w-3 h-3" />
+              BLIND
+            </span>
+          )}
+
+          {curseEffect?.type === "bleeding" && (
+            <span className="absolute bottom-2 right-2 flex items-center gap-1 text-red-400 text-xs shadow-md animate-pulse">
+              <Hammer className="w-3 h-3" />
+              BLEEDING
+            </span>
+          )}
         </div>
 
         <div className="border-b border-gray-700 text-xs p-2">

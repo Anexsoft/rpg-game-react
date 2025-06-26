@@ -6,6 +6,7 @@ import type { Player } from "@player/types/index.types";
 import type { Enemy } from "@enemy/types/index.type";
 
 type WeaponUsageHandlerProps = {
+  skipPlayerAttack: boolean;
   player: Player;
   setPlayer: (player: Player) => void;
   enemies: Enemy[];
@@ -14,36 +15,41 @@ type WeaponUsageHandlerProps = {
 };
 
 export async function weaponUsageHandler({
+  skipPlayerAttack,
   player,
   setPlayer,
   enemies,
   setEnemies,
   setTurn,
 }: WeaponUsageHandlerProps): Promise<void> {
-  enemies = PlayerAttackHandler.handle(player, enemies);
-  setEnemies([...enemies]);
+  let _enemies = [...enemies];
 
-  await wait(500);
+  if (!skipPlayerAttack) {
+    _enemies = PlayerAttackHandler.handle(player, enemies);
+    setEnemies([...enemies]);
 
-  enemies.forEach((enemy) => (enemy.actionStatus = null));
-  setEnemies([...enemies]);
+    await wait(500);
+  }
 
-  const stillAlive = enemies.some((e) => e.isAlive);
+  _enemies.forEach((enemy) => (enemy.actionStatus = null));
+  setEnemies([..._enemies]);
+
+  const stillAlive = _enemies.some((e) => e.isAlive);
 
   if (!stillAlive) {
     return;
   }
 
-  for (const enemy of enemies.filter(({ isAlive }) => isAlive)) {
+  for (const enemy of _enemies.filter(({ isAlive }) => isAlive)) {
     enemy.attack(player);
 
     setPlayer({ ...player });
-    setEnemies([...enemies]);
+    setEnemies([..._enemies]);
 
     await wait(500);
     enemy.actionStatus = null;
 
-    setEnemies([...enemies]);
+    setEnemies([..._enemies]);
   }
 
   setTurn((prev) => prev + 1);

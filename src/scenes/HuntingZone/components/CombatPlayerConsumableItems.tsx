@@ -34,7 +34,7 @@ export default function CombatPlayerConsumableItems() {
   };
 
   const items = player.inventory.filter((item) =>
-    CONSUMABLES.some((c) => c.id === item.id),
+    CONSUMABLES.some((c) => c.id === item.id)
   );
 
   return (
@@ -49,9 +49,7 @@ export default function CombatPlayerConsumableItems() {
             return (
               <div
                 key={item.id}
-                onClick={() =>
-                  isEnabled && handleUseConsumable(item.id as ConsumableId)
-                }
+                onClick={() => handleUseConsumable(item.id as ConsumableId)}
                 className={`relative flex flex-col items-center justify-center border border-gray-700 rounded transition-all ${
                   isEnabled
                     ? "hover:border-gray-400 cursor-pointer"

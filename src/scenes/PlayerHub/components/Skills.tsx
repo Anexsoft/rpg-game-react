@@ -45,7 +45,7 @@ export default function Skills({ player, setPlayer }: SkillsProps) {
                 <img
                   src={skill.picture}
                   alt={skill.name}
-                  className="w-16 h-16 object-contain flex-shrink-0"
+                  className="w-16 h-16 object-contain flex-shrink-0 border border-gray-600 rounded"
                 />
                 <div className="flex flex-col flex-1">
                   <span className="text-white font-semibold text-sm">
@@ -54,6 +54,15 @@ export default function Skills({ player, setPlayer }: SkillsProps) {
                   <span className="text-gray-300 text-xs mt-1">
                     {skill.description}
                   </span>
+                  <p className="text-gray-300 text-xs mt-2 flex gap-4">
+                    <span>
+                      <b className="text-cyan-500">STA</b>: {skill.cost}
+                    </span>
+                    <span>
+                      <b className="text-blue-300">Cooldown</b>:{" "}
+                      {skill.cooldown} turns
+                    </span>
+                  </p>
                 </div>
               </div>
             );

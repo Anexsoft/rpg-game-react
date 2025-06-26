@@ -15,7 +15,7 @@ export class PlayerUseConsumableHandler {
 
     const updatedInventory = player.inventory
       .map((invItem) => {
-        if (invItem.type === "consumable" && invItem.id === itemId) {
+        if (invItem.id === itemId) {
           return { ...invItem, quantity: invItem.quantity - 1 };
         }
 

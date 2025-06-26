@@ -1,4 +1,8 @@
 import type {
+  SkillBehaviourAttack,
+  SkillBehaviourEffect,
+} from "./behaviour.type";
+import type {
   DoubleShotEffect,
   PrecisionShotEffect,
   BlindLightEffect,
@@ -12,9 +16,9 @@ export type SkillEffectById = {
 };
 
 export type SkillBehaviorById = {
-  "double-shot": "attack";
-  "precision-shot": "attack";
-  "blind-light": "effect";
+  "double-shot": SkillBehaviourAttack;
+  "precision-shot": SkillBehaviourAttack;
+  "blind-light": SkillBehaviourEffect;
 };
 
 type SkillBase<K extends SkillId> = {
