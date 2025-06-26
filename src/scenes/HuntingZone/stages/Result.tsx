@@ -44,7 +44,7 @@ export default function Result({ setCombatStage }: Props) {
 
           {rewards && <ResultReward />}
 
-          <p className="text-gray-400 text-sm font-semibold">
+          <p className="text-gray-400 mt-4 text-sm font-semibold">
             Press <span className="text-cyan-400 font-bold">SPACE</span> to
             begin
           </p>

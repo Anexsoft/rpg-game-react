@@ -6,7 +6,10 @@ import type { Weapon } from "@weapons/types/index.type";
 
 import { ItemGetByIdHandler } from "@src/modules/items/handlers/item-get-by-id.handler";
 
-import type { WeaponTarget } from "./player-calculate-damage.handler";
+import {
+  PlayerCalculateDamageHandler,
+  type WeaponTarget,
+} from "./player-calculate-damage.handler";
 
 export class PlayerAttackHandler {
   static handle(player: Player, enemies: Enemy[]) {
@@ -16,7 +19,12 @@ export class PlayerAttackHandler {
     const targets = this.getEnemyTargets(_enemies, weapon.target);
 
     for (const enemy of targets) {
-      enemy.takeDamage(player);
+      const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
+        player,
+        enemy.res
+      );
+
+      enemy.takeDamage(amount, isCritical);
     }
 
     return _enemies;

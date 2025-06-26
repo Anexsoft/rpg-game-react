@@ -15,6 +15,7 @@ import CoreAttributes from "./components/CoreAttributes/CoreAttributes";
 import CurrentGold from "./components/CurrentGold";
 import Inventory from "./components/Inventory/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
+import Skills from "./components/Skills";
 import StatPoints from "./components/StatPoints";
 
 export default function PlayerHubScene(): SceneComponent {
@@ -58,6 +59,9 @@ export default function PlayerHubScene(): SceneComponent {
         <div className="flex flex-col gap-6 w-200">
           <Block>
             <Inventory player={player} setPlayer={setPlayer} />
+          </Block>
+          <Block>
+            <Skills player={player} setPlayer={setPlayer} />
           </Block>
         </div>
       </div>

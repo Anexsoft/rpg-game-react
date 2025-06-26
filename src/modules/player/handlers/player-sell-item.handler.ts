@@ -1,6 +1,6 @@
 import type { Player } from "@player/types/index.types";
 
-import type { WeaponId } from "@weapons/types/ids.types";
+import type { WeaponId } from "@weapons/types/ids.type";
 
 import type { ArmorId } from "@armor/types/ids.types";
 
@@ -29,7 +29,7 @@ export class PlayerSellItemHandler {
     const restriction = this.hasRestrictions(
       player,
       itemId,
-      playerItem.quantity,
+      playerItem.quantity
     );
 
     if (restriction) {
@@ -41,7 +41,7 @@ export class PlayerSellItemHandler {
     const updatedInventory =
       playerItem.quantity > 1
         ? player.inventory.map((inv) =>
-            inv.id === itemId ? { ...inv, quantity: inv.quantity - 1 } : inv,
+            inv.id === itemId ? { ...inv, quantity: inv.quantity - 1 } : inv
           )
         : player.inventory.filter((inv) => inv.id !== itemId);
 
@@ -60,12 +60,12 @@ export class PlayerSellItemHandler {
   private static hasRestrictions(
     player: Player,
     itemId: string,
-    quantity: number,
+    quantity: number
   ): PlayerSellItemHandlerResponse | null {
     const isEquipped =
       quantity === 1 &&
       [player.selectedWeapon, player.selectedArmor].includes(
-        itemId as WeaponId | ArmorId,
+        itemId as WeaponId | ArmorId
       );
 
     if (isEquipped) {

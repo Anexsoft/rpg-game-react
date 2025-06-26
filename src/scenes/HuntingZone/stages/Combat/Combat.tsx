@@ -4,7 +4,8 @@ import { useGame } from "@core/context/GameContext";
 
 import CombatEnemies from "@scenes/HuntingZone/components/CombatEnemies/CombatEnemies";
 import { useCombat } from "@scenes/HuntingZone/context/CombatContext";
-import { attackHandler } from "@scenes/HuntingZone/handlers/attack.handler";
+import { updatePlayerRewards } from "@scenes/HuntingZone/handlers/update-player-rewards.handler";
+import { weaponUsageHandler } from "@scenes/HuntingZone/handlers/weapon-usage.handler";
 import type { CombatStage } from "@scenes/HuntingZone/types/index.type";
 
 import { generateEnemies } from "@enemy/index";
@@ -14,7 +15,10 @@ import type { Enemy } from "@enemy/types/index.type";
 import type { ZoneId } from "@src/modules/zones/types/ids.types";
 
 import CombatCurrentAttacker from "./componentes/CombatCurrentAttacker";
+import CombatSkills from "./componentes/CombatSkills";
 import CombatTurn from "./componentes/CombatTurn";
+import type { SkillId } from "@skills/types/ids.type";
+import type { Skill } from "@skills/types/index.type";
 
 interface CombatProps {
   zoneId: ZoneId;
@@ -33,33 +37,68 @@ export default function Combat({
   const { setRewards, setResult, playerTurn, setPlayerTurn } = useCombat();
 
   const [enemies, setEnemies] = useState<Enemy[]>(() =>
-    generateEnemies(enemyIds),
+    generateEnemies(enemyIds)
   );
 
   const [turn, setTurn] = useState(1);
 
-  const handleAttack = async () => {
+  const determinateResult = () => {
+    const _player = playerRef.current;
+
+    if (_player.hp <= 0) {
+      setResult("defeat");
+      setCombatStage("result");
+    } else {
+      if (enemies.every((e) => !e.isAlive)) {
+        setResult("victory");
+
+        const updatedPlayer = updatePlayerRewards(
+          _player,
+          zoneId,
+          enemies,
+          setRewards
+        );
+
+        setPlayer(updatedPlayer);
+        setCombatStage("result");
+      }
+    }
+  };
+
+  const handleWeaponAttack = async () => {
     if (playerTurn !== "player") return;
 
     setPlayerTurn("enemy");
 
-    const result = await attackHandler({
-      zoneId,
+    await weaponUsageHandler({
       player: playerRef.current,
       setPlayer,
       enemies,
       setEnemies,
       setTurn,
-      setResult,
-      setRewards,
     });
 
     setPlayerTurn("player");
 
-    if (result) {
-      setResult(result);
-      setCombatStage("result");
-    }
+    determinateResult();
+  };
+
+  const handleSkillAttack = async (skill: Skill) => {
+    if (playerTurn !== "player") return;
+
+    setPlayerTurn("enemy");
+
+    await weaponUsageHandler({
+      player: playerRef.current,
+      setPlayer,
+      enemies,
+      setEnemies,
+      setTurn,
+    });
+
+    setPlayerTurn("player");
+
+    determinateResult();
   };
 
   useEffect(() => {
@@ -77,7 +116,7 @@ export default function Combat({
 
     const handleKey = (e: KeyboardEvent) => {
       if (e.code === "Space") {
-        handleAttack();
+        handleWeaponAttack();
       }
     };
 
@@ -96,7 +135,7 @@ export default function Combat({
               ? "hover:bg-gray-800 text-white"
               : "bg-gray-800 text-gray-500 cursor-not-allowed"
           }`}
-          onClick={handleAttack}
+          onClick={handleWeaponAttack}
           disabled={playerTurn !== "player"}
         >
           Attack
@@ -110,9 +149,9 @@ export default function Combat({
           <CombatCurrentAttacker playerTurn={playerTurn} />
         </div>
 
-        <button className="p-4 h-full border-l border-gray-700 hover:bg-gray-800 transition rounded-r-lg">
-          Skills
-        </button>
+        <div className="p-4 h-full border-l border-gray-700 rounded-r-lg">
+          <CombatSkills turn={turn} isPlayerTurn={playerTurn === "player"} />
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ import uziStandard from "@resources/images/weapons/uzi-standard.png";
 
 import type { ItemRarity } from "../types/index.type";
 
-import type { WeaponId } from "./types/ids.types";
+import type { WeaponId } from "./types/ids.type";
 import type { Weapon } from "./types/index.type";
 
 function createVariation(
@@ -29,7 +29,7 @@ function createVariation(
     picture,
     rarity,
   }: { base: Weapon; picture?: string; rarity?: ItemRarity },
-  level: number,
+  level: number
 ): Weapon {
   return {
     level,
@@ -192,7 +192,7 @@ export const WEAPONS: Weapon[] = [
       return createVariation(
         `${base.id}+${lvl}` as WeaponId,
         { base, rarity: rarity as ItemRarity, picture: pic },
-        lvl,
+        lvl
       );
     });
   }),

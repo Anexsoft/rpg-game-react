@@ -6,11 +6,12 @@ import { LEVELS } from "@player/levels";
 import { LEVEL_RANKS } from "@player/ranks";
 import { DEX, INT, LUK, STR, VIT } from "@player/stats";
 
-import type { WeaponId } from "@weapons/types/ids.types";
+import type { WeaponId } from "@weapons/types/ids.type";
 
 import type { ArmorId } from "@armor/types/ids.types";
 
 import type { ConsumableId } from "@src/modules/items/consumables/types/ids.types";
+import type { SkillId } from "@src/modules/skills/types/ids.type";
 
 export type PlayerInventoryItem = {
   id: WeaponId | ArmorId | ConsumableId;
@@ -81,9 +82,11 @@ export class Player {
   dmg: number = 0;
 
   inventory: PlayerInventoryItem[] = [];
+  skills: SkillId[] = [];
 
   selectedWeapon: WeaponId = DEFAULT_SELECTED_WEAPON;
   selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
+  selectedSkill: SkillId | null = null;
 
   availableStatPoints: number = 0;
 
@@ -101,6 +104,10 @@ export class Player {
         id: this.selectedArmor,
         quantity: 1,
       },
+      {
+        id: "health-shot",
+        quantity: 5,
+      }
     );
   }
 }

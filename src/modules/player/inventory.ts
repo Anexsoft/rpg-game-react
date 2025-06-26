@@ -1,4 +1,4 @@
-import type { WeaponId } from "@weapons/types/ids.types";
+import type { WeaponId } from "@weapons/types/ids.type";
 
 import type { ArmorId } from "@armor/types/ids.types";
 
