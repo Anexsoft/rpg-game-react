@@ -4,7 +4,7 @@ type LevelRange = Record<number, [number, number]>;
 
 function adjustLevels(levels: LevelRange, difficulty: string): LevelRange {
   const factors: Record<string, number> = {
-    "very easy": 0.25,
+    "very easy": 0.5,
     easy: 0.75,
     normal: 1,
     hard: 1.25,
@@ -16,7 +16,7 @@ function adjustLevels(levels: LevelRange, difficulty: string): LevelRange {
 
   const levelEntries = Object.entries(levels)
     .map(([key, range]) => [Number(key), range] as [number, [number, number]])
-    .sort((a, b) => a[0] - b[0]); // ordena por nivel
+    .sort((a, b) => a[0] - b[0]);
 
   for (let i = 0; i < levelEntries.length; i++) {
     const [level, [originalMin, originalMax]] = levelEntries[i];
@@ -89,9 +89,7 @@ export const LEVELS = adjustLevels(
     48: [12241, 12740],
     50: [13251, 13770],
   },
-  DIFFICULTY
+  DIFFICULTY,
 );
-
-console.info(LEVELS);
 
 export const MAX_LEVEL = Math.max(...Object.keys(LEVELS).map(Number));

@@ -29,7 +29,7 @@ export default function PlayerHubBasic() {
 
       <div className="grid items-center grid-cols-2 gap-4">
         <Stat type="hp" current={player.hp} max={player.maxHp} />
-        <Stat type="nrg" current={player.sta} max={player.maxSta} />
+        <Stat type="sta" current={player.sta} max={player.maxSta} />
         <Exp
           level={player.level}
           current={player.exp}

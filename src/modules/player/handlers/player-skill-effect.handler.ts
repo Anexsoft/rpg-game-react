@@ -15,7 +15,7 @@ type PlayerSkillEffectHandlerResponse = {
 export class PlayerSkillEffectHandler {
   static handle(
     player: Player,
-    enemies: Enemy[]
+    enemies: Enemy[],
   ): PlayerSkillEffectHandlerResponse {
     if (!player.selectedSkill) {
       throw new Error("Player does not have selected skill");

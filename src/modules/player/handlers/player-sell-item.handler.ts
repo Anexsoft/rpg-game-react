@@ -29,7 +29,7 @@ export class PlayerSellItemHandler {
     const restriction = this.hasRestrictions(
       player,
       itemId,
-      playerItem.quantity
+      playerItem.quantity,
     );
 
     if (restriction) {
@@ -37,13 +37,13 @@ export class PlayerSellItemHandler {
     }
 
     const sellPrice = Math.floor(
-      item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE
+      item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE,
     );
 
     const updatedInventory =
       playerItem.quantity > 1
         ? player.inventory.map((inv) =>
-            inv.id === itemId ? { ...inv, quantity: inv.quantity - 1 } : inv
+            inv.id === itemId ? { ...inv, quantity: inv.quantity - 1 } : inv,
           )
         : player.inventory.filter((inv) => inv.id !== itemId);
 
@@ -62,12 +62,12 @@ export class PlayerSellItemHandler {
   private static hasRestrictions(
     player: Player,
     itemId: string,
-    quantity: number
+    quantity: number,
   ): PlayerSellItemHandlerResponse | null {
     const isEquipped =
       quantity === 1 &&
       [player.selectedWeapon, player.selectedArmor].includes(
-        itemId as WeaponId | ArmorId
+        itemId as WeaponId | ArmorId,
       );
 
     if (isEquipped) {

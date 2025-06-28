@@ -1,10 +1,13 @@
+import { START_AT_MAX_LEVEL } from "@core/config";
+
 import {
   DEFAULT_SELECTED_ARMOR,
   DEFAULT_SELECTED_WEAPON,
 } from "@player/inventory";
-import { LEVELS } from "@player/levels";
+import { LEVELS, MAX_LEVEL } from "@player/levels";
+import { STAT_PROFILES, type StatProfileName } from "@player/profile";
 import { LEVEL_RANKS } from "@player/ranks";
-import { DEX, INT, LUK, STR, VIT } from "@player/stats";
+import { STATS_AVAILABLE_PER_LEVEL } from "@player/stats-progress";
 
 import type { WeaponId } from "@weapons/types/ids.type";
 
@@ -34,28 +37,30 @@ export class Player {
   gender: PlayerGender;
 
   /** Strength – affects physical damage. Higher strength means more power. */
-  str: number = STR;
+  str: number = 0;
 
   /** Vitality – affects HP. The higher the value, the more life the Player has. */
-  vit: number = VIT;
+  vit: number = 0;
 
   /** Energy – determines stamina capacity and recovery rate. */
-  nrg: number = INT;
+  nrg: number = 0;
 
   /** Dexterity – affects evasion. Higher dex increases the chance to dodge attacks. */
-  dex: number = DEX;
+  dex: number = 0;
 
   /** Luck – affects critical rate. More luck increases critical hit chance. */
-  luk: number = LUK;
+  luk: number = 0;
 
   /** Player level – used to scale base stats over time. Starts at 1. */
-  level: number = 1;
+  level: number = START_AT_MAX_LEVEL ? MAX_LEVEL : 1;
 
   /** Current experience – used to determine level progression. Starts at 0. */
   exp: number = 0;
 
   /** Experience required to reach the next level. Starts at 0. */
-  expToNextLevel: number = LEVELS[1][1];
+  expToNextLevel: number = START_AT_MAX_LEVEL
+    ? LEVELS[MAX_LEVEL][1]
+    : LEVELS[1][1];
 
   /** Gold – Player's currency. Starts at 0. */
   gold: number = 100;
@@ -88,7 +93,9 @@ export class Player {
   selectedArmor: ArmorId = DEFAULT_SELECTED_ARMOR;
   selectedSkill: SkillId | null = null;
 
-  availableStatPoints: number = 0;
+  availableStatPoints: number = START_AT_MAX_LEVEL
+    ? MAX_LEVEL * STATS_AVAILABLE_PER_LEVEL
+    : 0;
 
   /**  Number of battles the player has won */
   victories: number = 0;
@@ -96,10 +103,20 @@ export class Player {
   /**  Number of battles the player has lost */
   defeats: number = 0;
 
-  constructor(name: string, gender: PlayerGender) {
+  constructor(name: string, gender: PlayerGender, profile: StatProfileName) {
     this.id = `${Math.random().toString(36).slice(2, 8)}`;
+
     this.name = name;
     this.gender = gender;
+
+    const { stats } = STAT_PROFILES[profile];
+    const { STR, VIT, NRG, DEX, LUK } = stats;
+
+    this.str = STR;
+    this.vit = VIT;
+    this.nrg = NRG;
+    this.dex = DEX;
+    this.luk = LUK;
 
     this.inventory.push(
       {
@@ -113,7 +130,7 @@ export class Player {
       {
         id: "health-shot",
         quantity: 5,
-      }
+      },
     );
   }
 }

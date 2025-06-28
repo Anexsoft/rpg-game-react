@@ -26,7 +26,7 @@ export default function PlayerItems({ setNotification }: PlayerItemsProps) {
   const inventory = player.inventory;
 
   const weapons = WEAPONS.filter((item) =>
-    inventory.some((inv) => inv.id === item.id)
+    inventory.some((inv) => inv.id === item.id),
   )
     .sort(sortWeaponByRarityAndName)
     .map((item) => {
@@ -37,7 +37,7 @@ export default function PlayerItems({ setNotification }: PlayerItemsProps) {
     });
 
   const armors = ARMORS.filter((item) =>
-    inventory.some((inv) => inv.id === item.id)
+    inventory.some((inv) => inv.id === item.id),
   )
     .sort(sortArmorByRarityAndName)
     .map((item) => {
@@ -48,7 +48,7 @@ export default function PlayerItems({ setNotification }: PlayerItemsProps) {
     });
 
   const consumables = CONSUMABLES.filter((item) =>
-    inventory.some((inv) => inv.id === item.id)
+    inventory.some((inv) => inv.id === item.id),
   ).map((item) => {
     return {
       ...item,
@@ -89,7 +89,7 @@ export default function PlayerItems({ setNotification }: PlayerItemsProps) {
       <div className="grid grid-cols-3 gap-4">
         {items.map((item) => {
           const price = Math.floor(
-            item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE
+            item.price * DEFAULT_SELL_PRICE_REDUCTION_RATE,
           );
 
           return (

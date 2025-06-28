@@ -29,7 +29,7 @@ function createArmorVariation(
     name: `${base.name}+${level}`,
     rarity: rarity ?? base.rarity,
     picture: picture ?? base.picture,
-    def: parseFloat((base.def + 0.02 * level).toFixed(2)),
+    def: parseFloat((base.def + 0.05 * level).toFixed(2)),
     price: Math.round(base.price + 0.25 * level),
   };
 }
@@ -43,7 +43,7 @@ const BASES: Record<string, Armor> = {
       "A rugged jacket offering minimal protection and good mobility.",
     picture: leatherJacketStandard,
     rarity: "standard",
-    def: 0.07,
+    def: 0.08,
     price: 200,
   },
   "body-guard-vest": {
@@ -54,7 +54,7 @@ const BASES: Record<string, Armor> = {
       "A reinforced vest with decent protection against basic attacks.",
     picture: bodyGuardStandard,
     rarity: "standard",
-    def: 0.1,
+    def: 0.11,
     price: 400,
   },
   "advanced-armor": {

@@ -17,7 +17,7 @@ type PlayerSkillAttackHandlerResponse = {
 export class PlayerSkillAttackHandler {
   static handle(
     player: Player,
-    enemies: Enemy[]
+    enemies: Enemy[],
   ): PlayerSkillAttackHandlerResponse {
     if (!player.selectedSkill) {
       throw new Error("Player does not have selected skill");
@@ -47,12 +47,12 @@ export class PlayerSkillAttackHandler {
   private static applySkillDamageToTargets(
     player: Player,
     targets: Enemy[],
-    skill: Skill
+    skill: Skill,
   ) {
     for (const target of targets) {
       const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
         player,
-        target.res
+        target.res,
       );
 
       if (skill.id === "precision-shot") {

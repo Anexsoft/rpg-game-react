@@ -7,4 +7,5 @@ interface ImportMetaEnv {
     | "normal"
     | "hard"
     | "extreme";
+  readonly VITE_MAX_LEVEL: string;
 }

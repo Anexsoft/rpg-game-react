@@ -29,7 +29,7 @@ type InventoryProps = {
 
 export default function Inventory({ player, setPlayer }: InventoryProps) {
   const equippedWeapon = ItemGetByIdHandler.handle<Weapon>(
-    player.selectedWeapon
+    player.selectedWeapon,
   );
   const equippedArmor = ItemGetByIdHandler.handle<Armor>(player.selectedArmor);
 
@@ -42,15 +42,15 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
   };
 
   const weapons = WEAPONS.sort(sortWeaponByRarityAndName).filter(({ id }) =>
-    player.inventory.some((item) => item.id === id)
+    player.inventory.some((item) => item.id === id),
   );
 
   const armors = ARMORS.sort(sortArmorByRarityAndName).filter(({ id }) =>
-    player.inventory.some((item) => item.id === id)
+    player.inventory.some((item) => item.id === id),
   );
 
   const consumables = CONSUMABLES.sort(sortByTypeAndRestoreRate).filter(
-    ({ id }) => player.inventory.some((item) => item.id === id)
+    ({ id }) => player.inventory.some((item) => item.id === id),
   );
 
   return (
@@ -119,7 +119,7 @@ export default function Inventory({ player, setPlayer }: InventoryProps) {
           <div className="grid grid-cols-9 gap-6">
             {consumables.map((item) => {
               const available = player.inventory.find(
-                ({ id }) => id === item.id
+                ({ id }) => id === item.id,
               );
               if (!available) return null;
 

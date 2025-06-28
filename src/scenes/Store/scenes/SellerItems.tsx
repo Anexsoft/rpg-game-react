@@ -32,19 +32,19 @@ export default function SellerItems({ setNotification }: SellerItemsProps) {
   const itemLevels = [0, 1, 2];
 
   const weapons = WEAPONS.sort(sortWeaponByRarityAndName).filter((item) =>
-    itemLevels.includes(item.level)
+    itemLevels.includes(item.level),
   );
 
   const armors = ARMORS.sort(sortArmorByRarityAndName).filter(
-    (item) => item.rarity === "standard" && itemLevels.includes(item.level)
+    (item) => item.rarity === "standard" && itemLevels.includes(item.level),
   );
 
   const consumables = CONSUMABLES.sort(sortByTypeAndRestoreRate);
 
   const items: ItemBase[] = [...weapons, ...armors, ...consumables];
   const skills: Skill[] = SKILLS.filter(
-    (skill) => !player.skills.includes(skill.id)
-  ).sort((a, b) => b.price - a.price);
+    (skill) => !player.skills.includes(skill.id),
+  );
 
   const handleBuyItemClick = (item: ItemBase) => {
     const result = PlayerBuyItemHandler.handle(player, item.id);

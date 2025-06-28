@@ -16,22 +16,13 @@ export type PlayerBuySkillHandlerResponse =
 export class PlayerBuySkillHandler {
   static handle(
     player: Player,
-    skillId: SkillId
+    skillId: SkillId,
   ): PlayerBuySkillHandlerResponse {
     const skill = SkillGetByIdHandler.handle(skillId);
 
-    if (player.skills.includes(skillId)) {
-      return {
-        status: "already-owned",
-        player: null,
-      };
-    }
-
-    if (player.gold < skill.price) {
-      return {
-        status: "not-enough-gold",
-        player: null,
-      };
+    const validation = this.validate(player, skillId, skill.price);
+    if (validation) {
+      return validation;
     }
 
     const updatedPlayer: Player = {
@@ -40,9 +31,35 @@ export class PlayerBuySkillHandler {
       skills: [...player.skills, skillId],
     };
 
+    if (!updatedPlayer.selectedSkill) {
+      updatedPlayer.selectedSkill = skillId;
+    }
+
     return {
       status: "success",
       player: updatedPlayer,
     };
+  }
+
+  private static validate(
+    player: Player,
+    skillId: SkillId,
+    price: number,
+  ): PlayerBuySkillHandlerResponse | null {
+    if (player.skills.includes(skillId)) {
+      return {
+        status: "already-owned",
+        player: null,
+      };
+    }
+
+    if (player.gold < price) {
+      return {
+        status: "not-enough-gold",
+        player: null,
+      };
+    }
+
+    return null;
   }
 }

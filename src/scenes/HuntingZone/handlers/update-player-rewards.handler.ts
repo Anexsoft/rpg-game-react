@@ -16,7 +16,7 @@ export function updatePlayerRewards(
   player: Player,
   zoneId: ZoneId,
   enemies: Enemy[],
-  setRewards: (rewards: HuntingZoneRewards) => void
+  setRewards: (rewards: HuntingZoneRewards) => void,
 ): Player {
   let _player = { ...player };
 
@@ -41,7 +41,7 @@ export function updatePlayerRewards(
     gold,
     exp: totalExp,
     rewards: rewards.map(
-      (item) => ItemGetByIdHandler.handle(item.id) as ItemBase
+      (item) => ItemGetByIdHandler.handle(item.id) as ItemBase,
     ),
   });
 

@@ -38,7 +38,7 @@ export class PlayerUseConsumableHandler {
       .map((invItem) =>
         invItem.id === itemId
           ? { ...invItem, quantity: invItem.quantity - 1 }
-          : invItem
+          : invItem,
       )
       .filter((invItem) => invItem.quantity > 0);
   }

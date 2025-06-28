@@ -20,7 +20,7 @@ export async function skillAttackUsageHandler({
 }: SkillAttackUsageHandlerProps): Promise<void> {
   const { updatedEnemies, updatedPlayer } = PlayerSkillAttackHandler.handle(
     player,
-    enemies
+    enemies,
   );
 
   setEnemies(updatedEnemies);

@@ -63,7 +63,11 @@ export default function CombatSkills({
   }, [canUseSkill, skill]);
 
   if (!skill) {
-    return <p className="text-sm text-gray-400">No skill selected</p>;
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-sm text-gray-400 font-light">No skill selected</p>
+      </div>
+    );
   }
 
   return (

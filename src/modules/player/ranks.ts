@@ -4,15 +4,15 @@ type LevelRank = {
 };
 
 export const LEVEL_RANKS: LevelRank[] = [
-  { level: 1, name: "Beginner" },
-  { level: 5, name: "Adventurer" },
-  { level: 10, name: "Seeker" },
-  { level: 15, name: "Guardian" },
-  { level: 20, name: "Conqueror" },
-  { level: 25, name: "Sage" },
-  { level: 30, name: "Warden" },
-  { level: 35, name: "Hero" },
-  { level: 40, name: "Mythic" },
-  { level: 45, name: "Eternal" },
-  { level: 50, name: "Transcendent" },
+  { level: 1, name: "Recruit" },
+  { level: 5, name: "Operative I" },
+  { level: 10, name: "Operative II" },
+  { level: 15, name: "Specialist I" },
+  { level: 20, name: "Specialist II" },
+  { level: 25, name: "Advanced I" },
+  { level: 30, name: "Advanced II" },
+  { level: 35, name: "Elite I" },
+  { level: 40, name: "Elite II" },
+  { level: 45, name: "Unit Commander" },
+  { level: 50, name: "Strike Force Leader" },
 ];

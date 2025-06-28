@@ -13,7 +13,7 @@ export type PlayerUpdateExperienceResponse = {
 export class PlayerUpdateExperienceHandler {
   static handle(
     player: Player,
-    earnedExp: number
+    earnedExp: number,
   ): PlayerUpdateExperienceResponse {
     const newExp = this.getNewExp(player.exp, earnedExp, player.level);
     const newLevel = this.getNewLevel(newExp, player.level);
@@ -64,7 +64,7 @@ export class PlayerUpdateExperienceHandler {
   private static getNewExp(
     currentExp: number,
     earnedExp: number,
-    level: number
+    level: number,
   ): number {
     if (level >= MAX_LEVEL) {
       return LEVELS[MAX_LEVEL][1];

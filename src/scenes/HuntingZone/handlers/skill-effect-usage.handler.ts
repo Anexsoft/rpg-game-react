@@ -20,7 +20,7 @@ export async function skillEffectUsageHandler({
 }: skillEffectUsageHandlerProps): Promise<void> {
   const { updatedEnemies, updatedPlayer } = PlayerSkillEffectHandler.handle(
     player,
-    enemies
+    enemies,
   );
 
   setEnemies(updatedEnemies);

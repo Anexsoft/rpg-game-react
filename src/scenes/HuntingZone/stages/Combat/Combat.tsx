@@ -10,6 +10,8 @@ import { updatePlayerRewards } from "@scenes/HuntingZone/handlers/update-player-
 import { weaponUsageHandler } from "@scenes/HuntingZone/handlers/weapon-usage.handler";
 import type { CombatStage } from "@scenes/HuntingZone/types/index.type";
 
+import { PlayerUpdateCombatHistoryHandler } from "@player/handlers/player-update-combat-history.handler";
+
 import type {
   SkillBehaviourAttack,
   SkillBehaviourEffect,
@@ -24,7 +26,6 @@ import type { ZoneId } from "@src/modules/zones/types/ids.types";
 import CombatCurrentAttacker from "./componentes/CombatCurrentAttacker";
 import CombatSkills from "./componentes/CombatSkills";
 import CombatTurn from "./componentes/CombatTurn";
-import { PlayerUpdateCombatHistoryHandler } from "@player/handlers/player-update-combat-history.handler";
 
 interface CombatProps {
   zoneId: ZoneId;
@@ -43,7 +44,7 @@ export default function Combat({
   const { setRewards, setResult, playerTurn, setPlayerTurn } = useCombat();
 
   const [enemies, setEnemies] = useState<Enemy[]>(() =>
-    generateEnemies(enemyIds)
+    generateEnemies(enemyIds),
   );
 
   const [turn, setTurn] = useState(0);
@@ -61,7 +62,7 @@ export default function Combat({
       result = "defeat";
       updatedPlayer = PlayerUpdateCombatHistoryHandler.handle(
         _player,
-        "defeat"
+        "defeat",
       );
     } else if (enemies.every((e) => !e.isAlive)) {
       result = "victory";
@@ -69,7 +70,7 @@ export default function Combat({
       updatedPlayer = updatePlayerRewards(_player, zoneId, enemies, setRewards);
       updatedPlayer = PlayerUpdateCombatHistoryHandler.handle(
         updatedPlayer,
-        "victory"
+        "victory",
       );
     }
 
@@ -100,7 +101,7 @@ export default function Combat({
   };
 
   const handleSkillAttack = async (
-    type: SkillBehaviourAttack | SkillBehaviourEffect
+    type: SkillBehaviourAttack | SkillBehaviourEffect,
   ) => {
     if (playerTurn !== "player") return;
 

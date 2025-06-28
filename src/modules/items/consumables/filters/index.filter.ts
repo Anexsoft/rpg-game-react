@@ -4,7 +4,7 @@ import { ConsumableTypeOrder } from "../../shared/index";
 
 export const sortByTypeAndRestoreRate = (
   a: { type: ConsumableType; restoreRate: number },
-  b: { type: ConsumableType; restoreRate: number }
+  b: { type: ConsumableType; restoreRate: number },
 ) => {
   const typeDiff = ConsumableTypeOrder[a.type] - ConsumableTypeOrder[b.type];
 

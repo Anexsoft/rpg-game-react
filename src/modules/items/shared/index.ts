@@ -11,7 +11,7 @@ export const RarityOrder: Record<ItemRarity, number> = {
 };
 
 export const WeaponTypeOrder: Record<WeaponType, number> = {
-  rifle: 0,
+  "hand-cannon": 0,
   smg: 1,
   shotgun: 2,
   handgun: 3,

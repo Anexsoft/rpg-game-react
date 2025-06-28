@@ -5,10 +5,10 @@ import maleZombie1 from "@resources/images/enemies/avatars/male-zombie-1.jpg";
 import maleZombie2 from "@resources/images/enemies/avatars/male-zombie-2.jpg";
 import nurseZombie1 from "@resources/images/enemies/avatars/nurse-zombie-1.jpg";
 import policeZombie1 from "@resources/images/enemies/avatars/police-zombie-1.jpg";
+import protus1 from "@resources/images/enemies/avatars/protus-1.png";
 import raptor1 from "@resources/images/enemies/avatars/raptor-1.jpg";
 import stalker1 from "@resources/images/enemies/avatars/stalker-1.jpg";
 import titan1 from "@resources/images/enemies/avatars/titan-1.jpg";
-import apocalipsis1 from "@resources/images/enemies/avatars/apocalipsis-1.png";
 
 import { EnemyCreateHandler } from "./handlers/enemy-create.handler";
 import type { EnemyBase } from "./types/base.type";
@@ -160,15 +160,15 @@ export const ENEMIES: EnemyBase[] = [
     goldGiven: [20, 30],
   },
   {
-    id: "apocalipsis-1",
-    name: "Apocalipsis",
+    id: "protus-1",
+    name: "Protus",
     description:
       "The ultimate force of destruction. Its presence alone signals the end. Nearly impossible to defeat.",
     dmg: 35,
     hp: 180,
     res: 0.35,
     ctr: 0.2,
-    picture: apocalipsis1,
+    picture: protus1,
     level: [1, 5],
     expGiven: [50, 100],
     goldGiven: [50, 100],

@@ -11,7 +11,7 @@ type SkillsProps = {
 
 export default function Skills({ player, setPlayer }: SkillsProps) {
   const acquiredSkills = SKILLS.filter((skill) =>
-    player.skills.includes(skill.id)
+    player.skills.includes(skill.id),
   );
 
   const handleSelect = (skillId: SkillId) => {

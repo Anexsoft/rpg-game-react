@@ -23,7 +23,7 @@ const { STORE_KEEPER } = NPC;
 export default function StoreScene(): SceneComponent {
   const { player } = useGame();
   const [notification, setNotification] = useState<StoreNotification | null>(
-    null
+    null,
   );
 
   return (

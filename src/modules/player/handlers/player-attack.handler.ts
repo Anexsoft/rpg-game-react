@@ -13,7 +13,7 @@ export class PlayerAttackHandler {
     for (const enemy of targets) {
       const { amount, isCritical } = PlayerCalculateDamageHandler.handle(
         player,
-        enemy.res
+        enemy.res,
       );
 
       enemy.takeDamage(amount, isCritical);

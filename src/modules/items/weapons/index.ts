@@ -29,7 +29,7 @@ function createVariation(
     picture,
     rarity,
   }: { base: Weapon; picture?: string; rarity?: ItemRarity },
-  level: number
+  level: number,
 ): Weapon {
   return {
     level,
@@ -66,7 +66,7 @@ const BASE_HANDGUN: Weapon = {
 const BASE_DESERT_EAGLE: Weapon = {
   level: 0,
   id: "desert-eagle",
-  type: "handgun",
+  type: "hand-cannon",
   name: "Desert Eagle",
   description: "High caliber handgun with massive stopping power.",
   picture: desertEagleStandard,
@@ -92,7 +92,7 @@ const BASE_SHOTGUN: Weapon = {
   target: {
     type: "multiple",
     targets: 3,
-    dmgMultiplier: 0.65,
+    dmgMultiplier: 0.6,
   },
   price: 600,
 };
@@ -192,7 +192,7 @@ export const WEAPONS: Weapon[] = [
       return createVariation(
         `${base.id}+${lvl}` as WeaponId,
         { base, rarity: rarity as ItemRarity, picture: pic },
-        lvl
+        lvl,
       );
     });
   }),
